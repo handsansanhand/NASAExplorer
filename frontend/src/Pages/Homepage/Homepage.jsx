@@ -5,7 +5,6 @@ import CustomButton from '../../Components/CustomButton'
 import { Modal, Button } from 'react-bootstrap'
 function Homepage() {
       const leftBoxText = "Welcome to the NASA Visualiser!"
-      const [message, setMessage] = useState("")
       const [showModal, setShowModal] = useState(false)
       const [imageData, setImageData] = useState(null)
 
@@ -13,8 +12,15 @@ function Homepage() {
         try {
           const imageJSON = await fetchDailyImage();
           if (!imageJSON || !imageJSON.image_url) {
-            //fallback to a default image
+            //fallback to a default image just in case
+              setImageData({
+              url: "backup_space_pic.jpg",
+              title: "Error Finding Image",
+              description: "There was a problem retrieving the image, good thing theres a backup!",
+              author: "N/A"
+          });
               console.log("No image returned.");
+              setShowModal(true);
               return;
             }
           setImageData({
@@ -48,22 +54,22 @@ function Homepage() {
               </div>
         </div>
          <Modal show={showModal} onHide={() => setShowModal(false)} centered size="lg">
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>{imageData?.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {imageData && (
-            <>
-              <img src={imageData.url} alt={imageData.title} style={{ width: '100%', borderRadius: '8px', marginBottom: '1rem' }} />
-              <p><strong>Author:</strong> {imageData.author || 'Unknown'}</p>
-              <p>{imageData.description}</p>
-            </>
-          )}
-        </Modal.Body>
+            {imageData && (
+              <div className="modal-body">
+                <img src={imageData.url} alt={imageData.title} />
+                <div className="modal-text">
+                  <p>{imageData.description}</p>
+                  <div className="author">Author: {imageData.author || 'Unknown'}</div>
+                </div>
+              </div>
+  )}
+</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
-            Close
-          </Button>
+          <CustomButton text="Close" onClick={() => setShowModal(false)} />
         </Modal.Footer>
       </Modal>
         </>

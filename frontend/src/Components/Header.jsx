@@ -3,14 +3,6 @@ import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import './Header.css'
 
-/*header for the portfolio page, should have a link to
-Home : the homepage
-About : details about myself
-Projects : my projects
-
-Also:
-Contact details in the far right
-*/
 function Header() {
     return (
       <>

@@ -1,6 +1,5 @@
 #root {
   width: 100%;
-  padding: 2rem;
   text-align: center;
    color: #ffffff;
 }
@@ -11,6 +10,10 @@
   width: 100%;
   background-color: black;
   color:white;
+  border-bottom: 3px solid #ffff;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  overflow: hidden;
 }
 
 .logo {

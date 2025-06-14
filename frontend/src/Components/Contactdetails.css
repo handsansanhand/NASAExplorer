@@ -1,0 +1,16 @@
+.contact-details {
+  font-family: inherit; /* inherits from body */
+  font-weight: 400; /* or whatever you want */
+  font-size: 18px; /* adjust size as needed */
+}
+
+a.no-style-link {
+  color: inherit;           /* keep current text color */
+  text-decoration: none;    /* remove underline */
+  cursor: pointer;          /* still shows pointer on hover */
+}
+
+a.no-style-link:hover {
+  color: #0a66c2; /* color on hover */
+  text-decoration: underline;
+}

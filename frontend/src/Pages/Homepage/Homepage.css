@@ -1,7 +1,8 @@
 .main-container {
-   border: 2px solid red;
+
+   background-color: transparent;
    width: 100%;
-   height: 100vh;
+  
    margin: 0;
     display: flex;
   flex-direction: column;
@@ -44,4 +45,57 @@
     font-size: 48px;
     margin-bottom: 50px;
     text-align:  left;
+}
+.modal-content {
+  background-color: #000000 !important;
+  color: #ffffff !important;  /* white text */
+  max-width: 1100px; /* wider modal */
+  height: auto;
+  margin: 0 auto;
+   min-height: 600px;
+}
+.modal-header {
+  justify-content: center
+}
+
+.modal-title {
+  margin: 0 auto;
+  text-align: center;
+  font-weight: 700 !important; 
+  width: 100%;
+}
+
+.modal-lg {
+  max-width: 1400px !important;
+}
+
+.modal-body {
+  display: flex;
+  gap: 20px;
+  padding: 1rem 2rem; /* add some padding */
+}
+
+.modal-body img {
+  width: 70%;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.modal-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.modal-text .author {
+  font-style: italic;
+  margin-bottom: 1rem;
+  color: #bbbbbb;
+}
+
+
+.modal-text p {
+  line-height: 1.5;
 }

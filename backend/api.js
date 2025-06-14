@@ -6,7 +6,6 @@ const app = express()
 const PORT = 3000;
 const API_KEY = process.env.NASA_API_KEY;
 const dailyImageURL = "https://api.nasa.gov/planetary/apod?api_key="
-console.log(API_KEY)
 
 app.use(
     cors(
