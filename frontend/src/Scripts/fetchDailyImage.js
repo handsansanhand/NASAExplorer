@@ -10,6 +10,7 @@ export async function fetchDailyImage () {
         const imageData = await imageDataResponse.json()
         console.log(imageData)
         console.log(imageData.image_url)
+        return imageData;
     } catch (error) {
         console.log("Error with image data " , error)
     }
