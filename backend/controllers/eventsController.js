@@ -1,10 +1,22 @@
+/* Events Controller
+Events are represented by:
+id , title, description (optional), 
+link -> a link to the api endpoint with more information about the event
+categories -> id (of event), title (what the event is called e.g: Severe Storms)
+sources -> who reported it, url and id
+goemetries -> an array of geographic points or polygons with associated timestamps representing the events locations over time.
+              each geometry has: date, 
+                                 type:
+                                    Point = long and lat
+                                    Polygon = areas
+*/
 const { API_KEY } = require('../config')
 const baseEventsURL = "https://eonet.gsfc.nasa.gov/api/v2.1/events";
 
-/* Returns all detailed events from the past 3 months*/
+/* Returns all detailed events from the past 2 months*/
 async function getAllEvents(req, res) {
     try {
-        const response = await fetch(`${baseEventsURL}?days=91`);
+        const response = await fetch(`${baseEventsURL}?days=60`);
         if(!response.ok) {
             throw new Error(`Error retrieving information from events api, CODE:${response.status}`)
         }
@@ -17,5 +29,26 @@ async function getAllEvents(req, res) {
     }
 }
 
+/* Filtered function, takes in a JSON with specified user filters */
+async function getEvents(req, res) {
+    const { category, source, status, days, limit } = req.query;
+    /*the call is structured using path variables, joined by &
+    go through the request, each non-empty parameter provided, append it to the initially blank query string
+    */
+    let query = [];
+      if (category) query.push(`category=${category}`);
+      if (source) query.push(`source=${source}`);
+      if (status) query.push(`status=${status}`);
+      if (days) query.push(`days=${days}`);
+      if (limit) query.push(`limit=${limit}`);
 
-module.exports = { getAllEvents };
+      //now append all the queries together
+     const queryString = query.length ? `?${query.join('&')}` : '';
+     const finalRequestString = (`${baseEventsURL}${queryString}`)
+     res.json(
+        {str:finalRequestString}
+    )
+
+}
+
+module.exports = { getAllEvents, getEvents };

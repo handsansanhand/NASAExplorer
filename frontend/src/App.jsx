@@ -6,6 +6,7 @@ import './App.css'
 import Header from './Components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from './Components/Footer';
+import Eventspage from './Pages/Events/Eventspage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Header></Header>
         <Routes>
             <Route path="/" element={<Homepage></Homepage>}></Route>
+             <Route path="/events" element={<Eventspage></Eventspage>}></Route>
         </Routes>
            
       </Router>

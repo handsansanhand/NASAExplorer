@@ -19,9 +19,9 @@ function Header() {
                 </Nav.Link>
                     <Nav.Link as={NavLink}
                     className="nav-link nav-link-instance"
-                    to="/mars"
+                    to="/events"
                     >
-                      Mars
+                      Events
                 </Nav.Link>
                                <Nav.Link as={NavLink}
                     className="nav-link nav-link-instance"
