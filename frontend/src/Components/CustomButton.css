@@ -1,0 +1,14 @@
+.custom-button {
+  background-color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 300ms ease, transform 200ms ease;
+}
+
+.custom-button:hover {
+  background-color: #0c4fba;  /* Darker blue on hover */
+  transform: translateY(-2px);
+}

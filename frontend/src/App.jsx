@@ -10,12 +10,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <>
-      <Router basename="/NASAExplorer">
+    <div className='main-content'>
+       <Router basename="/NASAExplorer">
         <Header></Header>
         <Routes>
             <Route path="/" element={<Homepage></Homepage>}></Route>
         </Routes>
       </Router>
+    </div>
+     
     </>
   )
 }
