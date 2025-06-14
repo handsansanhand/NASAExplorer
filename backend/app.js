@@ -3,6 +3,7 @@ const { PORT } = require('./config')
 const express = require('express');
 const cors = require('cors');
 const dailyImageRoutes = require('./routes/dailyImage');
+const eventsRoutes = require('./routes/events');
 
 const app = express()
 
@@ -13,7 +14,7 @@ app.use(
 );
 
 app.use('/dailyImage', dailyImageRoutes);
-
+app.use('/events', eventsRoutes);
 
 app.listen(PORT, () => {
     console.log("App is listening on port ", PORT);
