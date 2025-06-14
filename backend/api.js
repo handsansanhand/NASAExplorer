@@ -1,12 +1,16 @@
 const express = require('express');
-const app = express()
 const cors = require('cors');
+
+
+const app = express()
 const PORT = 3000;
+const API_KEY = process.env.NASA_API_KEY;
+
+console.log(API_KEY)
 
 app.use(
     cors(
         {origin : ['http://localhost:5173'],
-
         })
 );
 
@@ -25,4 +29,26 @@ app.get("/hello", (req, res) => {
 
 app.listen(PORT, () => {
     console.log("App is listening on port ", PORT);
+})
+
+/*API call which returns the daily nasa image
+    Returns:
+        image_url
+        description
+        author
+*/
+app.get("/dailyImage", async (req, res) => {
+    try {
+        const nasaResponse = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`)
+
+        if(!nasaResponse.ok) {
+        //have a backup here
+        throw new Error(`NASA daily image API error: ${nasaResponse.status}`)
+    }
+    const data = await nasaResponse.json();
+    res.json(data);
+    } catch (error) {
+        console.error("Error fetching daily images:", error);
+        res.status(500).json({ error: "Failed to fetch daily images" });
+    }
 })
