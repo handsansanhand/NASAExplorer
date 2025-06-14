@@ -31,11 +31,12 @@ app.listen(PORT, () => {
     console.log("App is listening on port ", PORT);
 })
 
-/*API call which returns the daily nasa image
+/*REST endpoint which returns the daily nasa image
     Returns:
         image_url
-        description
-        author
+        image_title
+        image_description
+        image_author
 */
 app.get("/dailyImage", async (req, res) => {
     try {
@@ -46,7 +47,15 @@ app.get("/dailyImage", async (req, res) => {
         throw new Error(`NASA daily image API error: ${nasaResponse.status}`)
     }
     const data = await nasaResponse.json();
-    res.json(data);
+    console.log(data)
+    res.json(
+        {
+            image_url : data.url,
+            image_title : data.title,
+            image_description : data.explanation,
+            image_author : data.copyright || "Unknown"
+        }
+    )
     } catch (error) {
         console.error("Error fetching daily images:", error);
         res.status(500).json({ error: "Failed to fetch daily images" });

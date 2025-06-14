@@ -1,5 +1,6 @@
 {
   "name": "frontend",
+  "homepage": "https://handsansanhand.github.io/NASAExplorer/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,10 +8,14 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build && npm run postbuild",
+    "deploy": "gh-pages -d dist",
+    "postbuild": "copy dist\\index.html dist\\404.html"
   },
   "dependencies": {
     "deploy": "^1.0.3",
+    "gh-pages": "^6.3.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
