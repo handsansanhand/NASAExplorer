@@ -1,0 +1,26 @@
+body {
+  padding-top: 70px;
+}
+.custom-navbar {
+  background-color: #73628A;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.nav-link-instance {
+  color: black; 
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 32px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.nav-link-instance:hover {
+  color: #87cefa;
+}
+
+.nav-link-instance.active {
+  color: #0a3c91 !important;
+  border-bottom: 2px solid white;
+}

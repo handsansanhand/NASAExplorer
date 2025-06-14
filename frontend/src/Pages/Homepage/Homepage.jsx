@@ -1,5 +1,5 @@
 import './Homepage.css'
-
+import { fetchDailyImage } from '../../Scripts/fetchDailyImage'
 import { useState } from "react" 
 function Homepage() {
       const [message, setMessage] = useState("")
@@ -22,7 +22,7 @@ function Homepage() {
         <div>
             <h1>Vite + React</h1>
               <div className="card">
-                <button onClick={() => callHelloApi()}>
+                <button onClick={() => fetchDailyImage()}>
                   {message}
                 </button>
                 <p>

@@ -5,7 +5,7 @@ const cors = require('cors');
 const app = express()
 const PORT = 3000;
 const API_KEY = process.env.NASA_API_KEY;
-
+const dailyImageURL = "https://api.nasa.gov/planetary/apod?api_key="
 console.log(API_KEY)
 
 app.use(
@@ -39,15 +39,15 @@ app.listen(PORT, () => {
         image_author
 */
 app.get("/dailyImage", async (req, res) => {
+    console.log('Fetching daily image...')
     try {
-        const nasaResponse = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`)
+        const nasaResponse = await fetch(`${dailyImageURL}${API_KEY}`)
 
         if(!nasaResponse.ok) {
         //have a backup here
         throw new Error(`NASA daily image API error: ${nasaResponse.status}`)
     }
     const data = await nasaResponse.json();
-    console.log(data)
     res.json(
         {
             image_url : data.url,
