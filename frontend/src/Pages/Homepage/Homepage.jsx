@@ -19,8 +19,9 @@ function Homepage() {
 
     return (
         <>
-        <div>
-            <h1>Vite + React</h1>
+        <div className='main-container'>
+            <div className='homepage-title'>NASA Visualiser</div>
+            <div className='homepage-subtitle'>Welcome to the NASA Visualiser!</div>
               <div className="card">
                 <button onClick={() => fetchDailyImage()}>
                   {message}
