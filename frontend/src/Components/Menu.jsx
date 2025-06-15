@@ -28,15 +28,15 @@ function Menu() {
           id="offcanvasNavbar"
           aria-labelledby="offcanvasNavbarLabel"
           placement="end"
+          className = 'popup-bar'
         >
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title id="offcanvasNavbarLabel">Menu</Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
-              <Nav.Link href="/" onClick={handleClose}>Home</Nav.Link>
-              <Nav.Link href="events" onClick={handleClose}>Events</Nav.Link>
-              <Nav.Link href="weather" onClick={handleClose}>Weather</Nav.Link>
+              <NavLink to="/" onClick={handleClose}   className={({ isActive }) => isActive ? "popup-link active" : "popup-link"}>Home</NavLink>
+              <NavLink to="events" onClick={handleClose} className={({ isActive }) => isActive ? "popup-link active" : "popup-link"}>Events</NavLink>
+              <NavLink to="weather" onClick={handleClose} className={({ isActive }) => isActive ? "popup-link active" : "popup-link"}>Weather</NavLink>
             </Nav>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
