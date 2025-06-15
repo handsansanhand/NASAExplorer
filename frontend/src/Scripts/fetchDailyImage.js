@@ -7,12 +7,30 @@ export async function fetchDailyImage () {
         if(!imageDataResponse.ok) {
             throw new Error("HTTP Error fetching daily image. ERROR:", imageDataResponse.status)
         }
-        const imageData = await imageDataResponse.json()
-        console.log(imageData)
-        console.log(imageData.image_url)
-        return imageData;
+        const imageJSON = await imageDataResponse.json()
+
+        if (!imageJSON || !imageJSON.image_url) {
+            //fallback to a default image just in case
+            return {
+              url: "backup_space_pic.jpg",
+              title: "Error Finding Image",
+              description: "There was a problem retrieving the image, good thing theres a backup!",
+              author: "N/A"
+            };  
+        }
+        return {
+              url: imageJSON.image_url,
+              title: imageJSON.image_title,
+              description: imageJSON.image_description,
+              author: imageJSON.image_author
+        };
     } catch (error) {
         console.log("Error with image data " , error)
+         return {
+              url: "backup_space_pic.jpg",
+              title: "Error Finding Image",
+              description: "There was a problem retrieving the image, good thing theres a backup!",
+              author: "N/A"
+            };  
     }
 }
-

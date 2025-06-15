@@ -49,7 +49,7 @@
 .modal-content {
   background-color: #000000 !important;
   color: #ffffff !important;  /* white text */
-  max-width: 1100px; /* wider modal */
+  max-width: 1300px; /* wider modal */
   height: auto;
   margin: 0 auto;
    min-height: 600px;

@@ -8,34 +8,12 @@ function Homepage() {
       const [showModal, setShowModal] = useState(false)
       const [imageData, setImageData] = useState(null)
 
-    async function showDailyImage () {
-        try {
-          const imageJSON = await fetchDailyImage();
-          if (!imageJSON || !imageJSON.image_url) {
-            //fallback to a default image just in case
-              setImageData({
-              url: "backup_space_pic.jpg",
-              title: "Error Finding Image",
-              description: "There was a problem retrieving the image, good thing theres a backup!",
-              author: "N/A"
-          });
-              console.log("No image returned.");
-              setShowModal(true);
-              return;
-            }
-          setImageData({
-              url: imageJSON.image_url,
-              title: imageJSON.image_title,
-              description: imageJSON.image_description,
-              author: imageJSON.image_author
-          });
-
-          setShowModal(true);
-            
-        } catch (error) {
-          throw new Error("Error parsing the JSON image.")
-        }
-    }
+      const showDailyImage = async () => {
+        const fetchedImage = await fetchDailyImage();
+        setImageData(fetchedImage);
+        setShowModal(true);
+      };
+      
     return (
         <>
         <div className='main-container'>
@@ -52,6 +30,7 @@ function Homepage() {
                      Astronomy Picture of the Day!</p>
                   </div>
               </div>
+              
         </div>
          <Modal show={showModal} onHide={() => setShowModal(false)} centered size="lg">
         <Modal.Header>
