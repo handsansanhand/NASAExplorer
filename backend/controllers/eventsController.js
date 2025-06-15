@@ -55,6 +55,22 @@ async function getEvents(req, res) {
     )
 }
 
+async function getEventByID (req, res) {
+    const { id } = req.params;
+
+    try {
+        const response = await fetch(`${baseEventsURL}/${id}`)
+        if(!response.ok) {
+            throw new Error(`Error retrieving event with ID ${id}, CODE:${response.status}`)
+        }
+        const eventData = await response.json();
+        res.json(eventData);
+    } catch (error) {
+        console.error("Error fetching event by ID", error);
+        res.status(500).json({ error: "Failed to fetch event" });
+    }
+}
+
 //helper function which, for each entry in the json, adds a new value which is their latest geometry (latest location of the event)
  function returnLatestGeometry(data) {
   const updatedData = data.events.map(event => {
@@ -78,4 +94,4 @@ async function getEvents(req, res) {
   return updatedData;
 }
 
-module.exports = { getAllEvents, getEvents };
+module.exports = { getAllEvents, getEvents, getEventByID };

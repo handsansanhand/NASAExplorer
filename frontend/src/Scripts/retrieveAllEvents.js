@@ -7,7 +7,7 @@ try {
         throw new Error(`Error fetching events, CODE:${events.status}`)
     }
     const eventsJSON = await events.json();
-    console.log(eventsJSON);
+   // console.log(eventsJSON);
     return eventsJSON;
 } catch (error) {
     throw new Error(`There was an issue when retrieving events.`)
