@@ -1,0 +1,21 @@
+
+.custom-popup .leaflet-popup-content-wrapper {
+  background-color: #1a1a1a;
+    border-top-color: black;
+  border-radius: 10px;
+  color: white; 
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  align-items: center;
+  text-align: center;
+}
+.custom-popup .leaflet-popup-tip {
+  background-color: #1a1a1a;
+}
+
+.custom-popup .leaflet-popup-content-wrapper strong,
+.custom-popup .leaflet-popup-content-wrapper .popup-title {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+}

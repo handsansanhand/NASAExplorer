@@ -13,12 +13,12 @@ goemetries -> an array of geographic points or polygons with associated timestam
 const { API_KEY } = require('../config')
 const baseEventsURL = "https://eonet.gsfc.nasa.gov/api/v2.1/events";
 
-/* Returns all detailed events from the past 2 months
+/* Returns all detailed events from the past 3 months
     Returns the ID + latest geometry (last place it was seen)
 */
 async function getAllEvents(req, res) {
     try {
-        const response = await fetch(`${baseEventsURL}?days=60`);
+        const response = await fetch(`${baseEventsURL}?days=91`);
         if(!response.ok) {
             throw new Error(`Error retrieving information from events api, CODE:${response.status}`)
         }
@@ -88,6 +88,7 @@ async function getEventByID (req, res) {
     //and return the event including the latest geometry
         return {
       id: event.id,
+      title: event.title,
       latestGeometry
     };
   })

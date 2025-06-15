@@ -7,9 +7,15 @@ import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 import { retrieveAllEvents } from '../Scripts/retrieveAllEvents';
 import { useEffect, useState } from 'react';
+import CustomButton from './CustomButton';
+import './Map.css'
+import { Modal } from 'react-bootstrap';
+import MapPopup from './MapPopup';
 
 function Map() {
     const [markers, setMarkers] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedEvent, setSelectedEvent] = useState(null);
         delete L.Icon.Default.prototype._getIconUrl;
         L.Icon.Default.mergeOptions({
         iconRetinaUrl: markerIcon2x,
@@ -25,6 +31,8 @@ function Map() {
         fetchMarkers();
     }, [])
     return (
+        <>
+        
          <MapContainer center={[0, 0]} 
          zoom={2} 
          minZoom={3} 
@@ -44,19 +52,28 @@ function Map() {
             if(!geometry || !geometry.coordinates) return null;
 
             const [lon, lat] = geometry.coordinates;
-
             return (
                 <Marker key={event.id} position={[lat, lon]}>
-                    <Popup>
-              <strong>Event ID:</strong> {event.id}<br />
-              <strong>Type:</strong> {geometry.type}<br />
-              <strong>Date:</strong> {geometry.date}
+            <Popup className='custom-popup'>
+               <strong className="popup-title">{event.title}</strong>
+              <CustomButton text={`Show More`} onClick={() => {
+                setSelectedEvent(event);
+                setShowModal(true)}
+              } ></CustomButton>
             </Popup>
-                </Marker>
+            </Marker>
             )
-
           })}
           </MapContainer>
+          <MapPopup
+          show={showModal}
+          onHide={() => setShowModal(false)}
+          eventData={selectedEvent}
+          >
+
+          </MapPopup>
+           
+          </>
     )
 }
 export default Map;
