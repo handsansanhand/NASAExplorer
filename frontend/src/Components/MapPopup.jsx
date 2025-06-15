@@ -26,6 +26,8 @@ function MapPopup( { show, onHide, eventData } ) {
   }
 }, [show, eventData]);
 
+if (!event) return null;
+//the modal should ideally have the title, description, date, sources, and categories of the event
     return (
         <>
         <Modal show={show} onHide={onHide} centered size="lg">
@@ -36,8 +38,31 @@ function MapPopup( { show, onHide, eventData } ) {
               <div className="modal-body">
                 <img src={`backup_space_pic.jpg`} alt={`test`} />
                 <div className="modal-text">
-                  <p>{event ? event.description : ''}</p>
-                  <div className="author"></div>
+                  <p>{event ? event.description : 'No description provided.'}</p>
+                    <p>
+                    <strong>Categories:</strong>{' '}
+                        {event.categories && event.categories.length > 0 
+                            ? event.categories.map(category => category.title).join(', ')
+                            : 'None'
+                        }
+                    </p>              
+                    <p>
+                        <strong>Sources:</strong>{' '}
+                        {event.sources && event.sources.length > 0
+                        ? event.sources.map(src => (
+                        <a key={src.id} href={src.url} target="_blank" rel="noopener noreferrer">
+                        {src.id}
+                        </a>
+                        )).reduce((prev, curr) => [prev, ', ', curr])
+                        : 'None'}
+                    </p>
+                    <p>
+                        <strong>Date:</strong>{' '}
+                        {event.geometries && event.geometries.length > 0
+                        ? new Date(event.geometries[0].date).toLocaleString()
+                        : 'No date available'}
+                    </p>
+                   
                 </div>
               </div>
         </Modal.Body>
