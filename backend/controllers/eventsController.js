@@ -13,7 +13,9 @@ goemetries -> an array of geographic points or polygons with associated timestam
 const { API_KEY } = require('../config')
 const baseEventsURL = "https://eonet.gsfc.nasa.gov/api/v2.1/events";
 
-/* Returns all detailed events from the past 2 months*/
+/* Returns all detailed events from the past 2 months
+    Returns the ID + latest geometry (last place it was seen)
+*/
 async function getAllEvents(req, res) {
     try {
         const response = await fetch(`${baseEventsURL}?days=60`);
@@ -21,7 +23,10 @@ async function getAllEvents(req, res) {
             throw new Error(`Error retrieving information from events api, CODE:${response.status}`)
         }
         const data = await response.json()
-        res.json(data);
+        
+        const newData = await returnLatestGeometry(data);
+        console.log(newData);
+        res.json(newData);
         
     } catch (error) {
          console.error("Error parsing event data.", error);
@@ -48,7 +53,29 @@ async function getEvents(req, res) {
      res.json(
         {str:finalRequestString}
     )
+}
 
+//helper function which, for each entry in the json, adds a new value which is their latest geometry (latest location of the event)
+ function returnLatestGeometry(data) {
+  const updatedData = data.events.map(event => {
+    //if there is no geometries, or the geometries are empty
+     if (!event.geometries || event.geometries.length === 0) {
+      return { 
+        ...event, 
+        latestGeometry: null 
+      };
+    }
+    //there are geometries, go through them and find the closest date
+    const latestGeometry = event.geometries.reduce((latest, current) => {
+        return new Date(current.date) > new Date(latest.date) ? current : latest;
+    })
+    //and return the event including the latest geometry
+        return {
+      id: event.id,
+      latestGeometry
+    };
+  })
+  return updatedData;
 }
 
 module.exports = { getAllEvents, getEvents };

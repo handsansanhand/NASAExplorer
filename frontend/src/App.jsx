@@ -11,17 +11,18 @@ import Eventspage from './Pages/Events/Eventspage';
 function App() {
   return (
     <>
-    <div className='main-content'>
-       <Router basename="/NASAExplorer">
-        <Header></Header>
-        <Routes>
-            <Route path="/" element={<Homepage></Homepage>}></Route>
-             <Route path="/events" element={<Eventspage></Eventspage>}></Route>
-        </Routes>
-           
+      <div className="app-wrapper">
+      <Router basename="/NASAExplorer">
+        <Header />
+        <div className="main-content">
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/events" element={<Eventspage />} />
+          </Routes>
+        </div>
+        <Footer />
       </Router>
     </div>
-  <Footer></Footer>
     </>
   )
 }
