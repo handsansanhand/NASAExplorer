@@ -47,7 +47,7 @@ if (!event) return null;
                         }
                     </p>              
                     <p>
-                        <strong>Sources:</strong>{' '}
+                        <strong>Source(s):</strong>{' '}
                         {event.sources && event.sources.length > 0
                         ? event.sources.map(src => (
                         <a key={src.id} href={src.url} target="_blank" rel="noopener noreferrer">

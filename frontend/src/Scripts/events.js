@@ -1,19 +1,3 @@
-
-//this should return all events through the api, each event will have their own id, and latest geometry
-export async function retrieveAllEvents() {
-try {
-    const events = await fetch('/api/events')
-    if(!events.ok) {
-        throw new Error(`Error fetching events, CODE:${events.status}`)
-    }
-    const eventsJSON = await events.json();
-   // console.log(eventsJSON);
-    return eventsJSON;
-} catch (error) {
-    throw new Error(`There was an issue when retrieving events. Please try again, or check if the API is running.`)
-}
-}
-
 //go through the filter that is been passed in by map, and build the query string
 export async function retrieveEvents (filter = {}) {
     try {
@@ -30,15 +14,12 @@ export async function retrieveEvents (filter = {}) {
         url = `/api/events/filterEvents?${query}`;
       }
     }
-
-    console.log(`doing call to ${url}`);
-
     const response = await fetch(url);
     if (!response.ok) throw new Error(`Error fetching events: ${response.status}`);
 
     const data = await response.json();
 
-    // Return events array from response, try to be flexible with data format
+    //return events array from response
     if (Array.isArray(data)) return data;
     if (data.events && Array.isArray(data.events)) return data.events;
 
@@ -46,7 +27,7 @@ export async function retrieveEvents (filter = {}) {
     return [];
 
   } catch (error) {
-    console.error(error);
+    throw new Error(`There was an issue when retrieving events. Please try again, or check if the API is running.`)
     return [];
   }
 }

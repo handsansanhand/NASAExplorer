@@ -1,7 +1,6 @@
 .leaflet-container {
   flex: 1;
   width: 100%;
-  border: 10px solid red
 }
 .map-legend {
   position: fixed;

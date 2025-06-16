@@ -5,18 +5,22 @@ import L from 'leaflet'
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
-import { retrieveAllEvents, retrieveEvents } from '../../Scripts/events';
 import { useEffect, useState } from 'react';
 import CustomButton from '../CustomButton/CustomButton';
 import './Map.css'
 import MapPopup from './MapPopup/MapPopup';
 import CustomSlider from './Slider/CustomSlider';
+import { Infinity } from 'ldrs/react'
+import 'ldrs/react/Infinity.css'
+import { retrieveEvents } from '../../Scripts/events';
+
 
 function Map() {
     const [markers, setMarkers] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [filter, setFilter] = useState({});
+    const [loading, setLoading] = useState(false);
 
         delete L.Icon.Default.prototype._getIconUrl;
         L.Icon.Default.mergeOptions({
@@ -27,9 +31,10 @@ function Map() {
     //every time this page is refreshed, repopulate the instances
     useEffect(() => {
         const fetchMarkers = async () => {
+            setLoading(true);
             const events = await retrieveEvents(filter);
-            console.log(`number of returned events = ${events.length}`)
             setMarkers(events);
+            setLoading(false);
         }
         fetchMarkers();
     }, [filter])
@@ -43,7 +48,15 @@ function Map() {
     }
     return (
         <>
-        <div className='map-wrapper'>
+         
+        <div className='map-wrapper'>  
+            {loading && (
+    <div className="loading-overlay">
+      <p>Loading Events...</p>
+      <Infinity size="120" stroke="5" speed="1.5" color="#3498db" />
+    </div>
+  )}
+
           <MapContainer center={[0, 0]} 
          zoom={2} 
          minZoom={3} 
@@ -61,7 +74,7 @@ function Map() {
           {markers.map(event => {
             const geometry = event.latestGeometry;
             if(!geometry || !geometry.coordinates) return null;
-
+         
             const [lon, lat] = geometry.coordinates;
             return (
                 <Marker key={event.id} position={[lat, lon]}>
