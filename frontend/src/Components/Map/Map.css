@@ -30,13 +30,13 @@
 }
 
 .map-slider-container {
-  background-color: transparent;
   position: absolute;
-  bottom: 20px;
+  bottom: 50px;
   left: 50%;
+  border: 2px solid blue;
+  align-items: center;
   transform: translateX(-50%);
-  width: 300px;
-  background: rgba(0, 0, 0, 0.7);
+  width: 75%;
   padding: 8px 12px;
   border-radius: 8px;
   z-index: 1000;

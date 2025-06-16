@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import CustomButton from '../CustomButton/CustomButton';
 import './Map.css'
 import MapPopup from './MapPopup/MapPopup';
-import Slider from './Slider/Slider';
+import CustomSlider from './Slider/CustomSlider';
 
 function Map() {
     const [markers, setMarkers] = useState([]);
@@ -72,7 +72,7 @@ function Map() {
           >
           </MapPopup>
           <div className='map-slider-container'>
-             <Slider />
+          <CustomSlider />
           </div>
 
         </div>
