@@ -5,12 +5,11 @@ import L from 'leaflet'
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
-import { retrieveAllEvents } from '../Scripts/retrieveAllEvents';
+import { retrieveAllEvents } from '../../Scripts/retrieveAllEvents';
 import { useEffect, useState } from 'react';
-import CustomButton from './CustomButton';
+import CustomButton from '../CustomButton/CustomButton';
 import './Map.css'
-import { Modal } from 'react-bootstrap';
-import MapPopup from './MapPopup';
+import MapPopup from './MapPopup/MapPopup';
 
 function Map() {
     const [markers, setMarkers] = useState([]);

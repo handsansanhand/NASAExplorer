@@ -10,6 +10,6 @@ try {
    // console.log(eventsJSON);
     return eventsJSON;
 } catch (error) {
-    throw new Error(`There was an issue when retrieving events.`)
+    throw new Error(`There was an issue when retrieving events. Please try again, or check if the API is running.`)
 }
 }

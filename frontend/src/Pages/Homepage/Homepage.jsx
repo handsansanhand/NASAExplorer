@@ -1,7 +1,7 @@
 import './Homepage.css'
 import { fetchDailyImage } from '../../Scripts/fetchDailyImage'
 import { useState } from "react" 
-import CustomButton from '../../Components/CustomButton'
+import CustomButton from '../../Components/CustomButton/CustomButton'
 import { Modal, Button } from 'react-bootstrap'
 function Homepage() {
       const leftBoxText = "Welcome to the NASA Visualiser!"
