@@ -2,12 +2,18 @@ import Slider from '@mui/material/Slider'
 import 'react-range-slider-input/dist/style.css';
 import './CustomSlider.css'
 //a slider which should be from 0->90 and have labels on them
-function CustomSlider () {
-  const marks = Array.from({ length: 10 }, (_, i) => ({
+function CustomSlider ( { onValueCommit } ) {
+  const marks = Array.from({ length: 10 }, (_, i) => ({ 
   value: i * 10,
   label: `${i * 10}`,
 }));
 
+function handleChangeCommited(event, value) {
+  console.log(`slider has been released at value ${value}`)
+  if(onValueCommit) {
+    onValueCommit(value);
+  }
+}
 function valuetext(value) {
   return `${value}`;
 }
@@ -21,6 +27,7 @@ function valuetext(value) {
   marks={marks}
   min={0}
   max={90}
+  onChangeCommitted={handleChangeCommited}
 />
     );
 }

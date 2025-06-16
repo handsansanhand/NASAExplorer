@@ -17,6 +17,7 @@ const baseEventsURL = "https://eonet.gsfc.nasa.gov/api/v2.1/events";
     Returns the ID + latest geometry (last place it was seen)
 */
 async function getAllEvents(req, res) {
+    console.log(`query recieved 1 : ${req}`)
     try {
         const response = await fetch(`${baseEventsURL}?days=91`);
         if(!response.ok) {
@@ -25,7 +26,7 @@ async function getAllEvents(req, res) {
         const data = await response.json()
         
         const newData = await returnLatestGeometry(data);
-        console.log(newData);
+       // console.log(newData);
         res.json(newData);
         
     } catch (error) {
@@ -36,6 +37,7 @@ async function getAllEvents(req, res) {
 
 /* Filtered function, takes in a JSON with specified user filters */
 async function getEvents(req, res) {
+     console.log(`query recieved 2 : ${req}`)
     const { category, source, status, days, limit } = req.query;
     /*the call is structured using path variables, joined by &
     go through the request, each non-empty parameter provided, append it to the initially blank query string
@@ -50,9 +52,15 @@ async function getEvents(req, res) {
       //now append all the queries together
      const queryString = query.length ? `?${query.join('&')}` : '';
      const finalRequestString = (`${baseEventsURL}${queryString}`)
-     res.json(
-        {str:finalRequestString}
-    )
+
+     //make the api request
+     const response = await fetch(`${finalRequestString}`)
+     if(!response.ok) {
+        throw new Error(`Error when making the request ${response}, CODE:${response.status}`);
+     }
+     const responseJSON = await response.json();
+     const newData = await returnLatestGeometry(responseJSON);
+     res.json(newData)
 }
 
 async function getEventByID (req, res) {
