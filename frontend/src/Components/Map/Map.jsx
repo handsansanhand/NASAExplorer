@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import CustomButton from '../CustomButton/CustomButton';
 import './Map.css'
 import MapPopup from './MapPopup/MapPopup';
+import Slider from './Slider/Slider';
 
 function Map() {
     const [markers, setMarkers] = useState([]);
@@ -31,8 +32,8 @@ function Map() {
     }, [])
     return (
         <>
-        
-         <MapContainer center={[0, 0]} 
+        <div className='map-wrapper'>
+          <MapContainer center={[0, 0]} 
          zoom={2} 
          minZoom={3} 
          maxZoom={10}  
@@ -69,9 +70,14 @@ function Map() {
           onHide={() => setShowModal(false)}
           eventData={selectedEvent}
           >
-
           </MapPopup>
-           
+          <div className='map-slider-container'>
+             <Slider />
+          </div>
+
+        </div>
+         
+          
           </>
     )
 }
