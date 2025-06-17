@@ -38,10 +38,6 @@ function Map() {
     //every time this page is refreshed, repopulate the instances
     useEffect(() => {
         const fetchMarkers = async () => {
-            console.log(`filter has changed.`)
-            Object.entries(filter).map(([key, value]) => {
-              console.log(`Key ${key} Value ${value}`)
-            })
             setLoading(true);
             const events = await retrieveEvents(filter);
             setMarkers(events);
@@ -53,7 +49,6 @@ function Map() {
     
 
     const handleSliderCommit = async (value) => {
-      console.log(`Slider value recieved ${value} doing a get request for all events in this time`);
       setFilter((prev) => ({
         ...prev,
         days: value
