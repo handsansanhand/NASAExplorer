@@ -2,6 +2,7 @@ import CustomButton from "../../CustomButton/CustomButton";
 import { SelectButton } from 'primereact/selectbutton';
 import 'primereact/resources/primereact.min.css';
 import { useState } from "react";
+import './MapLegend.css'
 /*this needs to show all
 Categories (you can click more or one)
 Status (OPEN OR CLOSED)
@@ -33,7 +34,7 @@ function MapLegend( { updateFilter } ) {
 
     return (
        <div className="map-legend">
-      <h4>Event Key</h4>
+      <h4>Filter By Event</h4>
       <SelectButton
         value={selectedCategory}
         options={categories}

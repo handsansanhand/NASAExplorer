@@ -1,6 +1,5 @@
 const { base_earth_url } = require('../config');
 const { API_KEY } = require('../config')
-console.log(base_earth_url);
 
 
 //retrieves a satelite image of the lat and lon parameters
@@ -19,7 +18,7 @@ async function getImage(req, res) {
     query.push(`api_key=${API_KEY}`)
     const queryString = query.length ? `?${query.join('&')}` : '';
     const finalQuery = (`${base_earth_url}${queryString}`)
-    console.log(`final queryu ${finalQuery}`)
+
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 12000);
     const response = await fetch(finalQuery, { signal: controller.signal });

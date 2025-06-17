@@ -1,0 +1,31 @@
+.map-legend {
+  background-color: #333;
+  color: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  max-width: 350px; 
+  width: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.map-legend h4 {
+  font-size: 28px;
+  font-weight: 700;
+  border-bottom: 3px solid white;
+}
+
+.vertical-select-button {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 20px;
+}
+.vertical-select-button .p-button:hover {
+     color: #87cefa;
+}
+
+.vertical-select-button .p-button.p-highlight {
+     color: green;
+}
+

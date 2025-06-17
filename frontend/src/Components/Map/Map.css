@@ -55,7 +55,6 @@
   position: absolute;
   bottom: 50px;
   left: 50%;
-  border: 2px solid blue;
   align-items: center;
   transform: translateX(-50%);
   width: 75%;
