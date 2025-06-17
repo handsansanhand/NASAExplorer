@@ -49,11 +49,10 @@
 }
 .modal-content {
   background-color: #000000 !important;
-  color: #ffffff !important;  /* white text */
-  max-width: 1300px; /* wider modal */
-  height: auto;
-  margin: 0 auto;
-   min-height: 600px;
+  color: white !important;
+  height: 90%;
+  max-height: 90vh !important;
+  overflow: hidden;
 }
 .modal-header {
   justify-content: center
@@ -74,6 +73,7 @@
   display: flex;
   gap: 20px;
   padding: 1rem 2rem; /* add some padding */
+    overflow: hidden;
 }
 
 .modal-body img {
@@ -98,5 +98,7 @@
 
 
 .modal-text p {
+    overflow-y: auto;
   line-height: 1.5;
+  font-size: 20px;
 }

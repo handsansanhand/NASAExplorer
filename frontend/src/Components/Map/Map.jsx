@@ -30,6 +30,7 @@ function Map() {
         shadowUrl: markerShadow,
         });
         const updateFilter = (newFilter) => {
+          
     setFilter((prev) => ({
       ...prev,
       ...newFilter
@@ -37,11 +38,14 @@ function Map() {
   };
     //every time this page is refreshed, repopulate the instances
     useEffect(() => {
+      console.log('Filter changed:', JSON.stringify(filter, null, 2));
         const fetchMarkers = async () => {
             setLoading(true);
             const events = await retrieveEvents(filter);
             setMarkers(events);
+            setTimeout(() => {
             setLoading(false);
+          }, 1000);
         }
         fetchMarkers();
     }, [filter])
@@ -56,9 +60,9 @@ function Map() {
     }
     return (
         <>
-         
+               
         <div className='map-wrapper'>  
-            {loading && (
+      {loading && (
     <div className="loading-overlay">
       <p>Loading Events...</p>
       <Infinity size="120" stroke="5" speed="1.5" color="#3498db" />

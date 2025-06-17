@@ -5,7 +5,7 @@
 .map-legend {
   position: fixed;
   top: 50%;
-  left: 20px; /* or wherever you want it horizontally */
+  left: 20px;
   transform: translateY(-50%);
   background-color: rgba(0, 0, 0, 0.7);
   padding: 1rem;
