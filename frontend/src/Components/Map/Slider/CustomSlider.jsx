@@ -18,17 +18,23 @@ function valuetext(value) {
   return `${value}`;
 }
     return (
-      <Slider
-  aria-label="Custom marks"
-  defaultValue={90}
-  getAriaValueText={valuetext}
+      <>
 
-  valueLabelDisplay="auto"
-  marks={marks}
-  min={0}
-  max={90}
-  onChangeCommitted={handleChangeCommited}
-/>
+        <Slider
+          aria-label="Custom marks"
+          defaultValue={90}
+          getAriaValueText={valuetext}
+
+          valueLabelDisplay="auto"
+          marks={marks}
+          min={0}
+          max={90}
+          onChangeCommitted={handleChangeCommited}
+        />
+   
+      
+      </>
+     
     );
 }
 

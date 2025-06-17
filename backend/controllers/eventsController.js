@@ -12,6 +12,7 @@ goemetries -> an array of geographic points or polygons with associated timestam
 */
 const { API_KEY } = require('../config')
 const baseEventsURL = "https://eonet.gsfc.nasa.gov/api/v2.1/events";
+const baseCategoriesURL = "https://eonet.gsfc.nasa.gov/api/v2.1/categories";
 
 /* Returns all detailed events from the past 3 months
     Returns the ID + latest geometry (last place it was seen)
@@ -40,17 +41,27 @@ async function getEvents(req, res) {
     /*the call is structured using path variables, joined by &
     go through the request, each non-empty parameter provided, append it to the initially blank query string
     */
+   //if category exists, it has to instead call the categories api : baseCategoriesURL + /{category}/rest of filter
     let query = [];
-      if (category) query.push(`category=${category}`);
+    const baseURL = category !== undefined 
+    ? `${baseCategoriesURL}/${category}` 
+    : baseEventsURL;
+      if (category !== undefined) {
+        query.push(`${baseCategoriesURL}/${category}`);
+        } else {
+        query.push(baseEventsURL);
+        }
+
       if (source) query.push(`source=${source}`);
       if (status) query.push(`status=${status}`);
       if (days) query.push(`days=${days}`);
       if (limit) query.push(`limit=${limit}`);
 
+      console.log(`curr query ${query}`)
       //now append all the queries together
      const queryString = query.length ? `?${query.join('&')}` : '';
-     const finalRequestString = (`${baseEventsURL}${queryString}`)
-
+     const finalRequestString = (`${baseURL}${queryString}`)
+        console.log(`final query: ${finalRequestString}`)
      //make the api request
      const response = await fetch(`${finalRequestString}`)
      if(!response.ok) {

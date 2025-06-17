@@ -13,13 +13,14 @@ import CustomSlider from './Slider/CustomSlider';
 import { Infinity } from 'ldrs/react'
 import 'ldrs/react/Infinity.css'
 import { retrieveEvents } from '../../Scripts/events';
+import MapLegend from './MapLegend/MapLegend';
 
 
 function Map() {
     const [markers, setMarkers] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState(null);
-    const [filter, setFilter] = useState({});
+    const [filter, setFilter] = useState({days : 90});
     const [loading, setLoading] = useState(false);
 
         delete L.Icon.Default.prototype._getIconUrl;
@@ -28,9 +29,19 @@ function Map() {
         iconUrl: markerIcon,
         shadowUrl: markerShadow,
         });
+        const updateFilter = (newFilter) => {
+    setFilter((prev) => ({
+      ...prev,
+      ...newFilter
+    }));
+  };
     //every time this page is refreshed, repopulate the instances
     useEffect(() => {
         const fetchMarkers = async () => {
+            console.log(`filter has changed.`)
+            Object.entries(filter).map(([key, value]) => {
+              console.log(`Key ${key} Value ${value}`)
+            })
             setLoading(true);
             const events = await retrieveEvents(filter);
             setMarkers(events);
@@ -38,6 +49,8 @@ function Map() {
         }
         fetchMarkers();
     }, [filter])
+
+    
 
     const handleSliderCommit = async (value) => {
       console.log(`Slider value recieved ${value} doing a get request for all events in this time`);
@@ -56,7 +69,7 @@ function Map() {
       <Infinity size="120" stroke="5" speed="1.5" color="#3498db" />
     </div>
   )}
-
+<MapLegend updateFilter={updateFilter}/>
           <MapContainer center={[0, 0]} 
          zoom={2} 
          minZoom={3} 
@@ -96,7 +109,9 @@ function Map() {
           >
           </MapPopup>
           <div className='map-slider-container'>
+         
           <CustomSlider onValueCommit={handleSliderCommit}/>
+          <h2>Filter Events by Date Range</h2>
           </div>
 
         </div>

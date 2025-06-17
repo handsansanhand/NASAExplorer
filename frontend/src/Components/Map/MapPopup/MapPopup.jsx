@@ -40,7 +40,7 @@ if (!event) return null;
                 <div className="modal-text">
                   <p>{event ? event.description : 'No description provided.'}</p>
                     <p>
-                    <strong>Categories:</strong>{' '}
+                    <strong>Categorie(s):</strong>{' '}
                         {event.categories && event.categories.length > 0 
                             ? event.categories.map(category => category.title).join(', ')
                             : 'None'
