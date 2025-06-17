@@ -60,14 +60,14 @@ function Map() {
     }
     return (
         <>
-               
-        <div className='map-wrapper'>  
-      {loading && (
+              {loading && (
     <div className="loading-overlay">
       <p>Loading Events...</p>
-      <Infinity size="120" stroke="5" speed="1.5" color="#3498db" />
+      <Infinity size="120" stroke="5" speed="1.5" color="#ffff" />
     </div>
-  )}
+  )}      
+        <div className='map-wrapper'>  
+ 
 <MapLegend updateFilter={updateFilter}/>
           <MapContainer center={[0, 0]} 
          zoom={2} 
