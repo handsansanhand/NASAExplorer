@@ -1,6 +1,6 @@
 .custom-slider .MuiSlider-track {
   height: 8px; 
-  background-color: white;
+  background-color: 	white;
 }
 
 .custom-slider .MuiSlider-rail {
@@ -11,7 +11,7 @@
 .custom-slider .MuiSlider-thumb {
   height: 20px;
   width: 20px;
-    background-color: white;
+    background-color: 	#fc3c23;
 }
 .custom-slider .MuiSlider-markLabel {
   color: white;

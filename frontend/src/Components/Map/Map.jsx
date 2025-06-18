@@ -70,7 +70,7 @@ function Map() {
         {loading && (
           <div className="loading-overlay">
             <p>Loading Events...</p>
-            <Infinity size="120" stroke="5" speed="1.5" color="#ffff" />
+            <Infinity size="120" stroke="5" speed="1.5" color="#fc3c23" />
           </div>
         )}      
         <div className='map-wrapper'>  

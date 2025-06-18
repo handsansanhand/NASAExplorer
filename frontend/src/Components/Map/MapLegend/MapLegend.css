@@ -1,5 +1,6 @@
 .map-legend {
-  background-color: #333;
+  background-color: 		rgb(10, 60, 145, 0.8);
+  border: 3px solid black;
   color: #fff;
   padding: 16px;
   border-radius: 8px;
@@ -7,13 +8,14 @@
   width: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
 }
 
 .map-legend h4 {
+  color: 	#fc3c23;
   font-size: 28px;
   font-weight: 700;
-  border-bottom: 3px solid white;
+  border-bottom: 3px solid 	#fc3c23;
 }
 
 .vertical-select-button {
@@ -28,7 +30,8 @@
 }
 
 .vertical-select-button .p-button.p-highlight {
-     color: green;
+  font-weight: 650;
+     color: 	#fc3c23;
 }
 
 

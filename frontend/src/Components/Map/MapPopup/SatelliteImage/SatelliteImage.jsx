@@ -30,7 +30,7 @@ function SatelliteImage ({ coordinates }) {
       {imageLoading && (
         <div className="loading-overlay">
           <p>Loading Satellite Image...</p>
-          <Infinity size="32" stroke="5" speed="1.5" color="#ffff" />
+          <Infinity size="32" stroke="5" speed="1.5" color="	#fc3c23" />
         </div>
       )}
       {imageUrl ? (

@@ -2,8 +2,8 @@
   position: absolute;
   top: 100px;
 
-  background-color: #333;
-  color: #fff;
+  background-color: #0a3c91;
+  color:	#fc3c23;
   border-radius: 8px;
   max-width: 350px;
   display: flex;
@@ -14,12 +14,12 @@
   text-align: center;
 justify-content: center;
 font-size: 32px;
- border: 2px solid white;
+ border: 3px solid black;
 
 }
 
 .info-button:hover {
   background-color: #ffff;
-  color: #0e0e0e;
+  color: #fc3c23;
   transform: translateY(-2px);
 }

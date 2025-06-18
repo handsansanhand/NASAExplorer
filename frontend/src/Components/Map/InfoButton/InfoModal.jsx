@@ -10,7 +10,7 @@ const infoText = [
     "You may also click on each event in order to view more information about it, including its category, sources, date & time, and if possible, a satellite image."
 ]
   return (
-    <Modal show={true} onHide={onClose}>
+    <Modal show={true} onHide={onClose} className='info-modal'>
       <Modal.Header closeButton>
         <Modal.Title>Information</Modal.Title>
       </Modal.Header>
