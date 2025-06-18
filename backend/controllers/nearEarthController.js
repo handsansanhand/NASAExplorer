@@ -15,10 +15,11 @@ for this projects sake, needs to extract:
 async function getNearMissObjects (req, res) {
     try {
         const {start_date, end_date} = req.query;
-        //no date specified, go with the standard
+        
         let begin_date = '';
         let final_date = '';
-        if(start_date || end_date) {
+         //no date specified, go with the standard
+        if(!start_date || !end_date) {
         const today = new Date();
         const yesterday = new Date(today);
         yesterday.setDate(today.getDate() - 1);
@@ -27,9 +28,10 @@ async function getNearMissObjects (req, res) {
         final_date = yesterday.toISOString().split('T')[0];      
        
         }
+       //date specified
         else {
-            res.status(500).json({error: `The request body was not valid for this API call : ${req.message}`});
-            return;
+            begin_date = start_date;
+            final_date = end_date;
         }
         const format = `start_date=${begin_date}&end_date=${final_date}&api_key=${API_KEY}`;
         const queryString = `${baseNearEarthURL}?${format}`;
@@ -67,15 +69,21 @@ function extractData(nearEarthObjects) {
 
          objectsOnDate.forEach(asteroid => {
             const close_approach_data = extractCloseApproachData(asteroid.close_approach_data);
+            //deal with the numerical data
+            const speed = close_approach_data.speed;
+            const miss_distance = close_approach_data.miss_distance;
+
+            const speedFixed = Number(speed).toFixed(2);
+            const missDistanceFixed = Number(miss_distance).toFixed(2);
             const asteroidInfo = {
                 Name: asteroid.name,
-                'Nasa JPL URL': asteroid.nasa_jpl_url,
-                Size: calculateSize(asteroid.estimated_diameter),
+                //'Nasa JPL URL': asteroid.nasa_jpl_url,
+                'Average Estimated Radius (Meters)': calculateSize(asteroid.estimated_diameter),
                 Hazardous: asteroid.is_potentially_hazardous_asteroid,
                 Date : close_approach_data.date,
                 Time : close_approach_data.time,
-                Speed : close_approach_data.speed,
-                'Miss Distance' : close_approach_data.miss_distance,
+                'Speed (KM/H)' : speedFixed,
+                'Miss Distance (Kilometers)' : missDistanceFixed
             };
           
         returnJSON[asteroid.id] = asteroidInfo;
@@ -103,7 +111,7 @@ function extractCloseApproachData(close_approach_data) {
 //return the average estimated size
 function calculateSize(estimated_diameter) {
     const meters = estimated_diameter.meters;
-    return (meters.estimated_diameter_min + meters.estimated_diameter_max) / 2;
+    return ((meters.estimated_diameter_min + meters.estimated_diameter_max) / 2).toFixed(2);
 }
 
 module.exports = { getNearMissObjects };
