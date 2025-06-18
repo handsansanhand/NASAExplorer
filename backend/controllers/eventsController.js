@@ -11,8 +11,8 @@ goemetries -> an array of geographic points or polygons with associated timestam
                                     Polygon = areas
 */
 const { API_KEY } = require('../config')
-const baseEventsURL = "https://eonet.gsfc.nasa.gov/api/v2.1/events";
-const baseCategoriesURL = "https://eonet.gsfc.nasa.gov/api/v2.1/categories";
+const { baseEventsURL, baseCategoriesURL } = require('../config')
+
 
 /* Returns all detailed events from the past 3 months
     Returns the ID + latest geometry (last place it was seen)

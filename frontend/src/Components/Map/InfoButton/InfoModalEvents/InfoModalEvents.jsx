@@ -1,8 +1,8 @@
 import { Modal, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CustomButton from '../../CustomButton/CustomButton';
-import './InfoModal.css'
-function InfoModal({ onClose }) {
+import CustomButton from '../../../CustomButton/CustomButton';
+import './InfoModalEvents.css'
+function InfoModalEvents({ onClose }) {
 const infoText = [
     "Welcome to the natural events page! This page displays information about recent natural events all across the world stretching back to 90 days.",
     "You may filter the events by their date, their event type, as well as their 'state', which may be either open or closed.",
@@ -26,4 +26,4 @@ const infoText = [
   );
 }
 
-export default InfoModal;
+export default InfoModalEvents;

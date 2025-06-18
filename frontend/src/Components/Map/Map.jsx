@@ -15,7 +15,7 @@ import 'ldrs/react/Infinity.css'
 import { retrieveEvents } from '../../Scripts/events';
 import MapLegend from './MapLegend/MapLegend';
 import InfoButton from './InfoButton/InfoButton';
-import InfoModal from './InfoButton/InfoModal';
+import InfoModalEvents from './InfoButton/InfoModalEvents/InfoModalEvents';
 
 
 function Map() {
@@ -70,12 +70,12 @@ function Map() {
         {loading && (
           <div className="loading-overlay">
             <p>Loading Events...</p>
-            <Infinity size="120" stroke="5" speed="1.5" color="#fc3c23" />
+            <Infinity size="120" stroke="5" speed="1.5" color="	#fc3c23" />
           </div>
         )}      
         <div className='map-wrapper'>  
         <InfoButton onClick={handleShowInfoModal}></InfoButton>
-         {showInfoModal && <InfoModal onClose={handleCloseInfoModal} />}
+         {showInfoModal && <InfoModalEvents onClose={handleCloseInfoModal} />}
       <MapLegend updateFilter={updateFilter}/>
         <MapContainer center={[0, 0]} 
          zoom={2} 

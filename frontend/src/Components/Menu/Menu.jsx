@@ -30,8 +30,8 @@ function Menu() {
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
               <NavLink to="/" onClick={handleClose}   className={({ isActive }) => isActive ? "popup-link active" : "popup-link"}>Home</NavLink>
-              <NavLink to="/events" onClick={handleClose} className={({ isActive }) => isActive ? "popup-link active" : "popup-link"}>Events</NavLink>
-              <NavLink to="/weather" onClick={handleClose} className={({ isActive }) => isActive ? "popup-link active" : "popup-link"}>Weather</NavLink>
+              <NavLink to="/events" onClick={handleClose} className={({ isActive }) => isActive ? "popup-link active" : "popup-link"}>Natural Events</NavLink>
+              <NavLink to="/nearMisses" onClick={handleClose} className={({ isActive }) => isActive ? "popup-link active" : "popup-link"}>Near Misses</NavLink>
             </Nav>
           </Offcanvas.Body>
         </Navbar.Offcanvas>

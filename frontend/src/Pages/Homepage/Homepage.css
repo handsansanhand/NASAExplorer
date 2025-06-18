@@ -59,6 +59,7 @@
 }
 
 .modal-title {
+  color: 	#fc3c23 !important;
   margin: 0 auto;
   text-align: center;
   font-weight: 700 !important; 

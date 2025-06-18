@@ -5,6 +5,7 @@ const cors = require('cors');
 const dailyImageRoutes = require('./routes/dailyImage');
 const eventsRoutes = require('./routes/events');
 const earthRoutes = require('./routes/earth');
+const nearMissRoutes = require('./routes/nearEarth');
 
 const app = express()
 
@@ -16,7 +17,8 @@ app.use(
 
 app.use('/dailyImage', dailyImageRoutes);
 app.use('/events', eventsRoutes);
-app.use('/earth', earthRoutes)
+app.use('/earth', earthRoutes);
+app.use('/nearMiss', nearMissRoutes);
 
 app.listen(PORT, () => {
     console.log("App is listening on port ", PORT);
