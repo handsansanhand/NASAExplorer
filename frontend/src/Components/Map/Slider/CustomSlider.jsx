@@ -30,6 +30,7 @@ function valuetext(value) {
           min={0}
           max={90}
           onChangeCommitted={handleChangeCommited}
+          className='custom-slider'
         />
    
       

@@ -6,6 +6,7 @@ import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 import Map from '../../Components/Map/Map';
 import MapLegend from '../../Components/Map/MapLegend/MapLegend';
+import CustomButton from '../../Components/CustomButton/CustomButton';
 function Eventspage() {
 
 

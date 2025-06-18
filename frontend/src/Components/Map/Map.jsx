@@ -14,6 +14,7 @@ import { Infinity } from 'ldrs/react'
 import 'ldrs/react/Infinity.css'
 import { retrieveEvents } from '../../Scripts/events';
 import MapLegend from './MapLegend/MapLegend';
+import InfoButton from './InfoButton/InfoButton';
 
 
 function Map() {
@@ -60,16 +61,16 @@ function Map() {
     }
     return (
         <>
-              {loading && (
-    <div className="loading-overlay">
-      <p>Loading Events...</p>
-      <Infinity size="120" stroke="5" speed="1.5" color="#ffff" />
-    </div>
-  )}      
+        {loading && (
+          <div className="loading-overlay">
+            <p>Loading Events...</p>
+            <Infinity size="120" stroke="5" speed="1.5" color="#ffff" />
+          </div>
+        )}      
         <div className='map-wrapper'>  
- 
-<MapLegend updateFilter={updateFilter}/>
-          <MapContainer center={[0, 0]} 
+        <InfoButton></InfoButton>
+      <MapLegend updateFilter={updateFilter}/>
+        <MapContainer center={[0, 0]} 
          zoom={2} 
          minZoom={3} 
          maxZoom={10}  
@@ -77,7 +78,7 @@ function Map() {
          worldCopyJump={false}
          maxBounds={[[-90, -180], [90, 180]]}
          maxBoundsViscosity={1.0}
-         className="leaflet-container">
+         className="leaflet-container"> 
           <TileLayer
             url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
             attribution='&copy; OpenStreetMap contributors'

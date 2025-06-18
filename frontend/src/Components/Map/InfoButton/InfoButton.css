@@ -1,0 +1,15 @@
+.info-button {
+  position: relative;
+  top: 32px;
+  right: 16px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 8px;
+  max-width: 350px;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000; /* make sure it's above the map */
+  border: 3px solid red;
+}
