@@ -18,8 +18,13 @@ export async function retrieveNearMisses(filter = {}) {
         .join('&');
       
         url = `${url}?${query}`
-      console.log(`I am shooting for ${url}`)
-      return;
+      //make the get request
+      const response = await fetch(url)
+      if(!response.ok) {
+        throw new Error(`Error retrieving near misses. CODE:${response.status}`)
+      }
+      const data = await response.json();
+      return data;
     }
     else {
         return new Error(`Filter is invalid for retrieving near misses.`)

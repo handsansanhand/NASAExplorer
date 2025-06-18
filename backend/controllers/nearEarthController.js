@@ -28,7 +28,7 @@ async function getNearMissObjects (req, res) {
        
         }
         else {
-            res.json({error: `The request body was not valid for this API call : ${req.message}`});
+            res.status(500).json({error: `The request body was not valid for this API call : ${req.message}`});
             return;
         }
         const format = `start_date=${begin_date}&end_date=${final_date}&api_key=${API_KEY}`;
@@ -38,7 +38,7 @@ async function getNearMissObjects (req, res) {
 
         if(!request.ok) {
             const errorText = await request.json();
-            res.json(
+            res.status(500).json(
                 {error: `There was an error returning the near miss objects.`,
                 code: request.status,
                 message: errorText
@@ -54,7 +54,7 @@ async function getNearMissObjects (req, res) {
     
     catch (error) {
         console.log(`There was an error. ${error.message}`)
-        res.json(
+        res.status(500).json(
             {error : error.message}
         )
     }
@@ -68,19 +68,17 @@ function extractData(nearEarthObjects) {
          objectsOnDate.forEach(asteroid => {
             const close_approach_data = extractCloseApproachData(asteroid.close_approach_data);
             const asteroidInfo = {
-                name: asteroid.name,
-                nasa_jpl_url: asteroid.nasa_jpl_url,
-                size: calculateSize(asteroid.estimated_diameter),
-                hazardous: asteroid.is_potentially_hazardous_asteroid,
-                date : close_approach_data.date,
-                time : close_approach_data.time,
-                speed : close_approach_data.speed,
-                miss_distance : close_approach_data.miss_distance,
+                Name: asteroid.name,
+                'Nasa JPL URL': asteroid.nasa_jpl_url,
+                Size: calculateSize(asteroid.estimated_diameter),
+                Hazardous: asteroid.is_potentially_hazardous_asteroid,
+                Date : close_approach_data.date,
+                Time : close_approach_data.time,
+                Speed : close_approach_data.speed,
+                'Miss Distance' : close_approach_data.miss_distance,
             };
           
         returnJSON[asteroid.id] = asteroidInfo;
-
-        console.log(asteroid.name);
         });
     }
     return returnJSON;

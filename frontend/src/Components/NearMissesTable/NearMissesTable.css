@@ -1,0 +1,13 @@
+.page-wrapper {
+    min-width: 1000px;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  height: 80vh;
+}
+
+.table-container {
+  width: 100%;
+  border: 3px solid red;
+  padding: 16px;
+}

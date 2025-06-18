@@ -37,12 +37,6 @@ async function getImage(req, res) {
     res.send(Buffer.from(imageBuffer));
 
     } catch (error) {
-    console.error('Fetch error:', error.message);
-
-    if (error.name === 'AbortError') {
-      return res.status(504).json({ error: 'Request to NASA API timed out.' });
-    }
-
     res.status(500).json({
       error: 'Failed to fetch image from NASA API',
       message: error.message

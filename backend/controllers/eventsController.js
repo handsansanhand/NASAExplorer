@@ -65,7 +65,8 @@ async function getEvents(req, res) {
      //make the api request
      const response = await fetch(`${finalRequestString}`)
      if(!response.ok) {
-        throw new Error(`Error when making the request ${response}, CODE:${response.status}`);
+        console.error("Error fetching event by ID", error);
+        res.status(500).json({ error: "Failed to fetch events" });
      }
      const responseJSON = await response.json();
      const newData = await returnLatestGeometry(responseJSON);

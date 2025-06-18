@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import './NearMissesTable.css'
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
@@ -10,6 +10,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import TablePagination from '@mui/material/TablePagination';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -129,51 +130,128 @@ const rows = [
 ];
 
 import { useState, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
 
-export default function CollapsibleTable() {
-    const today = new Date();
-    const yesterday = new Date(today);
-    yesterday.setDate(today.getDate() - 1);
+export default function NearMissesTable() {
+    const [filter, setFilter] = useState({});
+    const [loading, setLoading] = useState(false);    
+    const [nearMisses, setNearMisses] = useState({});
+     const missArray = Object.values(nearMisses);
+      useEffect(() => {
+      if (Object.keys(filter).length === 0) {
+      initializeDate();
+    }
+    }, [filter]);
 
-    const finalDateToday = today.toISOString().split('T')[0];
-    const finalDateYesterday = yesterday.toISOString().split('T')[0];
-const [filter, setFiler] = useState({
-    start_date: finalDateToday,
-    end_date: finalDateYesterday
-})  
-const [loading, setLoading] = useState(false)    
     useEffect(() => {
       console.log('Filter changed:', JSON.stringify(filter, null, 2));
         const fetchNearMisses = async () => {
             setLoading(true);
-            const events = await retrieveNearMisses(filter);
-          //  setMarkers(events);
+            const data = await retrieveNearMisses(filter);
+            setNearMisses(data);
+
+            Object.entries(nearMisses).map((key, value) => {
+              console.log(`key = ${key} , ${value}`)
+            })
             setTimeout(() => {
             setLoading(false);
           }, 1000);
         }
         fetchNearMisses();
-    })
+    }, [filter])
+
+    function initializeDate() {
+        console.log(`initializing date...`)
+        const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+
+    const finalDateToday = today.toISOString().split('T')[0];
+    const finalDateYesterday = yesterday.toISOString().split('T')[0];
+      setFilter({
+    start_date: finalDateYesterday,
+    end_date: finalDateToday,
+  });
+        
+    }
+
+    const loadHeaders = () => {
+    const missArray = Object.values(nearMisses);
+    if (missArray.length === 0) return null;
+
+    return (
+      <>
+        <TableCell></TableCell>
+        {Object.keys(missArray[0]).map((key) => (
+          <TableCell align="center" key={key}>
+            {key}
+          </TableCell>
+        ))}
+      </>
+    );
+    };
+
+    //load the rows from the nearMiss json object
+   const loadRows = () => {
+ 
+  if (missArray.length === 0) return null;
 
   return (
-    <TableContainer component={Paper}>
-      <Table aria-label="collapsible table">
+    <> 
+       {missArray
+          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+          .map((value, idx) => (
+            <TableRow key={idx}>
+              <TableCell /> {/* blank leading cell */}
+              {Object.values(value).map((val, indx) => (
+                <TableCell align="center" key={indx}>
+                  {val.toString()}
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+    </>
+  );
+}
+  const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+    const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+  //final return
+  return (
+    <div className='page-wrapper' >
+<Paper className='table-container'>
+     <TableContainer sx={{ maxHeight: 700, overflow: 'auto' }} className='table-layout'>
+      <Table aria-label="near misses table" stickyHeader>
         <TableHead>
           <TableRow>
-            <TableCell />
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            {loadHeaders()}
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {loadRows()}
+          {/* {rows.map((row) => (
             <Row key={row.name} row={row} />
-          ))}
+          ))} */}
         </TableBody>
       </Table>
     </TableContainer>
+          <TablePagination
+        rowsPerPageOptions={[5, 10, 25, 100]}
+        component="div"
+        count={missArray.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
+    <Button onClick={() => setFilter({})}>clear filter</Button>
+    </Paper>
+    </div>   
   );
 }
