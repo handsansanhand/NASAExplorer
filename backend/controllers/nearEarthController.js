@@ -18,7 +18,7 @@ async function getNearMissObjects (req, res) {
         //no date specified, go with the standard
         let begin_date = '';
         let final_date = '';
-        if(!start_date || !end_date) {
+        if(start_date || end_date) {
         const today = new Date();
         const yesterday = new Date(today);
         yesterday.setDate(today.getDate() - 1);
@@ -28,7 +28,7 @@ async function getNearMissObjects (req, res) {
        
         }
         else {
-            res.json({oops: 'oops'});
+            res.json({error: `The request body was not valid for this API call : ${req.message}`});
             return;
         }
         const format = `start_date=${begin_date}&end_date=${final_date}&api_key=${API_KEY}`;

@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
@@ -13,6 +14,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { retrieveNearMisses } from '../../Scripts/nearMisses';
 
 function createData(name, calories, fat, carbs, protein, price) {
   return {
@@ -126,7 +128,33 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
 ];
 
+import { useState, useEffect } from 'react';
+
 export default function CollapsibleTable() {
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+
+    const finalDateToday = today.toISOString().split('T')[0];
+    const finalDateYesterday = yesterday.toISOString().split('T')[0];
+const [filter, setFiler] = useState({
+    start_date: finalDateToday,
+    end_date: finalDateYesterday
+})  
+const [loading, setLoading] = useState(false)    
+    useEffect(() => {
+      console.log('Filter changed:', JSON.stringify(filter, null, 2));
+        const fetchNearMisses = async () => {
+            setLoading(true);
+            const events = await retrieveNearMisses(filter);
+          //  setMarkers(events);
+            setTimeout(() => {
+            setLoading(false);
+          }, 1000);
+        }
+        fetchNearMisses();
+    })
+
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
