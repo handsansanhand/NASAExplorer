@@ -1,15 +1,25 @@
 .info-button {
-  position: relative;
-  top: 32px;
-  right: 16px;
+  position: absolute;
+  top: 100px;
+
   background-color: #333;
   color: #fff;
   border-radius: 8px;
   max-width: 350px;
-  width: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  z-index: 1000; /* make sure it's above the map */
-  border: 3px solid red;
+  z-index: 1000;
+  margin-left: 20px;
+  align-items: center;
+  text-align: center;
+justify-content: center;
+font-size: 32px;
+ border: 2px solid white;
+
+}
+
+.info-button:hover {
+  background-color: #ffff;
+  color: #0e0e0e;
+  transform: translateY(-2px);
 }

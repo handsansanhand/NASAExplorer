@@ -15,6 +15,7 @@ import 'ldrs/react/Infinity.css'
 import { retrieveEvents } from '../../Scripts/events';
 import MapLegend from './MapLegend/MapLegend';
 import InfoButton from './InfoButton/InfoButton';
+import InfoModal from './InfoButton/InfoModal';
 
 
 function Map() {
@@ -23,6 +24,11 @@ function Map() {
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [filter, setFilter] = useState({days : 90});
     const [loading, setLoading] = useState(false);
+      const [showInfoModal, setShowInfoModal] = useState(false);
+
+  const handleShowInfoModal = () => setShowInfoModal(true);
+  const handleCloseInfoModal = () => setShowInfoModal(false);
+
 
         delete L.Icon.Default.prototype._getIconUrl;
         L.Icon.Default.mergeOptions({
@@ -68,7 +74,8 @@ function Map() {
           </div>
         )}      
         <div className='map-wrapper'>  
-        <InfoButton></InfoButton>
+        <InfoButton onClick={handleShowInfoModal}></InfoButton>
+         {showInfoModal && <InfoModal onClose={handleCloseInfoModal} />}
       <MapLegend updateFilter={updateFilter}/>
         <MapContainer center={[0, 0]} 
          zoom={2} 

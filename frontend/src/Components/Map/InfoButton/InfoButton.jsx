@@ -1,10 +1,15 @@
 import CustomButton from '../../CustomButton/CustomButton';
-import { Button } from 'react-bootstrap';
+import { Button as BootstrapButton } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './InfoButton.css'
-function InfoButton() {
+import { IoMdInformationCircleOutline } from "react-icons/io";
+function InfoButton( {onClick} ) {
     return (
         <>
-        <Button text={"Information"} className='info-button'></Button>
+        <BootstrapButton text={"Information"} className='info-button' onClick={onClick}>
+            
+            <IoMdInformationCircleOutline />
+        </BootstrapButton>
         </>
     );
 }
