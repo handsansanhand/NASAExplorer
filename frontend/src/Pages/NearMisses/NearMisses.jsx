@@ -3,6 +3,7 @@ import InfoButton from '../../Components/Map/InfoButton/InfoButton';
 import InfoModalMisses from '../../Components/Map/InfoButton/InfoModalEvents/InfoModalMisses';
 
 import { useState } from 'react';
+import CollapsibleTable from '../../Components/NearMissesTable/CollapsibleTable';
 
 
 function NearMisses () {
@@ -18,7 +19,7 @@ return (
             </div>
             <InfoButton onClick={handleShowInfoModal}></InfoButton>
          {showInfoModal && <InfoModalMisses onClose={handleCloseInfoModal} />}
-           
+           <CollapsibleTable />
         </div>
 ); 
 }
