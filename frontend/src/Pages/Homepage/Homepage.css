@@ -35,6 +35,7 @@
   text-align: center;
 }
 
+
 .homepage-title {
     font-size: 114px;
     margin-bottom: 50px;
@@ -102,4 +103,10 @@
     overflow-y: auto;
   line-height: 1.5;
   font-size: 20px;
+}
+
+.image-title {
+  color: #fc3c23;
+    font-weight: 700 !important; 
+  font-size: 28px;
 }

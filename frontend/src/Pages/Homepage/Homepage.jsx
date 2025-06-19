@@ -34,13 +34,14 @@ function Homepage() {
         </div>
          <Modal show={showModal} onHide={() => setShowModal(false)} centered size="lg">
         <Modal.Header>
-          <Modal.Title>{imageData?.title}</Modal.Title>
+          <Modal.Title>NASA Daily Astronomy Image</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             {imageData && (
               <div className="modal-body">
                 <img src={imageData.url} alt={imageData.title} />
                 <div className="modal-text">
+                  <div className='image-title'>{imageData.title}</div>
                   <p>{imageData.description}</p>
                   <div className="author">Author: {imageData.author || 'Unknown'}</div>
                 </div>
