@@ -131,6 +131,7 @@ const rows = [
 
 import { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
+import { IoMdArrowDown, IoMdArrowUp } from 'react-icons/io';
 
 export default function NearMissesTable() {
     const [filter, setFilter] = useState({});
@@ -178,13 +179,37 @@ function sortJSON(value) {
   if(sortConfig.key === value) {
     ascending = !sortConfig.ascending;
   }
+  //have to manually check if its a date, time, or number, string will be the base case
   const sorted = [...nearMisses].sort((a, b) => {
-    const aVal = Number(a[value]);
-    const bVal = Number(b[value]);
-    return ascending ? aVal - bVal : bVal - aVal;
+    const aVal = a[value];
+    const bVal = b[value];
+
+    const isDate = (str) => /^\d{4}-\d{2}-\d{2}$/.test(str);
+    const isTime = (str) => /^\d{2}:\d{2}$/.test(str);
+    const isNumeric = (val) => !isNaN(Number(val));
+
+    let result = 0;
+    //compare
+    if (isDate(aVal) && isDate(bVal)) {
+      result = new Date(aVal) - new Date(bVal);
+    } 
+    else if (isTime(aVal) && isTime(bVal)) {
+      result = aVal.localeCompare(bVal);
+    } 
+    else if (isNumeric(aVal) && isNumeric(bVal)) {
+      result = Number(aVal) - Number(bVal);
+    } 
+    else {
+      result = aVal.toString().localeCompare(bVal.toString());
+    }
+       return ascending ? result : -result;
   });
   setNearMisses(sorted);
   setSortConfig({key : value, ascending})
+}
+
+function getArrow() {
+  return sortConfig.ascending ? <IoMdArrowUp /> : <IoMdArrowDown />
 }
 
     const loadHeaders = () => {
@@ -193,15 +218,18 @@ function sortJSON(value) {
 
     return (
       <>
-        <TableCell></TableCell>
+
         {Object.keys(missArray[0]).map((key) => (
+          key !== 'id' && (
           <TableCell align="center" key={key}> 
             <Button onClick={() => sortJSON(key)}>
                 {key}
+                {sortConfig.key === key && (
+                  getArrow()
+                )}
             </Button>
-          
-           
-          </TableCell>
+          </TableCell> 
+        )
         ))}
       </>
     );
@@ -213,19 +241,20 @@ function sortJSON(value) {
   if (missArray.length === 0) return null;
 
   return (
-    <> 
-       {missArray
-          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-          .map((value, idx) => (
-            <TableRow key={idx}>
-              <TableCell /> {/* blank leading cell */}
-              {Object.values(value).map((val, indx) => (
+ <>
+      {missArray
+        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+        .map((value, idx) => (
+          <TableRow key={idx} >
+            {Object.entries(value)
+              .filter(([key]) => key !== 'id')
+              .map(([key, val], indx) => (
                 <TableCell align="center" key={indx}>
                   {val.toString()}
                 </TableCell>
               ))}
-            </TableRow>
-          ))}
+          </TableRow>
+        ))}
     </>
   );
 }
@@ -243,7 +272,7 @@ function sortJSON(value) {
     <div className='page-wrapper' >
 <Paper className='table-container'>
      <TableContainer sx={{ maxHeight: 700, overflow: 'auto' }} className='table-layout'>
-      <Table aria-label="near misses table" stickyHeader>
+      <Table aria-label="near misses table" stickyHeader sx={{ tableLayout: 'fixed',}}>
         <TableHead>
           <TableRow>
             {loadHeaders()}
