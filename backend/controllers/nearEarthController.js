@@ -35,11 +35,12 @@ async function getNearMissObjects (req, res) {
         }
         const format = `start_date=${begin_date}&end_date=${final_date}&api_key=${API_KEY}`;
         const queryString = `${baseNearEarthURL}?${format}`;
-        console.log(`query : ${queryString}`)
+      //  console.log(`query : ${queryString}`)
         const request = await fetch(queryString)
 
         if(!request.ok) {
             const errorText = await request.json();
+            console.log(errorText);
             res.status(500).json(
                 {error: `There was an error returning the near miss objects.`,
                 code: request.status,

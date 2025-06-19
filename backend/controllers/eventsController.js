@@ -57,11 +57,11 @@ async function getEvents(req, res) {
       if (days) query.push(`days=${days}`);
       if (limit) query.push(`limit=${limit}`);
 
-      console.log(`curr query ${query}`)
+      //console.log(`curr query ${query}`)
       //now append all the queries together
      const queryString = query.length ? `?${query.join('&')}` : '';
      const finalRequestString = (`${baseURL}${queryString}`)
-        console.log(`final query: ${finalRequestString}`)
+      //  console.log(`final query: ${finalRequestString}`)
      //make the api request
      const response = await fetch(`${finalRequestString}`)
      if(!response.ok) {
