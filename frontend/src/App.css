@@ -19,7 +19,7 @@ html, body, #root, .app-wrapper {
   flex-direction: column;
   width: 100%;
   overflow-y: auto;
-  background-color: #0a3c91;
+  background-color: rgb(10, 60, 145);
   color: white;
   border-bottom: 3px solid #ffff;
   border-bottom-left-radius: 5px;
@@ -58,7 +58,6 @@ html, body, #root, .app-wrapper {
 }
 
 body {
- background: #0a3c91;
 background: linear-gradient(0deg,rgba(0, 0, 0, 1) 0%, rgba(20, 20, 20, 1) 50%, rgba(0, 0, 0, 1) 100%);
 
 }

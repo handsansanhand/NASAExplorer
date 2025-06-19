@@ -79,11 +79,11 @@ function extractData(nearEarthObjects) {
                 Name: asteroid.name,
                 //'Nasa JPL URL': asteroid.nasa_jpl_url,
                 'Average Estimated Radius (Meters)': calculateSize(asteroid.estimated_diameter),
+                'Speed (KM/H)' : speedFixed,
+                'Miss Distance (Kilometers)' : missDistanceFixed,
                 Hazardous: asteroid.is_potentially_hazardous_asteroid,
                 Date : close_approach_data.date,
                 Time : close_approach_data.time,
-                'Speed (KM/H)' : speedFixed,
-                'Miss Distance (Kilometers)' : missDistanceFixed
             };
           
         returnJSON[asteroid.id] = asteroidInfo;

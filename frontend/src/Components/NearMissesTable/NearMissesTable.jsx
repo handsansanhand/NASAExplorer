@@ -209,7 +209,7 @@ function sortJSON(value) {
 }
 
 function getArrow() {
-  return sortConfig.ascending ? <IoMdArrowUp /> : <IoMdArrowDown />
+  return sortConfig.ascending ? <IoMdArrowUp size={20} /> : <IoMdArrowDown  size={20}/>
 }
 
     const loadHeaders = () => {
@@ -222,7 +222,7 @@ function getArrow() {
         {Object.keys(missArray[0]).map((key) => (
           key !== 'id' && (
           <TableCell align="center" key={key}> 
-            <Button onClick={() => sortJSON(key)}>
+            <Button onClick={() => sortJSON(key)} className='header-button'>
                 {key}
                 {sortConfig.key === key && (
                   getArrow()
@@ -245,11 +245,11 @@ function getArrow() {
       {missArray
         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
         .map((value, idx) => (
-          <TableRow key={idx} >
+          <TableRow key={idx} sx={ {height : 40} }>
             {Object.entries(value)
               .filter(([key]) => key !== 'id')
               .map(([key, val], indx) => (
-                <TableCell align="center" key={indx}>
+                <TableCell align="center" key={indx} sx={{ border: '1px solid #ccc' }}>
                   {val.toString()}
                 </TableCell>
               ))}
@@ -273,8 +273,8 @@ function getArrow() {
 <Paper className='table-container'>
      <TableContainer sx={{ maxHeight: 700, overflow: 'auto' }} className='table-layout'>
       <Table aria-label="near misses table" stickyHeader sx={{ tableLayout: 'fixed',}}>
-        <TableHead>
-          <TableRow>
+        <TableHead >
+          <TableRow sx={{ height: 50 }}>
             {loadHeaders()}
           </TableRow>
         </TableHead>
