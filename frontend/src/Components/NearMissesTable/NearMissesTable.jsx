@@ -135,8 +135,9 @@ import { Button } from 'react-bootstrap';
 export default function NearMissesTable() {
     const [filter, setFilter] = useState({});
     const [loading, setLoading] = useState(false);    
-    const [nearMisses, setNearMisses] = useState({});
-     const missArray = Object.values(nearMisses);
+    const [nearMisses, setNearMisses] = useState([]);
+    const missArray = Object.values(nearMisses);
+    const [sortConfig, setSortConfig] = useState({ key: null, ascending: true });
       useEffect(() => {
       if (Object.keys(filter).length === 0) {
       initializeDate();
@@ -148,21 +149,18 @@ export default function NearMissesTable() {
         const fetchNearMisses = async () => {
             setLoading(true);
             const data = await retrieveNearMisses(filter);
-            setNearMisses(data);
-
-            Object.entries(nearMisses).map((key, value) => {
-              console.log(`key = ${key} , ${value}`)
-            })
-            setTimeout(() => {
+            const arrayData = Object.entries(data).map(([id, values]) => ({
+              id,
+              ...values
+            }));
+            setNearMisses(arrayData);
             setLoading(false);
-          }, 1000);
-        }
+          }
         fetchNearMisses();
     }, [filter])
 
     function initializeDate() {
-        console.log(`initializing date...`)
-        const today = new Date();
+    const today = new Date();
     const yesterday = new Date(today);
     yesterday.setDate(today.getDate() - 1);
 
@@ -172,8 +170,22 @@ export default function NearMissesTable() {
     start_date: finalDateYesterday,
     end_date: finalDateToday,
   });
-        
     }
+
+//the sortConfig contains info about what column to sort and if its in ascending or descending order
+function sortJSON(value) {
+  let ascending = true;
+  if(sortConfig.key === value) {
+    ascending = !sortConfig.ascending;
+  }
+  const sorted = [...nearMisses].sort((a, b) => {
+    const aVal = Number(a[value]);
+    const bVal = Number(b[value]);
+    return ascending ? aVal - bVal : bVal - aVal;
+  });
+  setNearMisses(sorted);
+  setSortConfig({key : value, ascending})
+}
 
     const loadHeaders = () => {
     const missArray = Object.values(nearMisses);
@@ -183,8 +195,12 @@ export default function NearMissesTable() {
       <>
         <TableCell></TableCell>
         {Object.keys(missArray[0]).map((key) => (
-          <TableCell align="center" key={key}>
-            {key}
+          <TableCell align="center" key={key}> 
+            <Button onClick={() => sortJSON(key)}>
+                {key}
+            </Button>
+          
+           
           </TableCell>
         ))}
       </>
@@ -241,7 +257,7 @@ export default function NearMissesTable() {
         </TableBody>
       </Table>
     </TableContainer>
-          <TablePagination
+      <TablePagination
         rowsPerPageOptions={[5, 10, 25, 100]}
         component="div"
         count={missArray.length}
