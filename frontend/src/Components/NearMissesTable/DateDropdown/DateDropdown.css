@@ -1,0 +1,21 @@
+.date-button .btn {
+    border: 3px solid black;
+    border-radius: 0px;
+    background-color: white;
+    color: black;
+    margin-left: 0px !important;
+    width: 175px;
+    font-weight: 700;
+}
+.date-button .btn:hover {
+    border: 3px solid red;
+}
+
+.dropdown-menu{
+    border: 3px solid black;
+    border-radius: 0px;
+    width: 200px;
+}
+.table-header-cell {
+  width: 175px;
+}

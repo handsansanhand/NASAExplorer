@@ -130,7 +130,8 @@ function getArrow() {
 
     return (
       <>
-  <TableCell />
+  <TableCell sx={{ width: 50 }} />
+
         {Object.keys(missArray[0]).map((key) => (
           key !== 'id' && (
           <TableCell align="center" key={key}> 
@@ -155,55 +156,54 @@ function getArrow() {
     //load the rows from the nearMiss json object
    const loadRows = () => {
  
-  if (missArray.length === 0) return null;
+        if (missArray.length === 0) return null;
 
-  return (
- <>
- 
-      {missArray
-        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-        .map((value, idx) => (
-           <React.Fragment key={value.id}>
-          <TableRow key={idx} sx={ {height : 40} }>
-            <TableCell>
-              <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={() => handleToggleRow(value.id)}
-          >
-            {openRows[value.id] ? (
-                    <KeyboardArrowUpIcon sx={{ fontSize: 24 }} />
-                  ) : (
-                    <KeyboardArrowDownIcon sx={{ fontSize: 24 }} />
-                  )}
-          </IconButton>
-            </TableCell>
-                        
-            {Object.entries(value)
-              .filter(([key]) => key !== 'id')
-              .map(([key, val], indx) => (
-                <TableCell align="center" key={indx} sx={{ border: '1px solid #ccc' }}>
-                  {val.toString()}
-                </TableCell>
-              ))}
-          </TableRow>
-          <TableRow>
-              <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={Object.keys(value).length}>
-                <Collapse in={openRows[value.id]} timeout="auto" unmountOnExit>
-                  <Box sx={{ margin: 1 }}>
-                    <Typography variant="body1" gutterBottom>
-                      {/*Displayed content for the asteroid with the id*/}
-                      Expanded content for record ID {value.id}
-                    </Typography>
-                  </Box>
-                </Collapse>
-              </TableCell>
-            </TableRow>
-          </React.Fragment>
-        ))}
-    </>
-  );
-}
+        return (
+            <>
+              {missArray
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((value, idx) => (
+                  <React.Fragment key={value.id}>
+                  <TableRow key={idx} sx={ {height : 40} }>
+                    <TableCell>
+                      <IconButton
+                    aria-label="expand row"
+                    size="small"
+                    onClick={() => handleToggleRow(value.id)}
+                  >
+                    {openRows[value.id] ? (
+                            <KeyboardArrowUpIcon sx={{ fontSize: 24 }} />
+                          ) : (
+                            <KeyboardArrowDownIcon sx={{ fontSize: 24 }} />
+                          )}
+                  </IconButton>
+                    </TableCell>
+                                
+                    {Object.entries(value)
+                      .filter(([key]) => key !== 'id')
+                      .map(([key, val], indx) => (
+                        <TableCell align="center" key={indx} sx={{ border: '1px solid #ccc' }}>
+                          {val.toString()}
+                        </TableCell>
+                      ))}
+                  </TableRow>
+                  <TableRow>
+                      <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={Object.keys(value).length}>
+                        <Collapse in={openRows[value.id]} timeout="auto" unmountOnExit>
+                          <Box sx={{ margin: 1 }}>
+                            <Typography variant="body1" gutterBottom>
+                              {/*Displayed content for the asteroid with the id*/}
+                              Expanded content for record ID {value.id}
+                            </Typography>
+                          </Box>
+                        </Collapse>
+                      </TableCell>
+                    </TableRow>
+                  </React.Fragment>
+                ))}
+            </>
+        );
+      }
   const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const handleChangePage = (event, newPage) => {
@@ -213,7 +213,25 @@ function getArrow() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  const [text, setText] = useState('Pick text');
+  const [text, setText] = useState('Past 24 Hours');
+
+  function changeFilter(dateText) {
+    const today = new Date();
+    let targetDate = new Date(today);
+   // let date = dateToday.toISOString().split('T')[0];
+    console.log(`i am recieved a date ${targetDate}`)
+    if(dateText === 'yesterday') {
+        targetDate.setDate(today.getDate() - 1);
+    } else {
+        targetDate.setDate(today.getDate() - 7);
+    }
+    console.log(`target date is  ${targetDate}`)
+    const finalTargetDate = targetDate.toISOString().split('T')[0];
+    setFilter(prev => ({
+    ...prev,
+    start_date: finalTargetDate
+  }));
+  }
   //final return
   return (
     <>
@@ -225,10 +243,10 @@ function getArrow() {
         )} 
         
     <div className='page-wrapper' >
-     <DateDropdown text={text} changeText={setText} />
+     <DateDropdown text={text} changeText={setText} changeFilter={changeFilter}/>
      <Paper className='table-container'>
      <TableContainer sx={{ height: 600, overflow: 'auto' }} className='table-layout'>
-      <Table aria-label="near misses table" stickyHeader sx={{ tableLayout: 'fixed',}}>
+      <Table aria-label="near misses table" stickyHeader >
         <TableHead >
           <TableRow sx={{ height: 50 }}>
             {loadHeaders()}

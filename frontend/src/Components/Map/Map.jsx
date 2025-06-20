@@ -72,10 +72,10 @@ function Map() {
             <p>Loading Events...</p>
             <Infinity size="120" stroke="5" speed="1.5" color="	#fc3c23" />
           </div>
-        )}      
+        )}      <InfoButton onClick={handleShowInfoModal}></InfoButton>
+         {showInfoModal && <InfoModalEvents onClose={handleCloseInfoModal} />}   
         <div className='map-wrapper'>  
-        <InfoButton onClick={handleShowInfoModal}></InfoButton>
-         {showInfoModal && <InfoModalEvents onClose={handleCloseInfoModal} />}
+     
       <MapLegend updateFilter={updateFilter}/>
         <MapContainer center={[0, 0]} 
          zoom={2} 
