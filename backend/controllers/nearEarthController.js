@@ -120,4 +120,47 @@ function calculateSize(estimated_diameter) {
     return ((meters.estimated_diameter_min + meters.estimated_diameter_max) / 2).toFixed(2);
 }
 
-module.exports = { getNearMissObjects };
+/* We need to also be able to look up a specific asteroid given an id using the asteroidLookupURL
+    Returns:
+        A json containing information about the asteroid and close_approach_data
+        This close_approach_data is crucial for returning the history of the asteroid
+        close_approach_data:    
+            array of json objects with information about the history of the asteroids near misses:
+                close_approach_date
+                relative_velocity -> json object
+                miss_distanec -> json object
+                orbiting_body -> string of planet it missed
+*/
+async function getTimelineOfAsteroid (req, res) { console.log(`Retrieving timeline of asteroid...`)
+    try {
+       
+        const { id } = req.params;
+    const queryString = (`${asteroidLookupURL}${id}?api_key=${API_KEY}`);
+    const request = await fetch(queryString);
+    if(!request.ok) {
+         const errorText = await request.json();
+        console.error(`There was a server side problem when retrieving asteroid timeline.`)
+        res.status(500).json(
+            {status: request.status,
+             message : errorText   
+            }
+        )
+        return;
+    }
+    const data = await request.json();
+    const closeApproachData = data.close_approach_data;
+
+    res.status(200).json(
+        closeApproachData
+    );
+    return;
+    } catch (error) {
+        console.error(`There was some error in retrieving the asteroid timeline.`)
+        res.status(500).json(
+            {error : error.message}
+        )
+    }
+    
+
+}
+module.exports = { getNearMissObjects, getTimelineOfAsteroid };
