@@ -132,9 +132,8 @@ function calculateSize(estimated_diameter) {
                 orbiting_body -> string of planet it missed
 */
 async function getTimelineOfAsteroid (req, res) { console.log(`Retrieving timeline of asteroid...`)
-    try {
-       
-        const { id } = req.params;
+    try {   
+    const { id } = req.params;
     const queryString = (`${asteroidLookupURL}${id}?api_key=${API_KEY}`);
     const request = await fetch(queryString);
     if(!request.ok) {
@@ -149,9 +148,37 @@ async function getTimelineOfAsteroid (req, res) { console.log(`Retrieving timeli
     }
     const data = await request.json();
     const closeApproachData = data.close_approach_data;
-
+    //ideally split them in to the asteroids past and future paths
+    let pastPath = [];
+    let futurePath = [];
+    const today = new Date();
+    closeApproachData.forEach(approach => {
+       
+        const approach_date = approach.close_approach_date;
+        const relative_velocity = approach.relative_velocity;
+        const miss_distance = approach.miss_distance;
+        const orbiting_body = approach.orbiting_body;
+        
+        const approachJSON = {
+            'Date' : approach_date,
+            'Orbiting Body' : orbiting_body,
+            'Speed' : relative_velocity.kilometers_per_hour,
+            'Miss Distance' : miss_distance.kilometers,
+        };
+        const approach_date_parsed = new Date(approach_date);
+        if(approach_date_parsed > today) {
+            futurePath.push(approachJSON)
+        }
+        else {
+           pastPath.push(approachJSON);  
+        }
+       
+    })
     res.status(200).json(
-        closeApproachData
+       { 
+        pastPath : pastPath,
+        futurePath : futurePath
+       }
     );
     return;
     } catch (error) {

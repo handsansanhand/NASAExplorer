@@ -31,6 +31,18 @@ export async function retrieveNearMisses(filter = {}) {
     }
 }
 
+//retrieves all the information about the asteroids timeline from /nearMiss/asteroid/{id}
 export async function retrieveNearMissInformation (id) {
+  let url = (`/api/nearMiss/asteroid/${id}`);
+
+  try {
+    const response = await fetch(url);
+    if(!response.ok) {
+      return new Error(`Error retrieving asteroid timeline.`)
+    }
+
+  } catch (error) {
+     return new Error(`There was some error retrieving asteroid timeline.`)
+  }
 
 }
