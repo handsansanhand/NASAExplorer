@@ -18,6 +18,7 @@ const { baseEventsURL, baseCategoriesURL } = require('../config')
     Returns the ID + latest geometry (last place it was seen)
 */
 async function getAllEvents(req, res) {
+  console.log(`Fetching events...`);
     try {
         const response = await fetch(`${baseEventsURL}?days=91`);
         if(!response.ok) {

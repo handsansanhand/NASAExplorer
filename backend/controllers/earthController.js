@@ -4,11 +4,12 @@ const { API_KEY } = require('../config')
 
 //retrieves a satelite image of the lat and lon parameters
 async function getImage(req, res) {
+    console.log(`Fetching satellite image...`);
     const { lat }= req.query;
     const { lon }= req.query;
     if (!lat || !lon) {
           return res.status(500).json({ error: "Cannot retrieve image, both latitude and longitude are required." });
-        }
+    }
     try {
     let query = []
 
@@ -20,11 +21,14 @@ async function getImage(req, res) {
     const finalQuery = (`${base_earth_url}${queryString}`)
 
     const controller = new AbortController();
+    //sometimes, this api gets stuch in an infinite loop so we need to include a timeout
     const timeout = setTimeout(() => controller.abort(), 12000);
     const response = await fetch(finalQuery, { signal: controller.signal });
+    
     clearTimeout(timeout);
     if (!response.ok) {
       const errorText = await response.text();
+      console.error(`There was an error recieving the satellite image.`)
       return res.status(response.status).json({
         error: `NASA API responded with status ${response.status}`,
         details: errorText

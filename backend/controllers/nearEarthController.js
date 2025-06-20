@@ -1,6 +1,8 @@
 const { API_KEY } = require('../config')
 const { baseNearEarthURL } = require('../config')
 
+const nearEarthFeedURL = baseNearEarthURL + 'feed';
+const asteroidLookupURL = baseNearEarthURL + 'neo/'
 /* Controller which contacts the NEOW api
 for this projects sake, needs to extract:
     name
@@ -12,13 +14,14 @@ for this projects sake, needs to extract:
         miss_distance (km)
 */
 
+//retrieves all near miss objects given optional path variables: start_date, end_date
 async function getNearMissObjects (req, res) {
     try {
         const {start_date, end_date} = req.query;
         
         let begin_date = '';
         let final_date = '';
-         //no date specified, go with the standard
+        //no date specified, go use a fallback of one day
         if(!start_date || !end_date) {
         const today = new Date();
         const yesterday = new Date(today);
@@ -34,7 +37,7 @@ async function getNearMissObjects (req, res) {
             final_date = end_date;
         }
         const format = `start_date=${begin_date}&end_date=${final_date}&api_key=${API_KEY}`;
-        const queryString = `${baseNearEarthURL}?${format}`;
+        const queryString = `${nearEarthFeedURL}?${format}`;
       //  console.log(`query : ${queryString}`)
         const request = await fetch(queryString)
 
@@ -63,6 +66,7 @@ async function getNearMissObjects (req, res) {
     }
 }
 
+//we need to extract all the information mentioned above and return it in json form
 function extractData(nearEarthObjects) {
     const returnJSON = {};
     for(const date in nearEarthObjects) {
@@ -79,7 +83,7 @@ function extractData(nearEarthObjects) {
             const asteroidInfo = {
                 Name: asteroid.name,
                 //'Nasa JPL URL': asteroid.nasa_jpl_url,
-                'Average Estimated Radius (Meters)': calculateSize(asteroid.estimated_diameter),
+                'Average Estimated Diameter (Meters)': calculateSize(asteroid.estimated_diameter),
                 'Speed (KM/H)' : speedFixed,
                 'Miss Distance (Kilometers)' : missDistanceFixed,
                 Hazardous: asteroid.is_potentially_hazardous_asteroid,
@@ -93,6 +97,7 @@ function extractData(nearEarthObjects) {
     return returnJSON;
 }
 
+//helper function for dealing with close approach data, which itself is a nested json
 function extractCloseApproachData(close_approach_data) {
     const approach = close_approach_data[0];
 

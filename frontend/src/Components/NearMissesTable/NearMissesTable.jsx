@@ -231,6 +231,7 @@ function getArrow() {
     ...prev,
     start_date: finalTargetDate
   }));
+  setSortConfig({ key: null, ascending: true });
   }
   //final return
   return (

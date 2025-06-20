@@ -30,3 +30,7 @@ export async function retrieveNearMisses(filter = {}) {
         return new Error(`Filter is invalid for retrieving near misses.`)
     }
 }
+
+export async function retrieveNearMissInformation (id) {
+
+}
