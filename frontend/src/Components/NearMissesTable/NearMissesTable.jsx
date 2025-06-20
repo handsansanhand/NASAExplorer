@@ -41,6 +41,7 @@ Row.propTypes = {
 import { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { IoMdArrowDown, IoMdArrowUp } from 'react-icons/io';
+import DateDropdown from './DateDropdown/DateDropdown';
 
 export default function NearMissesTable() {
     const [filter, setFilter] = useState({});
@@ -212,6 +213,7 @@ function getArrow() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+  const [text, setText] = useState('Pick text');
   //final return
   return (
     <>
@@ -221,8 +223,10 @@ function getArrow() {
             <Infinity size="120" stroke="5" speed="1.5" color="	#fc3c23" />
           </div>
         )} 
+        
     <div className='page-wrapper' >
-<Paper className='table-container'>
+     <DateDropdown text={text} changeText={setText} />
+     <Paper className='table-container'>
      <TableContainer sx={{ height: 600, overflow: 'auto' }} className='table-layout'>
       <Table aria-label="near misses table" stickyHeader sx={{ tableLayout: 'fixed',}}>
         <TableHead >
