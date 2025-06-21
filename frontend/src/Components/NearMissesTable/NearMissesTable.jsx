@@ -246,9 +246,6 @@ export default function NearMissesTable() {
               </TableHead>
               <TableBody>
                 {loadRows()}
-                {/* {rows.map((row) => (
-            <Row key={row.name} row={row} />
-          ))} */}
               </TableBody>
             </Table>
           </TableContainer>
@@ -261,7 +258,6 @@ export default function NearMissesTable() {
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
-          <Button onClick={() => setFilter({})}>clear filter</Button>
         </Paper>
       </div>
       

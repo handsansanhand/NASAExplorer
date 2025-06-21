@@ -20,6 +20,7 @@ import { Button } from "@mui/material";
 import { useEffect } from "react";
 import { IoMdArrowDown, IoMdArrowUp } from "react-icons/io";
 import "./RouteInfoTable.css";
+import "../../NearMissesTable.css";
 function RouteInfoTable({ path }) {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [page, setPage] = useState(0);
@@ -76,6 +77,7 @@ function RouteInfoTable({ path }) {
       <IoMdArrowDown size={20} />
     );
   }
+  const headers = ["Date", "Orbiting Body", "Speed", "Miss Distance"];
   return (
     <>
       <Paper className="table-container">
@@ -83,45 +85,20 @@ function RouteInfoTable({ path }) {
           sx={{ height: 600, overflow: "auto" }}
           className="table-layout"
         >
-          <Table aria-label="near misses table" stickyHeader>
+          <Table aria-label="route info table" stickyHeader>
             <TableHead>
               <TableRow sx={{ height: 50 }}>
-                <TableCell>
-                  <Button
-                    onClick={() => sortJSON("Date")}
-                    className="header-button"
-                  >
-                    {"Date"}
-                    {sortConfig.key === "Date" && getArrow()}
-                  </Button>
-                </TableCell>
-                <TableCell>
-                  <Button
-                    onClick={() => sortJSON("Orbiting Body")}
-                    className="header-button"
-                  >
-                    {"Orbiting Body"}
-                    {sortConfig.key === "Orbiting Body" && getArrow()}
-                  </Button>
-                </TableCell>
-                <TableCell>
-                  <Button
-                    onClick={() => sortJSON("Speed")}
-                    className="header-button"
-                  >
-                    {"Speed"}
-                    {sortConfig.key === "Speed" && getArrow()}
-                  </Button>
-                </TableCell>
-                <TableCell>
-                  <Button
-                    onClick={() => sortJSON("Miss Distance")}
-                    className="header-button"
-                  >
-                    {"Miss Distance (KM)"}
-                    {sortConfig.key === "Miss Distance" && getArrow()}
-                  </Button>
-                </TableCell>
+                {headers.map((key) => (
+                  <TableCell key={key}>
+                    <Button
+                      onClick={() => sortJSON(key)}
+                      className="header-button"
+                    >
+                      {key}
+                      {sortConfig.key === key && getArrow()}
+                    </Button>
+                  </TableCell>
+                ))}
               </TableRow>
             </TableHead>
             <TableBody>

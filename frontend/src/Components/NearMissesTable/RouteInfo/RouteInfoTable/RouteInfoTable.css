@@ -1,3 +1,55 @@
 .table-container {
-  border: 3px solid black !important;
+  border: 2px solid black !important;
+}
+.header-button {
+  width: 100% !important;
+  height: 50px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  min-width: 0 !important;
+  display: flex !important;
+  border-radius: 0 !important;
+  color: black !important;
+  font-weight: 550 !important;
+  background-color: rgba(252, 60, 35, 0.75) !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+
+  border: 2px solid black !important;
+  border-right: none !important; 
+}
+
+.MuiTableHead-root .MuiTableRow-root > .MuiTableCell-root:last-child .header-button {
+  border-right: 2px solid black !important;
+}
+
+
+.MuiTableBody-root .MuiTableCell-root {
+  text-align: center;
+  vertical-align: middle; 
+}
+
+.MuiTableHead-root .MuiTableCell-root {
+  border-right: 2px solid black;
+}
+
+
+.MuiTableHead-root .MuiTableRow-root > .MuiTableCell-root:last-child {
+  border-right: none;
+}
+
+
+.MuiTableBody-root .MuiTableCell-root {
+  border-right: 2px solid black;
+  text-align: center;
+  vertical-align: middle;
+}
+
+
+.MuiTableBody-root .MuiTableRow-root > .MuiTableCell-root:last-child {
+  border-right: none;
+}
+.table-layout {
+   border-bottom: 3px solid black;
 }
