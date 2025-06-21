@@ -17,7 +17,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { retrieveNearMisses } from '../../Scripts/nearMisses';
 import { Infinity } from 'ldrs/react';
-
+import  RouteInfo from './RouteInfo/RouteInfo'
 /*
 Row.propTypes = {
   row: PropTypes.shape({
@@ -130,7 +130,7 @@ function getArrow() {
 
     return (
       <>
-  <TableCell sx={{ width: 50 }} />
+  <TableCell sx={{ width: 50 }} key="headers"/>
 
         {Object.keys(missArray[0]).map((key) => (
           key !== 'id' && (
@@ -155,9 +155,7 @@ function getArrow() {
     };
     //load the rows from the nearMiss json object
    const loadRows = () => {
- 
         if (missArray.length === 0) return null;
-
         return (
             <>
               {missArray
@@ -191,10 +189,7 @@ function getArrow() {
                       <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={Object.keys(value).length}>
                         <Collapse in={openRows[value.id]} timeout="auto" unmountOnExit>
                           <Box sx={{ margin: 1 }}>
-                            <Typography variant="body1" gutterBottom>
-                              {/*Displayed content for the asteroid with the id*/}
-                              Expanded content for record ID {value.id}
-                            </Typography>
+                              <RouteInfo id={value.id}/>
                           </Box>
                         </Collapse>
                       </TableCell>
@@ -219,13 +214,11 @@ function getArrow() {
     const today = new Date();
     let targetDate = new Date(today);
    // let date = dateToday.toISOString().split('T')[0];
-    console.log(`i am recieved a date ${targetDate}`)
     if(dateText === 'yesterday') {
         targetDate.setDate(today.getDate() - 1);
     } else {
         targetDate.setDate(today.getDate() - 7);
     }
-    console.log(`target date is  ${targetDate}`)
     const finalTargetDate = targetDate.toISOString().split('T')[0];
     setFilter(prev => ({
     ...prev,

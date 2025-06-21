@@ -29,11 +29,23 @@
   color: black;
   font-weight: 550;
   background-color:	rgb(252, 60, 35, 0.75);
-  border: 3px solid rgb(0, 0, 0);
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
 }
+
+.header-button-group {
+  display: flex;
+  width: 100%;
+}
+
+.header-button {
+  flex: 1;
+  border: 3px solid black;
+  border-right: none;
+}
+
+
 
 .loading-overlay {
   position: fixed;

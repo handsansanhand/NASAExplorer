@@ -54,6 +54,17 @@ const active = [
 
     return (
        <div className="map-legend">
+      <h4>Filter By Status</h4>
+      <SelectButton 
+      value={active.find(opt => opt.status === status)} 
+      onChange={handleStatusChange} 
+      options={active}
+        itemTemplate={(option) => (
+    <span className={`status-${option.status}`}>{option.title}</span>
+        )}
+      optionLabel="title" 
+      className="horizontal-select-button"
+       />
       <h4>Filter By Event</h4>
       <SelectButton
         value={selectedCategory}
@@ -64,18 +75,7 @@ const active = [
         multiple={false}
         className="vertical-select-button"
       />
-      <h4>Filter By Status</h4>
-      <SelectButton 
-      value={active.find(opt => opt.status === status)} 
-      onChange={handleStatusChange} 
-      options={active}
-        itemTemplate={(option) => (
-    <span className={`status-${option.status}`}>{option.title}</span>
-  )}
-      optionLabel="title" 
-      className="horizontal-select-button"
 
-       />
     </div>
     )
 }

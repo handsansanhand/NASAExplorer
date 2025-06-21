@@ -34,13 +34,14 @@ export async function retrieveNearMisses(filter = {}) {
 //retrieves all the information about the asteroids timeline from /nearMiss/asteroid/{id}
 export async function retrieveNearMissInformation (id) {
   let url = (`/api/nearMiss/asteroid/${id}`);
-
+  console.log(`Retrieving near miss information for asteroid ${id}...`)
   try {
     const response = await fetch(url);
     if(!response.ok) {
       return new Error(`Error retrieving asteroid timeline.`)
     }
-
+    const data = await response.json();
+    return data;
   } catch (error) {
      return new Error(`There was some error retrieving asteroid timeline.`)
   }

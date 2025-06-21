@@ -44,14 +44,25 @@
   font-size: 20px;
   align-self: center;
   font-weight: 400;
+
 }
 .horizontal-select-button .p-button {
     border: 2px solid white;
-    border-radius: 10px;
     padding: 12px 24px; 
     font-size: 1.1rem;  
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease; 
+     border-radius: 0px;
 }
+.horizontal-select-button .p-button.status-open {
+    background-color: green;
+    color: white;
+}
+
+.horizontal-select-button .p-button.status-closed {
+    background-color: red;
+    color: white;
+}
+
 
 .horizontal-select-button .p-button:hover {
     background-color: white;
