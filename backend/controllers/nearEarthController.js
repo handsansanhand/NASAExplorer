@@ -151,6 +151,7 @@ async function getTimelineOfAsteroid(req, res) {
       return;
     }
     const data = await request.json();
+    const asteroidName = data.name;
     const closeApproachData = data.close_approach_data;
     //ideally split them in to the asteroids past and future paths
     let pastPath = [];
@@ -176,6 +177,7 @@ async function getTimelineOfAsteroid(req, res) {
       }
     });
     res.status(200).json({
+      name : asteroidName,
       pastPath: pastPath,
       futurePath: futurePath,
     });

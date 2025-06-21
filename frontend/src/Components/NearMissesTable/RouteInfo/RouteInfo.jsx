@@ -8,11 +8,13 @@ function RouteInfo( {id} ) {
       const [status, setStatus] = useState("past");
     const [ asteroidPastPath, setAsteroidPastPath ] = useState([]);
     const [ asteroidFuturePath, setAsteroidFuturePath ] = useState([]);
+    const [ asteroidName, setAsteroidName ] = useState("");
     //when loaded (useEffect) needs to fetch the data from the api
     useEffect(() => {
         console.log(`getting infdo`)
         const fetchNearMissInformation = async () => {
             const data = await retrieveNearMissInformation(id);
+            setAsteroidName(data.name);
             setAsteroidPastPath(data.pastPath);
             setAsteroidFuturePath(data.futurePath);
         } 
@@ -42,11 +44,13 @@ function RouteInfo( {id} ) {
    const currentPath = status === "past" ? asteroidPastPath : asteroidFuturePath;
     return (
         <>
+        
         <div>
         {/*Displayed content for the asteroid with the id*/}
             <div className="table-wrapper">
-                <h2>Asteroid Path</h2>
-                      <SelectButton 
+                <h2>{asteroidName}</h2>
+                <div className="button-wrapper">
+                  <SelectButton 
                       value={active.find(opt => opt.status === status)} 
                       onChange={handleStatusChange} 
                       options={active}
@@ -56,6 +60,8 @@ function RouteInfo( {id} ) {
                       optionLabel="title" 
                       className="horizontal-select-button"
                     />
+                </div>
+                      
                 <RouteInfoTable path={currentPath}/>
             </div>
         </div>

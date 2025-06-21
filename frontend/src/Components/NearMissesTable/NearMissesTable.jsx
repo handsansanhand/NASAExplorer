@@ -264,6 +264,7 @@ export default function NearMissesTable() {
           <Button onClick={() => setFilter({})}>clear filter</Button>
         </Paper>
       </div>
+      
       <Dialog
         open={modalOpen}
         onClose={handleCloseModal}
