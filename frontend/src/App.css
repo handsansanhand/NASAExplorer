@@ -5,24 +5,26 @@ body,
   height: 100%;
   width: 100%;
   margin: 0;
+  background: transparent;
 }
 
 .app-wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: black;
+
 }
 
 .main-content {
+  
+  position: relative;
+  z-index: 1;
   flex: 1;
   display: flex;
   flex-direction: column;
   width: 100%;
   overflow-y: auto;
-  background-color: rgb(10, 60, 145);
   color: white;
-  border-bottom: 3px solid #ffff;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   box-sizing: border-box;
@@ -32,7 +34,7 @@ body,
 }
 
 .offcanvas {
-  background-color: #1a1a1a !important;
+  background-color: #1a1a1a ;
   color: white;
 }
 @keyframes logo-spin {
@@ -58,11 +60,26 @@ body,
   color: #888;
 }
 
-body {
-  background: linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(20, 20, 20, 1) 50%,
-    rgba(0, 0, 0, 1) 100%
-  );
+.video-background-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
 }
+
+.video-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: -1;
+}
+

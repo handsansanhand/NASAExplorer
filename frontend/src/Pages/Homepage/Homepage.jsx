@@ -3,6 +3,7 @@ import { fetchDailyImage } from "../../Scripts/fetchDailyImage";
 import { useState } from "react";
 import CustomButton from "../../Components/CustomButton/CustomButton";
 import { Modal, Button } from "react-bootstrap";
+import Spacebackground from "../../Components/Background/Spacebackground";
 function Homepage() {
   const leftBoxText = "Welcome to the NASA Visualiser!";
   const [showModal, setShowModal] = useState(false);

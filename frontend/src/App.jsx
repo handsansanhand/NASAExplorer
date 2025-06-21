@@ -12,6 +12,18 @@ import NearMisses from "./Pages/NearMisses/NearMisses";
 function App() {
   return (
     <>
+              <div className="video-background-wrapper">
+  <video
+    autoPlay
+    muted
+    loop
+    playsInline
+    className="video-background"
+  >
+    <source src="vecteezy_animated-flying-through-the-stars-and-blue-nebula-in-space_8078506.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  </div>
       <div className="app-wrapper">
         <Router basename="/NASAExplorer">
           <Header />

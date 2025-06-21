@@ -1,6 +1,6 @@
 .footer-container {
-  background-color: white;
-  border-top: 3px solid #fc3c23;
+  background-color: transparent;
+  border-top: 3px solid black;
   color: white;
   position: static;
   bottom: 0;
