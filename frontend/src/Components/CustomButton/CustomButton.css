@@ -1,6 +1,6 @@
 .custom-button {
-  background-color: 	#fc3c23;
-  color: 	#ffff;
+  background-color: #fc3c23;
+  color: #ffff;
   border: 3px solid black;
   padding: 15px 30px;
   font-size: 18px;
@@ -11,6 +11,6 @@
 
 .custom-button:hover {
   background-color: #ffff;
-  color: 	#fc3c23;
+  color: #fc3c23;
   transform: translateY(-2px);
 }

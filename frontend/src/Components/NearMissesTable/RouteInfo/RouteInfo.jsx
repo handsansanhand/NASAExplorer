@@ -44,7 +44,6 @@ function RouteInfo( {id} ) {
         <>
         <div>
         {/*Displayed content for the asteroid with the id*/}
-        Expanded content for record ID {id}
             <div className="table-wrapper">
                 <h2>Asteroid Path</h2>
                       <SelectButton 

@@ -1,8 +1,10 @@
-html, body, #root, .app-wrapper {
+html,
+body,
+#root,
+.app-wrapper {
   height: 100%;
   width: 100%;
   margin: 0;
-  
 }
 
 .app-wrapper {
@@ -11,7 +13,6 @@ html, body, #root, .app-wrapper {
   min-height: 100vh;
   background: black;
 }
-
 
 .main-content {
   flex: 1;
@@ -58,6 +59,10 @@ html, body, #root, .app-wrapper {
 }
 
 body {
-background: linear-gradient(0deg,rgba(0, 0, 0, 1) 0%, rgba(20, 20, 20, 1) 50%, rgba(0, 0, 0, 1) 100%);
-
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(20, 20, 20, 1) 50%,
+    rgba(0, 0, 0, 1) 100%
+  );
 }

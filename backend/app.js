@@ -1,25 +1,21 @@
 /* Main API file, which configures them all and launches them */
-const { PORT } = require('./config')
-const express = require('express');
-const cors = require('cors');
-const dailyImageRoutes = require('./routes/dailyImage');
-const eventsRoutes = require('./routes/events');
-const earthRoutes = require('./routes/earth');
-const nearMissRoutes = require('./routes/nearEarth');
+const { PORT } = require("./config");
+const express = require("express");
+const cors = require("cors");
+const dailyImageRoutes = require("./routes/dailyImage");
+const eventsRoutes = require("./routes/events");
+const earthRoutes = require("./routes/earth");
+const nearMissRoutes = require("./routes/nearEarth");
 
-const app = express()
+const app = express();
 
-app.use(
-    cors(
-        {origin : ['http://localhost:5173'],
-        })
-);
+app.use(cors({ origin: ["http://localhost:5173"] }));
 
-app.use('/dailyImage', dailyImageRoutes);
-app.use('/events', eventsRoutes);
-app.use('/earth', earthRoutes);
-app.use('/nearMiss', nearMissRoutes);
+app.use("/dailyImage", dailyImageRoutes);
+app.use("/events", eventsRoutes);
+app.use("/earth", earthRoutes);
+app.use("/nearMiss", nearMissRoutes);
 
 app.listen(PORT, () => {
-    console.log("App is listening on port ", PORT);
-})
+  console.log("App is listening on port ", PORT);
+});

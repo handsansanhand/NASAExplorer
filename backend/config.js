@@ -10,5 +10,5 @@ module.exports = {
   base_earth_url,
   baseEventsURL,
   baseCategoriesURL,
-  baseNearEarthURL
+  baseNearEarthURL,
 };

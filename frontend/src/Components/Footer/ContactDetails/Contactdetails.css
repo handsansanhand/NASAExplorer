@@ -1,14 +1,14 @@
 .contact-details {
-  font-family: inherit; 
-  font-weight: 400; 
-  font-size: 18px; 
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 18px;
   color: #fc3c23;
 }
 
 a.no-style-link {
-  color: inherit;           
-  text-decoration: none;    
-  cursor: pointer;      
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 a.no-style-link:hover {

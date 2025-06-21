@@ -1,7 +1,7 @@
 .loading-overlay {
   position: fixed;
   background-color: transparent !important;
-  color: 	#fc3c23 !important;
+  color: #fc3c23 !important;
   width: 100%;
   height: 100%;
   display: flex;
@@ -12,12 +12,9 @@
   font-weight: 800;
   z-index: 9999;
   font-size: 32px;
-
 }
 
-
 .map-wrapper {
-
   z-index: 0;
   position: relative;
   height: 100vh;
@@ -28,7 +25,6 @@
   font-size: 32px;
   text-align: center;
   color: black;
-  
 }
 
 .leaflet-container {
@@ -36,18 +32,18 @@
   width: 100%;
 }
 .custom-popup .leaflet-popup-content-wrapper {
-    background-color: 		rgb(10, 60, 145, 0.7);
-    border-top-color: black;
-    border: 2px solid black;
+  background-color: rgb(10, 60, 145, 0.7);
+  border-top-color: black;
+  border: 2px solid black;
   border-radius: 10px;
-  color: white; 
+  color: white;
   padding: 10px;
   font-family: Arial, sans-serif;
   align-items: center;
   text-align: center;
 }
 .custom-popup .leaflet-popup-tip {
-    background-color: 		rgb(10, 60, 145, 0.6);
+  background-color: rgb(10, 60, 145, 0.6);
 }
 
 .custom-popup .leaflet-popup-content-wrapper strong,
@@ -59,7 +55,7 @@
 
 .map-slider-container {
   color: white;
-  background-color: 		rgb(10, 60, 145, 0.8);
+  background-color: rgb(10, 60, 145, 0.8);
   border: 3px solid black;
   position: absolute;
   bottom: 0px;
@@ -72,10 +68,9 @@
   z-index: 1000;
 }
 .map-slider-container h2 {
-  color: 	#fc3c23;
+  color: #fc3c23;
 
   display: inline-block;
-  border-bottom: 4px solid 	#fc3c23;
+  border-bottom: 4px solid #fc3c23;
   padding-bottom: 4px;
-   
 }

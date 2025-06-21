@@ -1,14 +1,10 @@
-
-
 .modal-body {
   display: flex;
   gap: 20px;
-
 }
 
 .modal-title {
-font-size: 48px;
-
+  font-size: 48px;
 }
 
 .modal-body img {
@@ -16,7 +12,6 @@ font-size: 48px;
   flex-shrink: 0;
   border-radius: 8px;
   object-fit: contain;
-
 }
 
 .modal-text {

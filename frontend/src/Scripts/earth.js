@@ -1,21 +1,19 @@
 //contacts the satellite api
-export async function retrieveSatelliteImage (coordinates){
-        if (!coordinates || coordinates.length < 2) {
+export async function retrieveSatelliteImage(coordinates) {
+  if (!coordinates || coordinates.length < 2) {
     throw new Error("Invalid coordinates provided.");
   }
 
-   const [lon, lat] = coordinates;
+  const [lon, lat] = coordinates;
 
   const imageUrl = `/api/earth?lon=${lon}&lat=${lat}`;
-   console.log("Satellite image URL:", imageUrl);
+  console.log("Satellite image URL:", imageUrl);
 
-   
   const response = await fetch(imageUrl);
   if (!response.ok) {
     throw new Error(`Failed to fetch satellite image: ${response.status}`);
   }
 
-const imageBlob = await response.blob();
+  const imageBlob = await response.blob();
   return imageBlob;
-
 }

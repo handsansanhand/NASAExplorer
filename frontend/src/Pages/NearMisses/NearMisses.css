@@ -1,15 +1,15 @@
 .near-miss-wrapper {
-    height: 100vh;
-    width: 100%;
-    border: 4px solid green;
+  height: 100vh;
+  width: 100%;
+  border: 4px solid green;
 }
 
 .title-container {
-    display: flex;
-    justify-content: center;
-   
-    font-size: 64px;
-    margin-bottom: 50px;
-    font-weight: 800;
-    border: 4px solid green;
+  display: flex;
+  justify-content: center;
+
+  font-size: 64px;
+  margin-bottom: 50px;
+  font-weight: 800;
+  border: 4px solid green;
 }

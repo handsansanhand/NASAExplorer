@@ -11,16 +11,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-    top: 50% !important;
+  top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
 }
 
 .satellite-container {
-width: 40%;
+  width: 40%;
   position: relative;
   text-align: center;
-    display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   border: 3px solid white;
