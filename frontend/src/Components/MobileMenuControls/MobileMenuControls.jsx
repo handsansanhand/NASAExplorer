@@ -2,15 +2,20 @@ import { Button } from "react-bootstrap";
 import { IoMdInformation } from "react-icons/io";
 import { useState } from "react";
 import InfoModal from "../Menu/InfoModal/InfoModal";
-import { useLocation } from "react-router-dom";
 import "./MobileMenuControls.css";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import { NavLink, useLocation } from "react-router-dom";
+
 function MobileMenuControls() {
   const [infoShow, setInfoShow] = useState(false);
   const location = useLocation();
-
+  const handleToggle = () => setShow(!show);
   const handleInfoOpen = () => setInfoShow(true);
   const handleInfoClose = () => setInfoShow(false);
-
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
   const infoText = (() => {
     switch (location.pathname) {
       case "/":
@@ -44,12 +49,54 @@ function MobileMenuControls() {
       <Button onClick={handleInfoOpen} className="info-icon-button-footer">
         <IoMdInformation size={24} />
       </Button>
-
+      <Button onClick={handleToggle} className="menu-button-footer">
+        Menu
+      </Button>
       <InfoModal
         show={infoShow}
         onClose={handleInfoClose}
         infoText={infoText}
       />
+      <Navbar.Offcanvas
+            show={show}
+            onHide={handleClose}
+            id="offcanvasNavbar"
+            aria-labelledby="offcanvasNavbarLabel"
+            placement="end"
+            className="popup-bar"
+          >
+            <Offcanvas.Body>
+              <Nav className="justify-content-end flex-grow-1 pe-3">
+                <NavLink
+                  to="/"
+                  onClick={handleClose}
+                  className={({ isActive }) =>
+                    isActive ? "popup-link active" : "popup-link"
+                  }
+                >
+                  Home
+                </NavLink>
+                <NavLink
+                  to="/events"
+                  onClick={handleClose}
+                  className={({ isActive }) =>
+                    isActive ? "popup-link active" : "popup-link"
+                  }
+                >
+                  Natural Events
+                </NavLink>
+                <NavLink
+                  to="/nearMisses"
+                  onClick={handleClose}
+                  className={({ isActive }) =>
+                    isActive ? "popup-link active" : "popup-link"
+                  }
+                >
+                  Near Misses
+                </NavLink>
+              </Nav>
+            </Offcanvas.Body>
+          </Navbar.Offcanvas>
     </>
   );
 }

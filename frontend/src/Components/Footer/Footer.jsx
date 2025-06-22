@@ -5,11 +5,12 @@ import MobileMenuControls from "../MobileMenuControls/MobileMenuControls";
 function Footer() {
   return (
     <footer className="footer-container">
-      <div className="footer-contactdetails">
-        <Contactdetails />
-      </div>
+      {" "}
       <div className="mobile-menu-controls">
         <MobileMenuControls />
+      </div>
+      <div className="footer-contactdetails">
+        <Contactdetails />
       </div>
     </footer>
   );

@@ -14,8 +14,3 @@
   word-wrap: break-word;
   font-size: 4rem;
 }
-@media (max-width: 768px) {
-  .title-container {
-    margin-top: 50px; 
-  }
-}
