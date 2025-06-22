@@ -33,11 +33,11 @@ function RouteInfoTable({ path }) {
     setLoading(true);
     //have to make sure the loading bar actually appears for a bit
     const timer = setTimeout(() => {
-    setLocalPath(path);
-    setSortConfig({ key: null, ascending: true });
-    setLoading(false);
-  }, 400);
-  return () => clearTimeout(timer); 
+      setLocalPath(path);
+      setSortConfig({ key: null, ascending: true });
+      setLoading(false);
+    }, 400);
+    return () => clearTimeout(timer);
   }, [path]);
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -88,8 +88,7 @@ function RouteInfoTable({ path }) {
   const headers = ["Date", "Orbiting Body", "Speed", "Miss Distance"];
   return (
     <>
-          {loading && ( <LoadingPopup text={"Loading Path Information..."}/>
-          )}
+      {loading && <LoadingPopup text={"Loading Path Information..."} />}
       <Paper className="table-container">
         <TableContainer
           sx={{ height: 600, overflow: "auto" }}
@@ -102,7 +101,7 @@ function RouteInfoTable({ path }) {
                   <TableCell key={key}>
                     <Button
                       onClick={() => sortJSON(key)}
-                      className="header-button"
+                      className="header-button-route"
                     >
                       {key}
                       {sortConfig.key === key && getArrow()}

@@ -1,4 +1,5 @@
 import { Infinity } from "ldrs/react";
+import './LoadingPopup.css'
 function LoadingPopup( { text } ) {
   return (
     <>

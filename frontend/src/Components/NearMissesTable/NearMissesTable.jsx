@@ -119,7 +119,9 @@ export default function NearMissesTable() {
 
     return (
       <>
-        <TableCell sx={{ width: 50 }} key="headers" className="header-button">Path</TableCell>
+        <TableCell sx={{ width: 50 }} key="headers" className="header-button">
+          Path
+        </TableCell>
         {Object.keys(missArray[0]).map(
           (key) =>
             key !== "id" && (
@@ -220,8 +222,7 @@ export default function NearMissesTable() {
   //final return
   return (
     <>
-      {loading && ( <LoadingPopup text={"Loading Data..."}/>
-      )}
+      {loading && <LoadingPopup text={"Loading Data..."} />}
 
       <div className="page-wrapper">
         <DateDropdown
@@ -238,9 +239,7 @@ export default function NearMissesTable() {
               <TableHead>
                 <TableRow sx={{ height: 50 }}>{loadHeaders()}</TableRow>
               </TableHead>
-              <TableBody>
-                {loadRows()}
-              </TableBody>
+              <TableBody>{loadRows()}</TableBody>
             </Table>
           </TableContainer>
           <TablePagination
@@ -254,18 +253,18 @@ export default function NearMissesTable() {
           />
         </Paper>
       </div>
-      
+
       <Dialog
         open={modalOpen}
         onClose={handleCloseModal}
         maxWidth="md"
         fullWidth
+        className="route-dialog"
       >
-        <DialogTitle>Asteroid Path Information</DialogTitle>
-        <DialogContent dividers>
+        <DialogContent dividers className="asteroid-path-content">
           {selectedAsteroidId && <RouteInfo id={selectedAsteroidId} />}
         </DialogContent>
-        <DialogActions>
+        <DialogActions className="asteroid-path-footer">
           <Button onClick={handleCloseModal}>Close</Button>
         </DialogActions>
       </Dialog>

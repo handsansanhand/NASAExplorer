@@ -1,25 +1,23 @@
 .table-container {
   border: 2px solid black !important;
 }
-.header-button {
+
+.header-button-route {
   width: 100% !important;
   height: 50px !important;
   padding: 0 !important;
-  margin: 0 !important;
-  min-width: 0 !important;
-  display: flex !important;
   border-radius: 0 !important;
-  color: black !important;
   font-weight: 550 !important;
-  background-color: rgba(252, 60, 35, 0.75) !important;
-  align-items: center !important;
-  justify-content: center !important;
-  box-sizing: border-box !important;
-
+  background-color: #fc3c23 !important;
+  color: white !important; 
   border: 1px solid black !important;
   border-right: none !important; 
 }
 
+.header-button-route:hover {
+  background-color: white !important;
+  color: #fc3c23 !important;
+}
 
 .MuiTableBody-root .MuiTableCell-root {
   text-align: center;
