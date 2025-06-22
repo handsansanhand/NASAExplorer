@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { retrieveSatelliteImage } from "../../../../Scripts/earth";
 import "./SatelliteImage.css";
-import { Infinity } from "ldrs/react";
 import LoadingPopup from "../../../LoadingPopup/LoadingPopup";
+
+//given co-ordinates, call the api (through the retrieveSatelliteImage script) and recieve the image data before displaying it
 function SatelliteImage({ coordinates }) {
   const [imageUrl, setImageUrl] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
@@ -27,6 +28,7 @@ function SatelliteImage({ coordinates }) {
   if (!coordinates || coordinates.length !== 2)
     return <p>No location data available.</p>;
 
+  //return the image, and some text if the image is unable to load
   return (
     <div className="satellite-container">
       {imageLoading && (

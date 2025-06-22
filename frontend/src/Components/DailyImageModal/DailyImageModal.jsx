@@ -1,6 +1,6 @@
-import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 
+//image data passed in, and when to show/hide itself
 function DailyImageModal({ show, onHide, imageData }) {
   return (
     <Modal show={show} onHide={onHide} centered size="lg">

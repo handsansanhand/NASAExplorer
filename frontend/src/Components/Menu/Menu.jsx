@@ -7,12 +7,13 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { IoMdInformation } from "react-icons/io";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-import { IoMdInformationCircleOutline } from "react-icons/io";
 import InfoModal from "./InfoModal/InfoModal";
+
+//this technically is the header, but with a transparent background. should have mechanisms for: displaying a popup with navigable options, and an information button (whose text depends on the current address/webpage)
 function Menu() {
   const [show, setShow] = useState(false);
   const [infoShow, setInfoShow] = useState(false);
-  const location = useLocation();
+  const location = useLocation(); //this will be used for determining what info text to use
 
   const handleToggle = () => setShow(!show);
   const handleClose = () => setShow(false);
@@ -37,7 +38,7 @@ function Menu() {
         return [
           "Welcome to the near misses page! Here, you can see the information regarding asteroids which have recently almost collided with Earth.",
           "You can either view the asteroids from the past 24 hours, or the past week, also you can sort each column by ascending or descending order.",
-          "Clicking the 'path' button will reveal more information about a certain asteroids path, such as the planet it nearly colided with and the date in which it did so. You may also either view it's path history, or it's projected path."
+          "Clicking the 'path' button will reveal more information about a certain asteroids path, such as the planet it nearly colided with and the date in which it did so. You may also either view it's path history, or it's projected path.",
         ];
       default:
         return [
@@ -49,12 +50,11 @@ function Menu() {
 
   return (
     <>
-      <Navbar
-        expand={false}
-        className="py-3 fixed-top custom-navbar"
-      >
+      <Navbar expand={false} className="py-3 fixed-top custom-navbar">
         <Container fluid>
-          <Button onClick={handleToggle} className="menu-button">Menu</Button>
+          <Button onClick={handleToggle} className="menu-button">
+            Menu
+          </Button>
           <Button onClick={handleInfoOpen} className="info-icon-button">
             <IoMdInformation size={24} />
           </Button>

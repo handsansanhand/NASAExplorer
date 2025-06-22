@@ -9,9 +9,9 @@
   border-radius: 0 !important;
   font-weight: 550 !important;
   background-color: #fc3c23 !important;
-  color: white !important; 
+  color: white !important;
   border: 1px solid black !important;
-  border-right: none !important; 
+  border-right: none !important;
 }
 
 .header-button-route:hover {
@@ -21,16 +21,12 @@
 
 .MuiTableBody-root .MuiTableCell-root {
   text-align: center;
-  vertical-align: middle; 
+  vertical-align: middle;
 }
-
-
-
 
 .MuiTableHead-root .MuiTableRow-root > .MuiTableCell-root:last-child {
   border-right: none;
 }
-
 
 .MuiTableBody-root .MuiTableCell-root {
   text-align: center;
@@ -38,5 +34,5 @@
 }
 
 .table-layout {
-   border-bottom: 3px solid black;
+  border-bottom: 3px solid black;
 }

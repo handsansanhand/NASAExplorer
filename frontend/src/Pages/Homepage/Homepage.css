@@ -33,23 +33,19 @@
   align-items: center;
   display: flex;
   font-weight: 800;
-  font-size: 38px;
+  font-size: 2vw;
   text-align: center;
 }
 
 .homepage-title {
-  font-size: 114px;
+  font-size: 5vw;
   margin-bottom: 50px;
   font-weight: 800;
   text-align: center;
   word-wrap: break-word;
 }
 
-.homepage-subtitle {
-  font-size: 48px;
-  margin-bottom: 50px;
-  text-align: left;
-}
+
 .modal-content {
   background-color: #0a3c91 !important;
   color: white !important;
@@ -103,11 +99,11 @@
 .modal-text p {
   overflow-y: auto;
   line-height: 1.5;
-  font-size: 20px;
+  font-size: 1vw;
 }
 
 .image-title {
   color: #fc3c23;
   font-weight: 700 !important;
-  font-size: 28px;
+  font-size: 1.3vw;
 }

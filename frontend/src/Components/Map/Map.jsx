@@ -5,26 +5,22 @@ import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
 import { useEffect, useState } from "react";
-//import CustomButton from "../CustomButton/CustomButton";
 import "./Map.css";
 import MapPopup from "./MapPopup/MapPopup";
 import CustomSlider from "./Slider/CustomSlider";
-import { Infinity } from "ldrs/react";
 import "ldrs/react/Infinity.css";
 import { retrieveEvents } from "../../Scripts/events";
 import MapLegend from "./MapLegend/MapLegend";
 import { Button } from "react-bootstrap";
 import LoadingPopup from "../LoadingPopup/LoadingPopup";
+
+//map component, contains a filter, stores markers which are fetched from the api when filter is changed, and a mechanism for selecting an event
 function Map() {
   const [markers, setMarkers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [filter, setFilter] = useState({ days: 90 });
   const [loading, setLoading] = useState(false);
-  const [showInfoModal, setShowInfoModal] = useState(false);
-
-  const handleShowInfoModal = () => setShowInfoModal(true);
-  const handleCloseInfoModal = () => setShowInfoModal(false);
 
   delete L.Icon.Default.prototype._getIconUrl;
   L.Icon.Default.mergeOptions({
@@ -60,8 +56,7 @@ function Map() {
   };
   return (
     <>
-      {loading && <LoadingPopup text={"Loading Events..."} />}
-      {" "}
+      {loading && <LoadingPopup text={"Loading Events..."} />}{" "}
       <div className="map-wrapper">
         <MapLegend updateFilter={updateFilter} />
         <MapContainer

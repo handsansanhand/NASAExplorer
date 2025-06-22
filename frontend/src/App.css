@@ -90,6 +90,7 @@ body,
   border-radius: 5px !important;
   color: white !important;
   font-weight: 700 !important;
+  font-size: 1vw !important;
 }
 
 .btn:hover {

@@ -3,7 +3,8 @@ import { retrieveNearMissInformation } from "../../../Scripts/nearMisses";
 import "./RouteInfo.css";
 import { SelectButton } from "primereact/selectbutton";
 import RouteInfoTable from "./RouteInfoTable/RouteInfoTable";
-//helper component which on click, pops up and shows the provided information about an asteroids path
+
+//helper component which on click, pops up and shows the provided information about an asteroids path. contains the name of the asteroid, a selectable past/future option, and a table component with all the corresponding data
 function RouteInfo({ id }) {
   const [status, setStatus] = useState("past");
   const [asteroidPastPath, setAsteroidPastPath] = useState([]);

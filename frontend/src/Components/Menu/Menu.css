@@ -4,15 +4,16 @@
 }
 .popup-bar {
   background-color: black !important;
-  color: #fc3c23 !important;
-  font-size: 48px;
   border-left: 3px solid white !important;
+  max-width: 30vw !important;
+  min-width: 250px !important;
+  width: 100%;
 }
 .nav-link-instance {
   color: white !important;
   text-decoration: none;
   font-weight: 700;
-  font-size: 32px;
+  font-size: 1.3vw;
   padding-bottom: 5px;
   border-bottom: 2px solid transparent;
   transition: color 0.3s ease, border-color 0.3s ease;
@@ -22,7 +23,7 @@
   color: white;
   padding: 0.75rem 1rem;
   text-decoration: none;
-  font-size: 32px;
+  font-size: 1.5vw;
   transition: color 0.2s ease;
 }
 
@@ -34,9 +35,9 @@
   border-bottom: 3px solid white;
 }
 .menu-button {
-    font-size: 24px !important;       
-  padding: 12px 20px;   
-  border-radius: 10px;   
+  font-size: 1.2vw !important;
+  padding: 12px 20px;
+  border-radius: 10px;
   min-width: 100px;
 }
 .info-icon-button {

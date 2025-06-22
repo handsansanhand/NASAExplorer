@@ -1,7 +1,7 @@
 import Slider from "@mui/material/Slider";
 import "react-range-slider-input/dist/style.css";
 import "./CustomSlider.css";
-//a slider which should be from 0->90 and have labels on them
+//a slider which should be from 0->90 and have intervals of 10
 function CustomSlider({ onValueCommit }) {
   const marks = Array.from({ length: 10 }, (_, i) => ({
     value: i * 10,

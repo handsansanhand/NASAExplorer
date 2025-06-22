@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
-//import CustomButton from "../../CustomButton/CustomButton";
 import { retrieveEventByID } from "../../../Scripts/events";
 import SatelliteImage from "./SatelliteImage/SatelliteImage";
 import { Button } from "react-bootstrap";
@@ -10,7 +9,6 @@ import "./MapPopup.css";
 function MapPopup({ show, onHide, eventData }) {
   if (!eventData) return null; //just in case
   const [event, setEvent] = useState(null);
-  const [loadingImage, setLoadingImage] = useState(false);
 
   useEffect(() => {
     if (show && eventData && eventData.id) {
