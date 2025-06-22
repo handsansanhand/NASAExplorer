@@ -22,7 +22,6 @@ function MapLegend({ updateFilter }) {
     { id: 12, title: "Volcanoes", className: "volcano" },
     { id: 13, title: "Water Color", className: "water-color" },
     { id: 8, title: "Wildfires", className: "wildfire" },
-
   ];
   const active = [
     {
@@ -53,24 +52,27 @@ function MapLegend({ updateFilter }) {
     }
   };
   const handleClearFilters = () => {
-  setStatus("open");           
-  setSelectedCategory(null);
-  updateFilter({ status: "open", category: null });
-};
+    setStatus("open");
+    setSelectedCategory(null);
+    updateFilter({ status: "open", category: null });
+  };
 
   return (
     <div className="map-legend">
       <h4>Filter By Status</h4>
-      <SelectButton
-        value={active.find((opt) => opt.status === status)}
-        onChange={handleStatusChange}
-        options={active}
-        itemTemplate={(option) => (
-          <span className={`status-${option.status}`}>{option.title}</span>
-        )}
-        optionLabel="title"
-        className="horizontal-select-button"
-      />
+      <div className="status-container">
+        <SelectButton
+          value={active.find((opt) => opt.status === status)}
+          onChange={handleStatusChange}
+          options={active}
+          itemTemplate={(option) => (
+            <span className={`status-${option.status}`}>{option.title}</span>
+          )}
+          optionLabel="title"
+          className="horizontal-select-button"
+        />
+      </div>
+
       <h4>Filter By Event</h4>
       <SelectButton
         value={selectedCategory}

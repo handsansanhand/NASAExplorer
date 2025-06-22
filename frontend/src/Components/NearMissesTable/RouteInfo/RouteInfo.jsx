@@ -31,12 +31,12 @@ function RouteInfo( {id} ) {
     title : "Future"
   }
 ]
+  //need to specify that if nothing is picked, i.e the user has clicked out, dont toggle anything
   const handleStatusChange = (e) => {
      if (e.value) {
-    console.log(`Status changed to ${e.value.status}`);
     setStatus(e.value.status);
   } else {
-    setStatus("open");
+    //setStatus("open");
   }
   };
 
@@ -58,7 +58,7 @@ function RouteInfo( {id} ) {
                     <span className={`status-${option.status}`}>{option.title}</span>
                         )}
                       optionLabel="title" 
-                      className="horizontal-select-button"
+                      className="time-select-button"
                     />
                 </div>
                       

@@ -16,12 +16,8 @@
   justify-content: center !important;
   box-sizing: border-box !important;
 
-  border: 2px solid black !important;
+  border: 1px solid black !important;
   border-right: none !important; 
-}
-
-.MuiTableHead-root .MuiTableRow-root > .MuiTableCell-root:last-child .header-button {
-  border-right: 2px solid black !important;
 }
 
 
@@ -30,9 +26,7 @@
   vertical-align: middle; 
 }
 
-.MuiTableHead-root .MuiTableCell-root {
-  border-right: 2px solid black;
-}
+
 
 
 .MuiTableHead-root .MuiTableRow-root > .MuiTableCell-root:last-child {
@@ -41,15 +35,10 @@
 
 
 .MuiTableBody-root .MuiTableCell-root {
-  border-right: 2px solid black;
   text-align: center;
   vertical-align: middle;
 }
 
-
-.MuiTableBody-root .MuiTableRow-root > .MuiTableCell-root:last-child {
-  border-right: none;
-}
 .table-layout {
    border-bottom: 3px solid black;
 }
