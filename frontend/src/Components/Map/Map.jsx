@@ -14,7 +14,7 @@ import "ldrs/react/Infinity.css";
 import { retrieveEvents } from "../../Scripts/events";
 import MapLegend from "./MapLegend/MapLegend";
 import { Button } from "react-bootstrap";
-
+import LoadingPopup from "../LoadingPopup/LoadingPopup";
 function Map() {
   const [markers, setMarkers] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -60,12 +60,8 @@ function Map() {
   };
   return (
     <>
-      {loading && (
-        <div className="loading-overlay">
-          <p>Loading Events...</p>
-          <Infinity size="120" stroke="5" speed="1.5" color="	#fc3c23" />
-        </div>
-      )}{" "}
+      {loading && <LoadingPopup text={"Loading Events..."} />}
+      {" "}
       <div className="map-wrapper">
         <MapLegend updateFilter={updateFilter} />
         <MapContainer
@@ -101,7 +97,9 @@ function Map() {
                       setSelectedEvent(event);
                       setShowModal(true);
                     }}
-                  >Show More</Button>
+                  >
+                    Show More
+                  </Button>
                 </Popup>
               </Marker>
             );

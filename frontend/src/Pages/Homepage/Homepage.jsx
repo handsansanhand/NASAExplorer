@@ -1,20 +1,25 @@
 import "./Homepage.css";
 import { fetchDailyImage } from "../../Scripts/fetchDailyImage";
 import { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import DailyImageModal from "../../Components/DailyImageModal/DailyImageModal";
+import LoadingPopup from "../../Components/LoadingPopup/LoadingPopup";
 function Homepage() {
   const leftBoxText = "Welcome to the NASA Visualiser!";
   const [showModal, setShowModal] = useState(false);
   const [imageData, setImageData] = useState(null);
-
+  const [loading, setLoading] = useState(false);
   const showDailyImage = async () => {
+    setLoading(true);
     const fetchedImage = await fetchDailyImage();
     setImageData(fetchedImage);
+    setLoading(false);
     setShowModal(true);
   };
 
   return (
     <>
+      {loading && <LoadingPopup text={"Loading Image..."} />}
       <div className="main-container">
         <div className="homepage-title">NASA Visualiser</div>
         <div className="content-row">
@@ -23,42 +28,21 @@ function Homepage() {
             <p>
               View the
               <br></br>
-              <Button
-                onClick={() => showDailyImage()}
-              > Fetch NASA Image </Button>
+              <Button onClick={() => showDailyImage()}>
+                {" "}
+                Fetch NASA Image{" "}
+              </Button>
               <br></br>
               Astronomy Picture of the Day!
             </p>
           </div>
         </div>
       </div>
-      <Modal
+      <DailyImageModal
         show={showModal}
         onHide={() => setShowModal(false)}
-        centered
-        size="lg"
-      >
-        <Modal.Header>
-          <Modal.Title>NASA Daily Astronomy Image</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {imageData && (
-            <div className="modal-body">
-              <img src={imageData.url} alt={imageData.title} className="modal-image" />
-              <div className="modal-text">
-                <div className="image-title">{imageData.title}</div>
-                <p>{imageData.description}</p>
-                <div className="author">
-                  Author: {imageData.author || "Unknown"}
-                </div>
-              </div>
-            </div>
-          )}
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={() => setShowModal(false)}>Close</Button>
-        </Modal.Footer>
-      </Modal>
+        imageData={imageData}
+      />
     </>
   );
 }

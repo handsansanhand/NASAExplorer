@@ -29,6 +29,7 @@ import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { IoMdArrowDown, IoMdArrowUp } from "react-icons/io";
 import DateDropdown from "./DateDropdown/DateDropdown";
+import LoadingPopup from "../LoadingPopup/LoadingPopup";
 
 export default function NearMissesTable() {
   const [filter, setFilter] = useState({});
@@ -219,11 +220,7 @@ export default function NearMissesTable() {
   //final return
   return (
     <>
-      {loading && (
-        <div className="loading-overlay">
-          <p>Loading Data...</p>
-          <Infinity size="120" stroke="5" speed="1.5" color="	#fc3c23" />
-        </div>
+      {loading && ( <LoadingPopup text={"Loading Data..."}/>
       )}
 
       <div className="page-wrapper">

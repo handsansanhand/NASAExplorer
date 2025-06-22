@@ -21,6 +21,7 @@ import { useEffect } from "react";
 import { IoMdArrowDown, IoMdArrowUp } from "react-icons/io";
 import "./RouteInfoTable.css";
 import "../../NearMissesTable.css";
+import LoadingPopup from "../../../LoadingPopup/LoadingPopup";
 function RouteInfoTable({ path }) {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [page, setPage] = useState(0);
@@ -87,11 +88,7 @@ function RouteInfoTable({ path }) {
   const headers = ["Date", "Orbiting Body", "Speed", "Miss Distance"];
   return (
     <>
-          {loading && (
-            <div className="loading-overlay">
-              <p>Loading Data...</p>
-              <Infinity size="120" stroke="5" speed="1.5" color="	#fc3c23" />
-            </div>
+          {loading && ( <LoadingPopup text={"Loading Path Information..."}/>
           )}
       <Paper className="table-container">
         <TableContainer
