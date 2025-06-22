@@ -1,7 +1,6 @@
 import "./Homepage.css";
 import { fetchDailyImage } from "../../Scripts/fetchDailyImage";
 import { useState } from "react";
-import CustomButton from "../../Components/CustomButton/CustomButton";
 import { Modal, Button } from "react-bootstrap";
 function Homepage() {
   const leftBoxText = "Welcome to the NASA Visualiser!";
@@ -24,10 +23,9 @@ function Homepage() {
             <p>
               View the
               <br></br>
-              <CustomButton
-                text="Fetch NASA Image"
+              <Button
                 onClick={() => showDailyImage()}
-              />
+              > Fetch NASA Image </Button>
               <br></br>
               Astronomy Picture of the Day!
             </p>
@@ -46,7 +44,7 @@ function Homepage() {
         <Modal.Body>
           {imageData && (
             <div className="modal-body">
-              <img src={imageData.url} alt={imageData.title} />
+              <img src={imageData.url} alt={imageData.title} className="modal-image" />
               <div className="modal-text">
                 <div className="image-title">{imageData.title}</div>
                 <p>{imageData.description}</p>
@@ -58,7 +56,7 @@ function Homepage() {
           )}
         </Modal.Body>
         <Modal.Footer>
-          <CustomButton text="Close" onClick={() => setShowModal(false)} />
+          <Button onClick={() => setShowModal(false)}>Close</Button>
         </Modal.Footer>
       </Modal>
     </>

@@ -5,7 +5,7 @@ import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
 import { useEffect, useState } from "react";
-import CustomButton from "../CustomButton/CustomButton";
+//import CustomButton from "../CustomButton/CustomButton";
 import "./Map.css";
 import MapPopup from "./MapPopup/MapPopup";
 import CustomSlider from "./Slider/CustomSlider";
@@ -13,6 +13,7 @@ import { Infinity } from "ldrs/react";
 import "ldrs/react/Infinity.css";
 import { retrieveEvents } from "../../Scripts/events";
 import MapLegend from "./MapLegend/MapLegend";
+import { Button } from "react-bootstrap";
 
 function Map() {
   const [markers, setMarkers] = useState([]);
@@ -95,13 +96,12 @@ function Map() {
               <Marker key={event.id} position={[lat, lon]}>
                 <Popup className="custom-popup">
                   <strong className="popup-title">{event.title}</strong>
-                  <CustomButton
-                    text={`Show More`}
+                  <Button
                     onClick={() => {
                       setSelectedEvent(event);
                       setShowModal(true);
                     }}
-                  ></CustomButton>
+                  >Show More</Button>
                 </Popup>
               </Marker>
             );

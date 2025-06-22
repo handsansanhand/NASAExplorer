@@ -1,7 +1,7 @@
 import { Modal, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-
+import './InfoModal.css'
+//the popup with passed in info text (an array of strings)
 function InfoModal({ show, onClose, infoText }) {
   return (
     <Modal show={show} onHide={onClose} className="info-modal">

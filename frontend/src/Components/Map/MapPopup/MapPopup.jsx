@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
-import CustomButton from "../../CustomButton/CustomButton";
+//import CustomButton from "../../CustomButton/CustomButton";
 import { retrieveEventByID } from "../../../Scripts/events";
 import SatelliteImage from "./SatelliteImage/SatelliteImage";
+import { Button } from "react-bootstrap";
 import "./MapPopup.css";
 
 //a popup which when called, uses a get request with the event data id to retrieve all the information about the event
@@ -79,7 +80,7 @@ function MapPopup({ show, onHide, eventData }) {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <CustomButton text="Close" onClick={onHide} />
+          <Button text="Close" onClick={onHide} >Close</Button>
         </Modal.Footer>
       </Modal>
     </>

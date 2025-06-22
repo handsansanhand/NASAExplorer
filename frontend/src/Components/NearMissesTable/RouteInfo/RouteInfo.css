@@ -21,11 +21,3 @@
     border-right: none;     
 }
 
-.horizontal-select-button .p-button.p-highlight{
-    background-color: blue;
-    color: white;             
-}
-.horizontal-select-button .p-button.p-hover{
-    background-color: lightblue;
-    color: white;             
-}

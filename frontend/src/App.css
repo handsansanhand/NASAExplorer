@@ -84,3 +84,22 @@ body,
   z-index: -1;
 }
 
+.btn {
+  background-color: black !important;
+  border: 3px solid white !important;
+  border-radius: 5px !important;
+  color: white !important;
+}
+
+.btn:hover {
+  background-color: white !important;
+  border: 3px solid black !important;
+  color: black !important;
+}
+
+.modal-body, .modal-title, .modal-header, .modal-footer {
+  background-color: black !important;
+}
+.modal-body img {
+  border: 3px solid white !important;
+}

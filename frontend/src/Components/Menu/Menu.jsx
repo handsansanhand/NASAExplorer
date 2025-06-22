@@ -4,11 +4,11 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import CustomButton from "../CustomButton/CustomButton";
+import { IoMdInformation } from "react-icons/io";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { IoMdInformationCircleOutline } from "react-icons/io";
-import InfoModal from "../InfoModal/InfoModal";
+import InfoModal from "./InfoModal/InfoModal";
 function Menu() {
   const [show, setShow] = useState(false);
   const [infoShow, setInfoShow] = useState(false);
@@ -35,8 +35,9 @@ function Menu() {
         ];
       case "/nearMisses":
         return [
-          "Welcome to the near misses page!",
-          "You can click each event to view more details including category, sources, date, and even a satellite image if available.",
+          "Welcome to the near misses page! Here, you can see the information regarding asteroids which have recently almost collided with Earth.",
+          "You can either view the asteroids from the past 24 hours, or the past week, also you can sort each column by ascending or descending order.",
+          "Clicking the 'path' button will reveal more information about a certain asteroids path, such as the planet it nearly colided with and the date in which it did so. You may also either view it's path history, or it's projected path."
         ];
       default:
         return [
@@ -49,14 +50,13 @@ function Menu() {
   return (
     <>
       <Navbar
-        bg="light"
         expand={false}
         className="py-3 fixed-top custom-navbar"
       >
         <Container fluid>
-          <CustomButton text={"Menu"} onClick={handleToggle} />
-          <Button onClick={handleInfoOpen} className="ms-2">
-            <IoMdInformationCircleOutline size={24} />
+          <Button onClick={handleToggle} className="menu-button">Menu</Button>
+          <Button onClick={handleInfoOpen} className="info-icon-button">
+            <IoMdInformation size={24} />
           </Button>
 
           <Navbar.Offcanvas

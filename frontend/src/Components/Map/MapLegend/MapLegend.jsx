@@ -1,8 +1,8 @@
-import CustomButton from "../../CustomButton/CustomButton";
 import { SelectButton } from "primereact/selectbutton";
 import "primereact/resources/primereact.min.css";
 import { useState } from "react";
 import "./MapLegend.css";
+import { Button } from "react-bootstrap";
 /*this needs to show all
 Categories (you can click more or one)
 Status (OPEN OR CLOSED)
@@ -22,6 +22,7 @@ function MapLegend({ updateFilter }) {
     { id: 12, title: "Volcanoes", className: "volcano" },
     { id: 13, title: "Water Color", className: "water-color" },
     { id: 8, title: "Wildfires", className: "wildfire" },
+
   ];
   const active = [
     {
@@ -51,6 +52,11 @@ function MapLegend({ updateFilter }) {
       updateFilter({ status: "open" });
     }
   };
+  const handleClearFilters = () => {
+  setStatus("open");           
+  setSelectedCategory(null);
+  updateFilter({ status: "open", category: null });
+};
 
   return (
     <div className="map-legend">
@@ -75,6 +81,7 @@ function MapLegend({ updateFilter }) {
         multiple={false}
         className="vertical-select-button"
       />
+      <Button onClick={handleClearFilters}>Clear Filter</Button>
     </div>
   );
 }

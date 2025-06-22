@@ -1,17 +1,19 @@
 .custom-slider .MuiSlider-track {
+  border: 3px solid black;
   height: 8px;
   background-color: white;
 }
 
 .custom-slider .MuiSlider-rail {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(0, 0, 0, 0.6);
   height: 8px;
 }
 
 .custom-slider .MuiSlider-thumb {
   height: 20px;
   width: 20px;
-  background-color: #fc3c23;
+  background-color: white;
+  border: 3px solid black;
 }
 .custom-slider .MuiSlider-markLabel {
   color: white;
@@ -22,4 +24,13 @@
 }
 .custom-slider .MuiSlider-markLabel {
   font-size: 14px;
+}
+.custom-slider .MuiSlider-mark {
+  background-color: black;
+}
+.custom-slider .MuiSlider-thumb:hover,
+.custom-slider .MuiSlider-thumb.Mui-focusVisible,
+.custom-slider .MuiSlider-thumb:active {
+  background-color: white;
+  box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.16);
 }

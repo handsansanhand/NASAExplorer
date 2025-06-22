@@ -6,9 +6,14 @@
   margin-left: 0px !important;
   width: 175px;
   font-weight: 700;
+  transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  transform: none !important;
 }
+
 .date-button .btn:hover {
   border: 3px solid red;
+  background-color: #fff0f0;
+  color: red;
 }
 
 .dropdown-menu {

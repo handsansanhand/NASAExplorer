@@ -118,7 +118,7 @@ export default function NearMissesTable() {
 
     return (
       <>
-        <TableCell sx={{ width: 50 }} key="headers" />
+        <TableCell sx={{ width: 50 }} key="headers" className="header-button">Path</TableCell>
         {Object.keys(missArray[0]).map(
           (key) =>
             key !== "id" && (
@@ -162,17 +162,14 @@ export default function NearMissesTable() {
             <React.Fragment key={value.id}>
               <TableRow key={idx} sx={{ height: 40 }}>
                 <TableCell>
-                  <IconButton
-                    aria-label="expand row"
+                  <Button
+                    aria-label="path information"
                     size="small"
                     onClick={() => handleOpenModal(value.id)}
+                    className="view-path-button"
                   >
-                    {openRows[value.id] ? (
-                      <KeyboardArrowUpIcon sx={{ fontSize: 24 }} />
-                    ) : (
-                      <KeyboardArrowDownIcon sx={{ fontSize: 24 }} />
-                    )}
-                  </IconButton>
+                    View
+                  </Button>
                 </TableCell>
 
                 {Object.entries(value)
