@@ -112,7 +112,6 @@ function Map() {
         ></MapPopup>
         <div className="map-slider-container">
           <CustomSlider onValueCommit={handleSliderCommit} />
-          <h2>Filter Events by Date Range</h2>
         </div>
       </div>
     </>

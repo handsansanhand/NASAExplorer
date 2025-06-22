@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { retrieveSatelliteImage } from "../../../../Scripts/earth";
 import "./SatelliteImage.css";
 import { Infinity } from "ldrs/react";
+import LoadingPopup from "../../../LoadingPopup/LoadingPopup";
 function SatelliteImage({ coordinates }) {
   const [imageUrl, setImageUrl] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
@@ -29,10 +30,7 @@ function SatelliteImage({ coordinates }) {
   return (
     <div className="satellite-container">
       {imageLoading && (
-        <div className="loading-overlay">
-          <p>Loading Satellite Image...</p>
-          <Infinity size="32" stroke="5" speed="1.5" color="	#fc3c23" />
-        </div>
+        <LoadingPopup text={"Loading Satellite Image..."}/>
       )}
       {imageUrl ? (
         <img

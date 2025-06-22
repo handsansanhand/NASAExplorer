@@ -60,7 +60,7 @@ function MapLegend({ updateFilter }) {
   return (
     <div className="map-legend">
       <h4>Filter By Status</h4>
-      <div className="status-container">
+      <div>
         <SelectButton
           value={active.find((opt) => opt.status === status)}
           onChange={handleStatusChange}

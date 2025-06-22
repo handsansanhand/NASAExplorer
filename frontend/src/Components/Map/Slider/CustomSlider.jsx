@@ -18,6 +18,8 @@ function CustomSlider({ onValueCommit }) {
   }
   return (
     <>
+     <div className="custom-slider-container">
+      
       <Slider
         aria-label="Custom marks"
         defaultValue={90}
@@ -29,6 +31,8 @@ function CustomSlider({ onValueCommit }) {
         onChangeCommitted={handleChangeCommited}
         className="custom-slider"
       />
+      <h4>Filter Events by Date Range</h4>
+    </div>
     </>
   );
 }
