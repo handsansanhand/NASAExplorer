@@ -13,8 +13,6 @@ import { Infinity } from "ldrs/react";
 import "ldrs/react/Infinity.css";
 import { retrieveEvents } from "../../Scripts/events";
 import MapLegend from "./MapLegend/MapLegend";
-import InfoButton from "./InfoButton/InfoButton";
-import InfoModalEvents from "./InfoButton/InfoModalEvents/InfoModalEvents";
 
 function Map() {
   const [markers, setMarkers] = useState([]);
@@ -67,8 +65,6 @@ function Map() {
           <Infinity size="120" stroke="5" speed="1.5" color="	#fc3c23" />
         </div>
       )}{" "}
-      <InfoButton onClick={handleShowInfoModal}></InfoButton>
-      {showInfoModal && <InfoModalEvents onClose={handleCloseInfoModal} />}
       <div className="map-wrapper">
         <MapLegend updateFilter={updateFilter} />
         <MapContainer

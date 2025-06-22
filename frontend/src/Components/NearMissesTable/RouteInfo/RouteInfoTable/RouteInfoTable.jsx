@@ -26,10 +26,17 @@ function RouteInfoTable({ path }) {
   const [page, setPage] = useState(0);
   const [localPath, setLocalPath] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: null, ascending: true });
+  const [loading, setLoading] = useState(false);
   //whenever a change in path is detected, we need to update the local cached one
   useEffect(() => {
+    setLoading(true);
+    //have to make sure the loading bar actually appears for a bit
+    const timer = setTimeout(() => {
     setLocalPath(path);
     setSortConfig({ key: null, ascending: true });
+    setLoading(false);
+  }, 400);
+  return () => clearTimeout(timer); 
   }, [path]);
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -80,6 +87,12 @@ function RouteInfoTable({ path }) {
   const headers = ["Date", "Orbiting Body", "Speed", "Miss Distance"];
   return (
     <>
+          {loading && (
+            <div className="loading-overlay">
+              <p>Loading Data...</p>
+              <Infinity size="120" stroke="5" speed="1.5" color="	#fc3c23" />
+            </div>
+          )}
       <Paper className="table-container">
         <TableContainer
           sx={{ height: 600, overflow: "auto" }}
