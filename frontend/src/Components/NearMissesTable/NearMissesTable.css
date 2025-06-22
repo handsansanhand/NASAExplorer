@@ -32,17 +32,15 @@
   transform: none !important;
 }
 
-
-
 .header-button-group {
   display: flex;
   width: 100%;
 }
 
 .header-button {
-  flex: 1;
-  border: 3px solid black;
+  flex: 1 1 0;
   border-right: none;
+  box-sizing: border-box;
 }
 
 .loading-overlay {
@@ -64,4 +62,5 @@
 .header-button:hover {
   background-color: white;
   color: black;
+   border: 1px solid black !important;
 }

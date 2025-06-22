@@ -1,7 +1,6 @@
 .near-miss-wrapper {
   height: 100vh;
   width: 100%;
-  border: 4px solid green;
 }
 
 .title-container {
@@ -11,5 +10,4 @@
   font-size: 64px;
   margin-bottom: 50px;
   font-weight: 800;
-  border: 4px solid green;
 }

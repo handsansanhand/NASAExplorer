@@ -1,5 +1,6 @@
 .custom-navbar {
   background-color: transparent !important;
+  margin-top: 10px;
 }
 .popup-bar {
   background-color: black !important;
@@ -26,7 +27,7 @@
 }
 
 .popup-link:hover {
-  color: #87cefa;
+  color: #0a66c2;
 }
 
 .popup-link.active {
