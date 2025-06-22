@@ -1,0 +1,57 @@
+import { Button } from "react-bootstrap";
+import { IoMdInformation } from "react-icons/io";
+import { useState } from "react";
+import InfoModal from "../Menu/InfoModal/InfoModal";
+import { useLocation } from "react-router-dom";
+import "./MobileMenuControls.css";
+function MobileMenuControls() {
+  const [infoShow, setInfoShow] = useState(false);
+  const location = useLocation();
+
+  const handleInfoOpen = () => setInfoShow(true);
+  const handleInfoClose = () => setInfoShow(false);
+
+  const infoText = (() => {
+    switch (location.pathname) {
+      case "/":
+        return [
+          "Welcome to the homepage!",
+          "Use the menu to explore NASA natural events and asteroid near misses.",
+        ];
+      case "/events":
+        return [
+          "Welcome to the natural events page! This page displays information about recent natural events all across the world stretching back to 90 days.",
+          "You may filter the events by their date, their event type, as well as their 'state', which may be either open or closed.",
+          "An event with an 'Open' status means that it is still ongoing, whereas an event marked as 'Closed' means that it has ceased.",
+          "You may also click on each event in order to view more information about it, including its category, sources, date & time, and if possible, a satellite image.",
+        ];
+      case "/nearMisses":
+        return [
+          "Welcome to the near misses page! Here, you can see the information regarding asteroids which have recently almost collided with Earth.",
+          "You can either view the asteroids from the past 24 hours, or the past week, also you can sort each column by ascending or descending order.",
+          "Clicking the 'path' button will reveal more information about a certain asteroids path, such as the planet it nearly colided with and the date in which it did so. You may also either view it's path history, or it's projected path.",
+        ];
+      default:
+        return [
+          "Welcome to NASA Explorer!",
+          "Use the menu to navigate through different pages.",
+        ];
+    }
+  })();
+
+  return (
+    <>
+      <Button onClick={handleInfoOpen} className="info-icon-button-footer">
+        <IoMdInformation size={24} />
+      </Button>
+
+      <InfoModal
+        show={infoShow}
+        onClose={handleInfoClose}
+        infoText={infoText}
+      />
+    </>
+  );
+}
+
+export default MobileMenuControls;

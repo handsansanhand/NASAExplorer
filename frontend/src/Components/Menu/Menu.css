@@ -56,3 +56,15 @@
   width: 2rem;
   height: 2rem;
 }
+.menu-button,
+.info-icon-button {
+  display: inline-block;
+}
+
+/* hide on small screens */
+@media (max-width: 768px) {
+  button.menu-button,
+  button.info-icon-button {
+    display: none !important;
+  }
+}

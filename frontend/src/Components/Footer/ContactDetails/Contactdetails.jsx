@@ -13,7 +13,7 @@ Github?
 */
 function Contactdetails() {
   return (
-    <div className="d-flex align-items-center contact-details">
+    <div className="contact-details">
       <a
         href="mailto:jack.kazco@yahoo.ie"
         target="_blank" // open in new tab
@@ -22,7 +22,7 @@ function Contactdetails() {
         title="E-Mail"
         className="me-3 no-style-link"
       >
-        <MdEmail size={48} />
+        <MdEmail size={"2.5rem"}/>
       </a>
 
       <a
@@ -33,7 +33,7 @@ function Contactdetails() {
         title="LinkedIn"
         className="me-3 no-style-link"
       >
-        <FaLinkedin size={48} />
+        <FaLinkedin size={"2.5rem"}/>
       </a>
       <a
         href="tel:+3530851593979"
@@ -43,7 +43,7 @@ function Contactdetails() {
         title="Mobile Phone"
         className="me-3 no-style-link"
       >
-        <FaSquarePhone size={48} />
+        <FaSquarePhone size={"2.5rem"}/>
       </a>
 
       <a
@@ -54,7 +54,7 @@ function Contactdetails() {
         title="GitHub"
         className="me-3 no-style-link"
       >
-        <FaGithubSquare size={48} />
+        <FaGithubSquare size={"2.5rem"}/>
       </a>
     </div>
   );

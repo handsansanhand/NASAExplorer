@@ -1,0 +1,15 @@
+.info-icon-button-footer {
+  width: 3rem !important;
+  height: 3rem !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: background-color 0.2s, color 0.2s;
+}
+.info-icon-button-footer svg {
+  width: 2rem;
+  height: 2rem;
+}

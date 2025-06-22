@@ -7,3 +7,7 @@ a.no-style-link {
 a.no-style-link:hover {
   color: #0a66c2;
 }
+
+.contact-details {
+  gap: 0.1rem;
+}

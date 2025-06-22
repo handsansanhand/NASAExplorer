@@ -116,7 +116,10 @@ html {
 .image-title {
   font-size: 1.3rem;
   font-weight: 700;
-}
+}  
+.author {
+    font-size: 1.2rem !important;
+  }
 .modal-body img {
   border: 3px solid white !important;
 }
@@ -137,5 +140,8 @@ html {
   .modal-text {
     max-height: 30vh;
     overflow-y: auto;
+  }
+  .menu {
+     display: none !important;
   }
 }
