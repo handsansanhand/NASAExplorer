@@ -2,14 +2,20 @@
   height: 100vh;
   width: 100%;
   gap: 20px;
+
 }
 
 .title-container {
   display: flex;
   justify-content: center;
-  font-size: 5vw;
   margin-bottom: 50px;
   font-weight: 800;
   text-align: center;
   word-wrap: break-word;
+  font-size: 4rem;
+}
+@media (max-width: 768px) {
+  .title-container {
+    margin-top: 50px; 
+  }
 }

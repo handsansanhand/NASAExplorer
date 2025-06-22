@@ -1,6 +1,7 @@
 .custom-navbar {
   background-color: transparent !important;
   margin-top: 10px;
+
 }
 .popup-bar {
   background-color: black !important;
@@ -23,7 +24,7 @@
   color: white;
   padding: 0.75rem 1rem;
   text-decoration: none;
-  font-size: 1.5vw;
+  font-size: 1.4rem;
   transition: color 0.2s ease;
 }
 
@@ -35,14 +36,14 @@
   border-bottom: 3px solid white;
 }
 .menu-button {
-  font-size: 1.2vw !important;
+  font-size: 1.2rem !important;
   padding: 12px 20px;
   border-radius: 10px;
   min-width: 100px;
 }
 .info-icon-button {
-  width: 48px !important;
-  height: 48px !important;
+  width: 3rem !important;
+  height: 3rem !important;
   border-radius: 50% !important;
   padding: 0 !important;
   display: flex;
@@ -52,6 +53,6 @@
   transition: background-color 0.2s, color 0.2s;
 }
 .info-icon-button svg {
-  width: 32px;
-  height: 32px;
+  width: 2rem;
+  height: 2rem;
 }
