@@ -1,10 +1,10 @@
 .page-wrapper {
-  min-width: 1000px;
   display: flex;
-  justify-content: center;
-  padding: 20px;
-  max-height: 80vh;
   flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .MuiTableCell-head {
@@ -70,4 +70,10 @@
   background-color: black;
   color: white;
   border-top: 3px solid white;
+}
+@media (max-width: 768px) {
+  .table-container {
+    max-width: 100%;
+    overflow-x: scroll;
+  }
 }
