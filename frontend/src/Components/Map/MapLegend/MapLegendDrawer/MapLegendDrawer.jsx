@@ -1,8 +1,8 @@
 import { Offcanvas, Button } from "react-bootstrap";
 import { useState } from "react";
 import MapLegend from "../MapLegend";
-import { FaArrowLeft, FaFilter } from "react-icons/fa";
-
+import { FaArrowLeft, FaFilter, FaAngleRight } from "react-icons/fa";
+import './MapLegendDrawer.css'
 function MapLegendDrawer({ updateFilter }) {
   const [show, setShow] = useState(false);
 
@@ -15,7 +15,7 @@ function MapLegendDrawer({ updateFilter }) {
         className="legend-toggle-btn"
         onClick={handleToggle}
       >
-        <FaFilter size={20} />
+        <FaAngleRight size={20} />
       </Button>
 
       <Offcanvas
@@ -30,7 +30,7 @@ function MapLegendDrawer({ updateFilter }) {
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <MapLegend updateFilter={updateFilter} />
+          <MapLegend updateFilter={updateFilter} className='map-legend-popup'/>
         </Offcanvas.Body>
       </Offcanvas>
     </>

@@ -1,7 +1,7 @@
 .legend-toggle-btn {
   position: fixed;
-  top: 80px;
-  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 1050;
   background-color: #222;
   color: white;
@@ -10,13 +10,14 @@
   border-radius: 50%;
   display: none;
 }
-
+.map-legend-offcanvas {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+  width: 60vw !important;
+  max-width: 60vw;
+}
 @media (max-width: 768px) {
   .legend-toggle-btn {
     display: block;
-  }
-
-  .map-legend {
-    display: none;
   }
 }

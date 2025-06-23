@@ -7,7 +7,7 @@ import { Button } from "react-bootstrap";
 Categories (you can click more or one)
 Status (OPEN OR CLOSED)
 */
-function MapLegend({ updateFilter }) {
+function MapLegend({ updateFilter, className = "" }) {
   const categories = [
     { id: 6, title: "Drought", className: "drought" },
     { id: 7, title: "Dust and Haze", className: "dust" },
@@ -58,7 +58,7 @@ function MapLegend({ updateFilter }) {
   };
 
   return (
-    <div className="map-legend">
+    <div className={`map-legend ${className}`}>
       <h4>Filter By Status</h4>
       <div>
         <SelectButton
