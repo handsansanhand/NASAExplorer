@@ -13,7 +13,7 @@ import { retrieveEvents } from "../../Scripts/events";
 import MapLegend from "./MapLegend/MapLegend";
 import { Button } from "react-bootstrap";
 import LoadingPopup from "../LoadingPopup/LoadingPopup";
-
+import MapLegendDrawer from "./MapLegend/MapLegendDrawer/MapLegendDrawer";
 //map component, contains a filter, stores markers which are fetched from the api when filter is changed, and a mechanism for selecting an event
 function Map() {
   const [markers, setMarkers] = useState([]);
@@ -59,6 +59,7 @@ function Map() {
       {loading && <LoadingPopup text={"Loading Events..."} />}{" "}
       <div className="map-wrapper">
         <MapLegend updateFilter={updateFilter} />
+        <MapLegendDrawer updateFilter={updateFilter} />
         <MapContainer
           center={[0, 0]}
           zoom={2}

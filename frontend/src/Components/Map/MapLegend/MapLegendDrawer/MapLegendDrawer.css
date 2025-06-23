@@ -1,0 +1,22 @@
+.legend-toggle-btn {
+  position: fixed;
+  top: 80px;
+  left: 10px;
+  z-index: 1050;
+  background-color: #222;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .legend-toggle-btn {
+    display: block;
+  }
+
+  .map-legend {
+    display: none;
+  }
+}
