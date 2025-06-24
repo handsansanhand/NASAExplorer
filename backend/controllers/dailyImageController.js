@@ -25,6 +25,7 @@ async function getDailyImage(req, res) {
     });
   } catch (error) {
     console.error("Error fetching daily images:", error);
+    console.error(error.stack);
     res.status(500).json({ error: "Failed to fetch daily images" });
   }
 }
