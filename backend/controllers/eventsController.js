@@ -28,7 +28,6 @@ async function getAllEvents(req, res) {
     const data = await response.json();
 
     const newData = await returnLatestGeometry(data);
-    // console.log(newData);
     res.json(newData);
   } catch (error) {
     console.error("Error parsing event data.", error);
@@ -57,11 +56,9 @@ async function getEvents(req, res) {
   if (days) query.push(`days=${days}`);
   if (limit) query.push(`limit=${limit}`);
 
-  //console.log(`curr query ${query}`)
   //now append all the queries together
   const queryString = query.length ? `?${query.join("&")}` : "";
   const finalRequestString = `${baseURL}${queryString}`;
-  //  console.log(`final query: ${finalRequestString}`)
   //make the api request
   const response = await fetch(`${finalRequestString}`);
   if (!response.ok) {

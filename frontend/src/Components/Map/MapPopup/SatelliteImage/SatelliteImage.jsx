@@ -17,7 +17,6 @@ function SatelliteImage({ coordinates }) {
     try {
       const blob = await retrieveSatelliteImage(coordinates);
       const url = URL.createObjectURL(blob);
-      console.log(`retrieved url ${url}`);
       setImageUrl(url);
     } catch (error) {
       console.error("Error retrieving satellite image:", error);
@@ -41,7 +40,7 @@ function SatelliteImage({ coordinates }) {
           style={{ width: "100%", maxHeight: "400px", objectFit: "cover" }}
         />
       ) : (
-        !imageLoading && <p>Unable to load satellite image.</p>
+        !imageLoading && <p>Unable to load satellite image. The NASA Earth service is down.</p>
       )}
     </div>
   );

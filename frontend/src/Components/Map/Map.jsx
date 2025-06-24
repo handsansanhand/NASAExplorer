@@ -34,9 +34,8 @@ function Map() {
       ...newFilter,
     }));
   };
-  //every time this page is refreshed, repopulate the instances
+  //every time this page is refreshed (the filter is changed), repopulate the instances (markers on the map)
   useEffect(() => {
-    console.log("Filter changed:", JSON.stringify(filter, null, 2));
     const fetchMarkers = async () => {
       setLoading(true);
       const events = await retrieveEvents(filter);

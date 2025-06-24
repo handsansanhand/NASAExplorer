@@ -37,13 +37,11 @@ function MapLegend({ updateFilter, className = "" }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const handleCategoryChange = (e) => {
-    console.log(`changes to ${e}`);
     setSelectedCategory(e.value);
     updateFilter({ category: e.value?.id });
   };
   const handleStatusChange = (e) => {
     if (e.value) {
-      console.log(`Status changed to ${e.value.status}`);
       setStatus(e.value.status);
       updateFilter({ status: e.value.status });
     } else {

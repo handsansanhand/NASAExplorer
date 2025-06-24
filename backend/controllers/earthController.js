@@ -23,12 +23,11 @@ async function getImage(req, res) {
     query.push(`api_key=${API_KEY}`);
     const queryString = query.length ? `?${query.join("&")}` : "";
     const finalQuery = `${base_earth_url}${queryString}`;
-
     const controller = new AbortController();
     //sometimes, this api gets stuch in an infinite loop so we need to include a timeout
     const timeout = setTimeout(() => controller.abort(), 12000);
     const response = await fetch(finalQuery, { signal: controller.signal });
-
+  
     clearTimeout(timeout);
     if (!response.ok) {
       const errorText = await response.text();

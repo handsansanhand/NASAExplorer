@@ -52,7 +52,7 @@ function Homepage() {
               >
                 {leftBoxText.map((text, index) => (
                   <p>
-                    <FaRocket size={"1.5rem"} />
+                    <FaRocket size={"1.5rem"}/>
                     {"   "}
                     {text}
                   </p>

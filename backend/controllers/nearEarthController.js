@@ -37,12 +37,10 @@ async function getNearMissObjects(req, res) {
     }
     const format = `start_date=${begin_date}&end_date=${final_date}&api_key=${API_KEY}`;
     const queryString = `${nearEarthFeedURL}?${format}`;
-    //  console.log(`query : ${queryString}`)
     const request = await fetch(queryString);
 
     if (!request.ok) {
       const errorText = await request.json();
-      console.log(errorText);
       res
         .status(500)
         .json({

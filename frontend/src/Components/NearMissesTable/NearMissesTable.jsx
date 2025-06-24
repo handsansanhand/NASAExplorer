@@ -31,8 +31,8 @@ export default function NearMissesTable() {
     setLoading(false);
   }, [filter]);
 
+  //each time the filter is changed, update the data
   useEffect(() => {
-    console.log("Filter changed:", JSON.stringify(filter, null, 2));
     const fetchNearMisses = async () => {
       setLoading(true);
       const data = await retrieveNearMisses(filter);
