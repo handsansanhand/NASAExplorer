@@ -1,14 +1,16 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 
-// https://vite.dev/config/
+//the url will either be the BACKEND_URL (defined in vercel) or if its null, use the local url
+const BACKEND_URL = process.env.VITE_BACKEND_URL || "http://localhost:3000";
+
 export default defineConfig({
   base: "./",
   plugins: [react()],
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:3000",
+        target: BACKEND_URL,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
