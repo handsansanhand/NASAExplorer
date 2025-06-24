@@ -3,6 +3,10 @@
 */
 export async function fetchDailyImage() {
   try {
+    console.log(`fetching daily image`);
+    const fullURL = `${baseURL}/dailyImage`;
+
+    console.log(`Fetching daily image from: ${fullURL}`);
     const imageDataResponse = await fetch("/api/dailyImage");
     if (!imageDataResponse.ok) {
       throw new Error(
