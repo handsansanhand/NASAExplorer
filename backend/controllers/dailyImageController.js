@@ -10,6 +10,7 @@ const dailyImageURL = "https://api.nasa.gov/planetary/apod?api_key=";
 async function getDailyImage(req, res) {
   console.log("Fetching daily image...");
   try {
+    console.log(`Fetching from ${dailyImageURL}${API_KEY}`)
     const nasaResponse = await fetch(`${dailyImageURL}${API_KEY}`);
 
     if (!nasaResponse.ok) {
