@@ -4,7 +4,7 @@
   justify-content: left;
 }
 .table-wrapper h2 {
-  font-size: 1.5vw;
+  font-size: 1.5rem;
 }
 .button-wrapper {
   display: flex;
@@ -31,7 +31,7 @@
 
   width: 72px;
   height: 36px;
-  font-size: 1vw;
+  font-size: 1rem;
   border-radius: 0;
   padding: 0;
   text-align: center;

@@ -10,12 +10,7 @@ import TablePagination from "@mui/material/TablePagination";
 import Paper from "@mui/material/Paper";
 import { retrieveNearMisses } from "../../Scripts/nearMisses";
 import RouteInfo from "./RouteInfo/RouteInfo";
-import {
-  Dialog,
-  DialogContent,
-  DialogActions,
-} from "@mui/material";
-
+import { Dialog, DialogContent, DialogActions } from "@mui/material";
 import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { IoMdArrowDown, IoMdArrowUp } from "react-icons/io";
@@ -110,8 +105,8 @@ export default function NearMissesTable() {
 
     return (
       <>
-        <TableCell sx={{ width: 50 }} key="headers" className="header-button">
-          Path
+        <TableCell sx={{ width: 50 }} key="headers" align="center">
+          <Button className="header-button"> Path</Button>
         </TableCell>
         {Object.keys(missArray[0]).map(
           (key) =>
@@ -128,8 +123,6 @@ export default function NearMissesTable() {
     );
   };
 
-  const [open, setOpen] = useState(false);
-  const [openRows, setOpenRows] = useState({});
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedAsteroidId, setSelectedAsteroidId] = useState(null);
   const handleToggleRow = (id) => {
@@ -155,7 +148,7 @@ export default function NearMissesTable() {
           .map((value, idx) => (
             <React.Fragment key={value.id}>
               <TableRow key={idx} sx={{ height: 40 }}>
-                <TableCell>
+                <TableCell className="sticky-column-body">
                   <Button
                     aria-label="path information"
                     size="small"
@@ -223,7 +216,7 @@ export default function NearMissesTable() {
         />
         <Paper className="table-container">
           <TableContainer
-            sx={{ height: 600, overflow: "auto" }}
+            sx={{ height: "70vh", overflow: "auto" }}
             className="table-layout"
           >
             <Table aria-label="near misses table" stickyHeader>

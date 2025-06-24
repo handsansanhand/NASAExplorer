@@ -4,7 +4,6 @@
   background-color: white;
   color: black;
   margin-left: 0px !important;
-  width: 175px;
   font-weight: 700;
   transition: border-color 0.3s ease, background-color 0.3s ease,
     color 0.3s ease;
@@ -14,8 +13,7 @@
 .dropdown-menu {
   border: 3px solid black;
   border-radius: 0px;
-  width: 200px;
-  font-size: 1vw;
+  font-size: 1rem !important;
 }
 .table-header-cell {
   width: 10vw;
