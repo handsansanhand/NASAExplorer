@@ -25,7 +25,7 @@ function App() {
   </video>
   </div>
       <div className="app-wrapper">
-        <Router basename="/NASAExplorer">
+        <Router basename="/">
           <Menu className="menu"/>
           <div className="main-content">
             <Routes>
