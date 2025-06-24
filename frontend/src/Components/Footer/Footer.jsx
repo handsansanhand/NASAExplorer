@@ -1,5 +1,5 @@
 import "./Footer.css";
-import Contactdetails from "./ContactDetails/ContactDetails";
+import Contactdetails from "./ContactDetails/Contactdetails";
 import MobileMenuControls from "../MobileMenuControls/MobileMenuControls";
 //small footer at the bottom of the page which shows my contact details
 function Footer() {
