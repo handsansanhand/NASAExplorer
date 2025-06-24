@@ -1,7 +1,8 @@
+const baseURL = import.meta.env.VITE_BACKEND_URL;
 //go through the filter that is been passed in by map, and build the query string
 export async function retrieveEvents(filter = {}) {
   try {
-    let url = "/api/events"; //default
+    let url = `${baseURL}/events`; //default
 
     if (filter && Object.keys(filter).length > 0) {
       //build query string from filter keys/values
@@ -14,7 +15,7 @@ export async function retrieveEvents(filter = {}) {
         .join("&");
 
       if (query.length > 0) {
-        url = `/api/events/filterEvents?${query}`;
+        url = `${baseURL}/events/filterEvents?${query}`;
       }
     }
     const response = await fetch(url);
@@ -39,7 +40,7 @@ export async function retrieveEvents(filter = {}) {
 
 export async function retrieveEventByID(id) {
   try {
-    const response = await fetch(`/api/events/${id}`);
+    const response = await fetch(`${baseURL}/events/${id}`);
     if (!response.ok) {
       throw new Error(
         `Error retrieving event with ID:${id}, CODE:${response.status}`

@@ -1,3 +1,4 @@
+const baseURL = import.meta.env.VITE_BACKEND_URL;
 /* Helper scripts which contact the /nearMiss endpoint 
     /nearMiss parameters:
         -> start_date
@@ -6,7 +7,7 @@
 
 //should recieve a json filter declaring both the start date + end date
 export async function retrieveNearMisses(filter = {}) {
-  let url = "/api/nearMiss"; //default
+  let url = `${baseURL}/nearMiss`; //default
 
   if (filter && Object.keys(filter).length > 0) {
     //build query string from filter keys/values
@@ -33,7 +34,7 @@ export async function retrieveNearMisses(filter = {}) {
 
 //retrieves all the information about the asteroids timeline from /nearMiss/asteroid/{id}
 export async function retrieveNearMissInformation(id) {
-  let url = `/api/nearMiss/asteroid/${id}`;
+  let url = `${baseURL}/nearMiss/asteroid/${id}`;
   console.log(`Retrieving near miss information for asteroid ${id}...`);
   try {
     const response = await fetch(url);

@@ -1,3 +1,4 @@
+const baseURL = import.meta.env.VITE_BACKEND_URL;
 //contacts the satellite api
 export async function retrieveSatelliteImage(coordinates) {
   if (!coordinates || coordinates.length < 2) {
@@ -6,7 +7,7 @@ export async function retrieveSatelliteImage(coordinates) {
 
   const [lon, lat] = coordinates;
 
-  const imageUrl = `/api/earth?lon=${lon}&lat=${lat}`;
+  const imageUrl = `${baseURL}/earth?lon=${lon}&lat=${lat}`;
   console.log("Satellite image URL:", imageUrl);
 
   const response = await fetch(imageUrl);

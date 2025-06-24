@@ -1,13 +1,15 @@
+const baseURL = import.meta.env.VITE_BACKEND_URL;
 /*helper script for the main homepage which fetches the daily image
     url: http://localhost:3000/dailyImage
 */
 export async function fetchDailyImage() {
   try {
     console.log(`fetching daily image`);
+    
     const fullURL = `${baseURL}/dailyImage`;
 
     console.log(`Fetching daily image from: ${fullURL}`);
-    const imageDataResponse = await fetch("/api/dailyImage");
+    const imageDataResponse = await fetch(`${baseURL}/dailyImage`);
     if (!imageDataResponse.ok) {
       throw new Error(
         "HTTP Error fetching daily image. ERROR:",
