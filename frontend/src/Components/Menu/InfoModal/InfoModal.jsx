@@ -6,7 +6,7 @@ import './InfoModal.css'
 function InfoModal({ show, onClose, infoText }) {
   return (
     <Modal show={show} onHide={onClose} className="info-modal">
-      <Modal.Header closeButton>
+      <Modal.Header>
         <Modal.Title>Information</Modal.Title>
       </Modal.Header>
       <Modal.Body className="info-modal-body">
@@ -15,7 +15,7 @@ function InfoModal({ show, onClose, infoText }) {
         ))}
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={onClose}>Close</Button>
+        <Button onClick={onClose} aria-label="Close Button">Close</Button>
       </Modal.Footer>
     </Modal>
   );

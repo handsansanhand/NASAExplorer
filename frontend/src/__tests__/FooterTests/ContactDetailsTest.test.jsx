@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Contactdetails from "../../../Components/Footer/ContactDetails/Contactdetails";
+import Contactdetails from "../../Components/Footer/ContactDetails/Contactdetails";
 import { expect } from "vitest";
 
 describe("Contact details component", () => {

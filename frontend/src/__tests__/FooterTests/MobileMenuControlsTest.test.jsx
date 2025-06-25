@@ -1,11 +1,11 @@
-import MobileMenuControls from "../../../Components/MobileMenuControls/MobileMenuControls";
+import MobileMenuControls from "../../Components/MobileMenuControls/MobileMenuControls";
 import { render, screen } from "@testing-library/react";
 import { describe, test, expect } from "vitest";
 import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 
 //we have to mock the info modal that pops up, this will be used to test wether the info button works
-vi.mock("../../../Components/Menu/InfoModal/InfoModal", () => ({
+vi.mock("../../Components/Menu/InfoModal/InfoModal", () => ({
   default: ({ show, onClose, infoText }) =>
     show ? (
       <div>

@@ -52,10 +52,10 @@ function Menu() {
     <>
       <Navbar expand={false} className="py-3 fixed-top custom-navbar">
         <Container fluid>
-          <Button onClick={handleToggle} className="menu-button">
+          <Button onClick={handleToggle} className="menu-button"  aria-label="Open Menu">
             Menu
           </Button>
-          <Button onClick={handleInfoOpen} className="info-icon-button">
+          <Button onClick={handleInfoOpen} className="info-icon-button"  aria-label="Open Info Modal">
             <IoMdInformation size={24} />
           </Button>
 
