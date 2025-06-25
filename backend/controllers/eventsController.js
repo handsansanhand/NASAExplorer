@@ -27,7 +27,6 @@ async function getAllEvents(req, res) {
       );
     }
     const data = await response.json();
-    console.log("Fetched data:", data);
     const newData = await returnLatestGeometry(data);
     res.json(newData);
   } catch (error) {
@@ -63,7 +62,7 @@ async function getEvents(req, res) {
     const response = await fetch(`${finalRequestString}`);
 
     if (!response.ok) {
-      console.error("Error fetching event by ID. STATUS:", response.status);
+      console.error("Error fetching filtered events. STATUS:", response.status);
       return res.status(500).json({ error: "Failed to fetch events" });
     }
     const responseJSON = await response.json();

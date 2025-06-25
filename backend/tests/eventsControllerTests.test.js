@@ -13,7 +13,7 @@ const { Response } = jest.requireActual("node-fetch");
 
 const app = express();
 app.get("/filterEvents", getEvents);
-app.get("/:id", getEventByID);
+app.get("/events/:id", getEventByID);
 app.get("/", getAllEvents);
 
 /* Testing the events controller, multiple functions including:
@@ -57,7 +57,6 @@ describe("Events controller", () => {
       );
       const response = await request(app).get("/");
       expect(response.status).toBe(200);
-      console.log("response length", response.body.length);
     });
     it("should return 500 when API call fails", async () => {
       fetch.mockResolvedValue(new Response(null, { status: 500 }));
@@ -68,7 +67,7 @@ describe("Events controller", () => {
       expect(res.body).toEqual({ error: "Failed to fetch daily images" });
     });
   });
-  
+
   describe("getEvents", () => {
     it("should return filtered events when valid", async () => {
       const mockEvents = {
@@ -135,6 +134,35 @@ describe("Events controller", () => {
         "?source=NOAA&status=open&days=30&limit=3"
       );
       expect(fetch).toHaveBeenCalledWith(expectedURL);
+    });
+  });
+
+  describe("getEventById", () => {
+    it("should return event data on success", async () => {
+      const mockEvent = {
+        id: "123",
+        title: "Test Event",
+        geometries: [
+          { date: "2024-06-20", type: "Point", coordinates: [1, 2] },
+        ],
+      };
+
+      fetch.mockResolvedValue(
+        new Response(JSON.stringify(mockEvent), { status: 200 })
+      );
+
+      const res = await request(app).get("/events/123");
+
+      expect(res.status).toBe(200);
+      expect(res.body).toEqual(mockEvent);
+    });
+    it("should handle bad response from API", async () => {
+      fetch.mockResolvedValue(new Response(null, { status: 500 }));
+
+      const res = await request(app).get("/events/123");
+
+      expect(res.status).toBe(500);
+      expect(res.body.error).toBe("Failed to fetch event");
     });
   });
 });

@@ -1,6 +1,6 @@
 const { API_KEY } = require("../config");
 const { baseNearEarthURL } = require("../config");
-
+const fetch = require("node-fetch");
 const nearEarthFeedURL = baseNearEarthURL + "feed";
 const asteroidLookupURL = baseNearEarthURL + "neo/";
 /* Controller which contacts the NEOW api
@@ -27,8 +27,8 @@ async function getNearMissObjects(req, res) {
       const yesterday = new Date(today);
       yesterday.setDate(today.getDate() - 1);
 
-      begin_date = today.toISOString().split("T")[0];
-      final_date = yesterday.toISOString().split("T")[0];
+      begin_date = yesterday.toISOString().split("T")[0];
+      final_date = today.toISOString().split("T")[0];
     }
     //date specified
     else {
