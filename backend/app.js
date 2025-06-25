@@ -24,6 +24,8 @@ app.use("/events", eventsRoutes);
 app.use("/earth", earthRoutes);
 app.use("/nearMiss", nearMissRoutes);
 
-app.listen(PORT, () => {
-  console.log("App is listening on port ", PORT);
+app.listen(PORT || 3000, () => {
+  console.log("App is listening on port ", PORT || 3000);
+}).on('error', err => {
+  console.error("Server failed to start: ", err);
 });

@@ -74,6 +74,8 @@ Start the server
   npm run dev
 ```
 
+The frontend should then be up and running at http://localhost:5173/
+
 **Backend**
 Go to the backend directory
 
