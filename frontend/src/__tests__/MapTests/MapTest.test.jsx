@@ -14,7 +14,7 @@ vi.mock("../../Scripts/events", () => ({
 }));
 import { retrieveEvents } from "../../Scripts/events";
 import Map from "../../Components/Map/Map";
-import { wait } from "@testing-library/user-event/dist/cjs/utils/index.js";
+
 describe("Map component", () => {
   const mockEvents = [
     {
@@ -40,12 +40,14 @@ describe("Map component", () => {
   beforeEach(() => {
     retrieveEvents.mockReset();
   });
+  
   //does it render?
   test("map renders", () => {
     const { container } = render(<Map />);
     const mapWrapper = container.querySelector(".map-wrapper");
     expect(mapWrapper).toBeInTheDocument();
   });
+
   //when events are loading, does the popup load too?
   test("load popup appears when events are loading", async () => {
     //have to mock the implementation, basically say that retrieveEvents in this case returns the mockEvents after a short time
@@ -75,7 +77,7 @@ describe("Map component", () => {
     const markers = container.querySelectorAll(".leaflet-marker-icon");
     expect(markers.length).toBe(mockEvents.length);
 
-    userEvent.click(markers[0]);
+    await userEvent.click(markers[0]);
     await waitFor(() => {
       expect(screen.getByText("Tropical Storm Andrea")).toBeInTheDocument();
     });
