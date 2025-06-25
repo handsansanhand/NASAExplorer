@@ -1,5 +1,6 @@
 const { base_earth_url } = require("../config");
 const { API_KEY } = require("../config");
+const fetch = require("node-fetch");
 
 //retrieves a satelite image of the lat and lon parameters
 async function getImage(req, res) {
@@ -31,7 +32,6 @@ async function getImage(req, res) {
     clearTimeout(timeout);
     if (!response.ok) {
       const errorText = await response.text();
-      console.error(`There was an error recieving the satellite image.`);
       return res.status(response.status).json({
         error: `NASA API responded with status ${response.status}`,
         details: errorText,
@@ -43,6 +43,7 @@ async function getImage(req, res) {
     res.set("Content-Type", "image/jpeg");
     res.send(Buffer.from(imageBuffer));
   } catch (error) {
+    console.error("Controller error:", error);
     res.status(500).json({
       error: "Failed to fetch image from NASA API",
       message: error.message,

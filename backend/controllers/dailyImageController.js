@@ -25,8 +25,6 @@ async function getDailyImage(req, res) {
       image_author: data.copyright || "Unknown",
     });
   } catch (error) {
-    console.error("Error fetching daily image", error);
-    console.error(error.stack);
     res.status(500).json({ error: "Failed to fetch daily image" });
   }
 }
