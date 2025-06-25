@@ -46,10 +46,10 @@ function MobileMenuControls() {
 
   return (
     <>
-      <Button onClick={handleInfoOpen} className="info-icon-button-footer">
+      <Button onClick={handleInfoOpen} className="info-icon-button-footer"  aria-label="Open Info Modal">
         <IoMdInformation size={24} />
       </Button>
-      <Button onClick={handleToggle} className="menu-button-footer">
+      <Button onClick={handleToggle} className="menu-button-footer"  aria-label="Open Menu">
         Menu
       </Button>
       <InfoModal
