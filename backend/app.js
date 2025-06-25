@@ -14,8 +14,8 @@ app.use(cors({
   origin: [
     "http://localhost:5173",
     "https://nasa-explorer-39p7gk6s0-jack-wrights-projects.vercel.app",
-    "https://nasa-explorer-eta.vercel.app/",
-    "https://nasa-explorer-git-main-jack-wrights-projects.vercel.app/"
+    "https://nasa-explorer-eta.vercel.app",
+    "https://nasa-explorer-git-main-jack-wrights-projects.vercel.app"
   ]
 }))
 

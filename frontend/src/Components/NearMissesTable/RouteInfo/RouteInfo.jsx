@@ -12,7 +12,6 @@ function RouteInfo({ id }) {
   const [asteroidName, setAsteroidName] = useState("");
   //when loaded (useEffect) needs to fetch the data from the api
   useEffect(() => {
-    console.log(`getting infdo`);
     const fetchNearMissInformation = async () => {
       const data = await retrieveNearMissInformation(id);
       setAsteroidName(data.name);

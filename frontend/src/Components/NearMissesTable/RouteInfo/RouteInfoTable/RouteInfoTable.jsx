@@ -104,21 +104,23 @@ function RouteInfoTable({ path }) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {localPath.map((element, indx) => (
-                <TableRow>
-                  <TableCell>{element.Date}</TableCell>
-                  <TableCell>{element["Orbiting Body"]}</TableCell>
-                  <TableCell>{element.Speed}</TableCell>
-                  <TableCell>{element["Miss Distance"]}</TableCell>
-                </TableRow>
-              ))}
+              {localPath
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((element, indx) => (
+                  <TableRow key={indx}>
+                    <TableCell>{element.Date}</TableCell>
+                    <TableCell>{element["Orbiting Body"]}</TableCell>
+                    <TableCell>{element.Speed}</TableCell>
+                    <TableCell>{element["Miss Distance"]}</TableCell>
+                  </TableRow>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>
         <TablePagination
           rowsPerPageOptions={[5, 10, 25, 100]}
           component="div"
-          count={path.length}
+          count={path?.length || 0}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
