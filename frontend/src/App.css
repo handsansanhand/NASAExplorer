@@ -7,7 +7,13 @@ body,
   margin: 0;
   background: transparent;
 }
-
+@font-face {
+  font-family: "Nasalization";
+  src: url("/frontend/public/fonts/NASALIZA.ttf") format("truetype");
+}
+body {
+  font-family: "Nasalization", sans-serif !important;
+}
 html {
   font-size: clamp(14px, 1.2vw, 18px);
 }

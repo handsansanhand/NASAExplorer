@@ -52,10 +52,18 @@ function Menu() {
     <>
       <Navbar expand={false} className="py-3 fixed-top custom-navbar">
         <Container fluid>
-          <Button onClick={handleToggle} className="menu-button"  aria-label="Open Menu">
+          <Button
+            onClick={handleToggle}
+            className="menu-button"
+            aria-label="Open Menu"
+          >
             Menu
           </Button>
-          <Button onClick={handleInfoOpen} className="info-icon-button"  aria-label="Open Info Modal">
+          <Button
+            onClick={handleInfoOpen}
+            className="info-icon-button"
+            aria-label="Open Info Modal"
+          >
             <IoMdInformation size={24} />
           </Button>
 
@@ -67,6 +75,9 @@ function Menu() {
             placement="end"
             className="popup-bar"
           >
+            <Offcanvas.Header closeButton onHide={handleClose} className="navbar-header">
+              <Offcanvas.Title className="menu-title">Menu</Offcanvas.Title>
+            </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <NavLink

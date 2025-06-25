@@ -1,7 +1,17 @@
 .custom-navbar {
   background-color: transparent !important;
   margin-top: 10px;
-
+}
+.navbar-header {
+  color: white;
+}
+.menu-title {
+  font-size: 3rem !important;
+  border-bottom: 3px solid red;
+}
+.popup-bar .btn-close {
+  background-color: white !important;
+  filter: none !important;
 }
 .popup-bar {
   background-color: black !important;

@@ -8,3 +8,10 @@
   border: 3px solid white;
   border-radius: 5px;
 }
+@media (max-width: 768px) {
+  .satellite-container {
+    min-height: 20vh;
+    min-width: 90vw;
+    padding: 1rem;
+  }
+}

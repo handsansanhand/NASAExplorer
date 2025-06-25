@@ -14,7 +14,7 @@
 }
 
 .modal-text {
-  font-size: 1vw !important;
+  font-size: 2rem !important;
   flex: 1;
   display: flex;
   flex-direction: column;

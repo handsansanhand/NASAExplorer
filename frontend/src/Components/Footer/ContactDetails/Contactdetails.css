@@ -5,7 +5,7 @@ a.no-style-link {
 }
 
 a.no-style-link:hover {
-  color: #0a66c2;
+  color: red;
 }
 
 .contact-details {

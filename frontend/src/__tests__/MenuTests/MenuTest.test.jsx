@@ -30,7 +30,7 @@ describe("Menu component", () => {
     expect(menuButton).toBeInTheDocument();
 
     const buttons = screen.getAllByRole("button");
-    expect(buttons).toHaveLength(2);
+    expect(buttons).toHaveLength(3);
   });
   //when i press info button or menu button, does the correct component load?
   test("opens info modal when info button is pressed", async () => {
