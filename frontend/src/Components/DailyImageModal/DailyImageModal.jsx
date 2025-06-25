@@ -4,7 +4,7 @@ import { Modal, Button } from "react-bootstrap";
 function DailyImageModal({ show, onHide, imageData }) {
   return (
     <Modal show={show} onHide={onHide} centered size="lg">
-      <Modal.Header closeButton>
+      <Modal.Header>
         <Modal.Title>NASA Daily Astronomy Image</Modal.Title>
       </Modal.Header>
       <Modal.Body>
