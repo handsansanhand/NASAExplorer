@@ -36,15 +36,20 @@ function Map() {
   };
   //every time this page is refreshed (the filter is changed), repopulate the instances (markers on the map)
   useEffect(() => {
+    let timeoutId;
+
     const fetchMarkers = async () => {
       setLoading(true);
       const events = await retrieveEvents(filter);
       setMarkers(events);
-      setTimeout(() => {
+      timeoutId = setTimeout(() => {
         setLoading(false);
       }, 1000);
     };
+
     fetchMarkers();
+
+    return () => clearTimeout(timeoutId);
   }, [filter]);
 
   const handleSliderCommit = async (value) => {
@@ -79,12 +84,24 @@ function Map() {
           />
 
           {markers.map((event) => {
-            const geometry = event.latestGeometry;
+            const geometry = event.latestGeometry; 
+            const [lon, lat] = geometry.coordinates;
+            if (
+              typeof lat !== "number" ||
+              typeof lon !== "number" ||
+              isNaN(lat) ||
+              isNaN(lon)
+            )
+              return null;
             if (!geometry || !geometry.coordinates) return null;
 
-            const [lon, lat] = geometry.coordinates;
+           
             return (
-              <Marker key={event.id} position={[lat, lon]}>
+              <Marker
+                key={event.id}
+                position={[lat, lon]}
+                aria-label={`marker-${event.id}`}
+              >
                 <Popup className="custom-popup">
                   <strong className="popup-title">{event.title}</strong>
                   <Button

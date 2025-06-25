@@ -6,7 +6,7 @@ function LoadingPopup({ text }) {
     <>
       <div className="loading-overlay">
         <p>{text}</p>
-        <Infinity size="120" stroke="5" speed="1.5" color="#fc3c23" />
+        <Infinity size="120" stroke="5" speed="1.5" color="#fc3c23"/>
       </div>
     </>
   );
