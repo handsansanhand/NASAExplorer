@@ -8,7 +8,6 @@ export async function retrieveSatelliteImage(coordinates) {
   const [lon, lat] = coordinates;
 
   const imageUrl = `${baseURL}/earth?lon=${lon}&lat=${lat}`;
-  console.log("Satellite image URL:", imageUrl);
 
   const response = await fetch(imageUrl);
   if (!response.ok) {

@@ -1,0 +1,44 @@
+openapi: '3.0.3'
+info:
+  title: NASA Visualization API
+  description: A REST API made in Node.js with various endpoints designed to retrieve data from various free NASA APIs.
+  version: '1.0'
+servers:
+  - url: https://nasaexplorer-4au9.onrender.com
+paths:
+  /getDailyImage:
+    get:
+      summary: Retrieve NASAs Astronomy Picture of the Day (APOD)
+      description: |
+        Returns the daily NASA image along with its title, description, and author (if available).
+      responses:
+        '200':
+          description: Successfully retrieved the daily image
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  image_url:
+                    type: string
+                    format: uri
+                    example: "https://apod.nasa.gov/apod/image/2406/someimage.jpg"
+                  image_title:
+                    type: string
+                    example: "The Galactic Core"
+                  image_description:
+                    type: string
+                    example: "A beautiful image of the center of our Milky Way galaxy."
+                  image_author:
+                    type: string
+                    example: "NASA"   
+        '500':
+              description: Server error when retrieving the image
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      error:
+                        type: string
+                        example: "Failed to fetch daily image"               
