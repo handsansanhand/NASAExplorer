@@ -4,8 +4,6 @@ const baseURL = import.meta.env.VITE_BACKEND_URL;
 */
 export async function fetchDailyImage() {
   try {
-    console.log(`fetching daily image`);
-    
     const fullURL = `${baseURL}/dailyImage`;
 
     console.log(`Fetching daily image from: ${fullURL}`);

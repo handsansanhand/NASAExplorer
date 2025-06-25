@@ -345,7 +345,7 @@ paths:
       description: >
         Returns detailed information about a single asteroid, including its name and
         an array of its close approach data, which includes date, relative velocity,
-        miss distance, and the orbiting body it passed near.
+        miss distance, and the planet it passed near.
       parameters:
         - in: path
           name: id

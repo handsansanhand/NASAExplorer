@@ -46,9 +46,7 @@ export async function retrieveEventByID(id) {
         `Error retrieving event with ID:${id}, CODE:${response.status}`
       );
     }
-    console.log(`${response.body}`);
     const eventData = await response.json();
-    console.log(`Event data: ${eventData}`);
     if (!eventData) {
       return {
         title: `Error Retrieving Event`,
