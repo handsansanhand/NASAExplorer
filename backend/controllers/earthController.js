@@ -9,7 +9,7 @@ async function getImage(req, res) {
   const { lon } = req.query;
   if (!lat || !lon) {
     return res
-      .status(500)
+      .status(400)
       .json({
         error:
           "Cannot retrieve image, both latitude and longitude are required.",

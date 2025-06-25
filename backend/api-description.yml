@@ -5,8 +5,9 @@ info:
   version: '1.0'
 servers:
   - url: https://nasaexplorer-4au9.onrender.com
+    description: Production server
 paths:
-  /getDailyImage:
+  /dailyImage:
     get:
       summary: Retrieve NASAs Astronomy Picture of the Day (APOD)
       description: |
@@ -41,4 +42,374 @@ paths:
                     properties:
                       error:
                         type: string
-                        example: "Failed to fetch daily image"               
+                        example: "Failed to fetch daily image"  
+  /earth:
+    get:
+      summary: Retrieve a satellite image for given latitude and longitude
+      parameters:
+        - in: query
+          name: lat
+          required: true
+          schema:
+            type: number
+            format: float
+            example: 38.2332
+          description: latitude of the location to get the image for
+        - in: query
+          name: lon
+          required: true
+          schema:
+            type: number
+            format: float
+            example: 138.2332
+          description: longitude of the location to get the image for
+      responses:
+        '200':
+          description: satellite image returned Successfully
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Bad request - missing or invalid latitude/longitude parameters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Cannot retrieve image, both latitude and longitude are required."
+        '500':
+          description: Internal server error or NASA API failure
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Failed to fetch image from NASA API"
+                  message:
+                    type: string
+                    example: "Error message details"
+  /events:
+    get:
+      summary: Returns all natural events from the past 3 months
+      description:
+        Returns all detailed events from the past 91 days.
+        Each event includes its ID, title, and latest geometry (last known location).
+      responses:
+        '200':
+          description: List of events with their latest geometry
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: Event unique identifier
+                    title:
+                      type: string
+                      description: Event title
+                    latestGeometry:
+                      oneOf:
+                        - type: object
+                        - nullable: true
+                      description: Latest known geometry of the event (location and time)
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /events/filterEvents:
+    get:
+      summary: Get filtered events
+      description: |
+        Returns events filtered by optional query parameters:
+        category, source, status, days, limit.
+        If category is specified, the API fetches data from a category-specific endpoint.
+      parameters:
+        - in: query
+          name: category
+          schema:
+            type: string
+          description: Category ID to filter events
+        - in: query
+          name: source
+          schema:
+            type: string
+          description: source ID to filter events
+        - in: query
+          name: status
+          schema:
+            type: string
+          description: status of natural event to filter by
+        - in: query
+          name: days
+          schema:
+            type: integer
+            minimum: 1
+          description: number of past days to include
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            minimum: 1
+          description: limit the number of returned events
+      responses:
+        '200':
+          description: Filtered list of events with latest geometry
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    title:
+                      type: string
+                    latestGeometry:
+                      oneOf:
+                        - type: object
+                        - nullable: true
+        '500':
+          description: Internal server error or failed fetch
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /events/{id}:
+    get:
+      summary: Get event by ID
+      description: Fetch detailed information about a specific event by its ID.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: The ID of the event to retrieve
+      responses:
+        '200':
+          description: Detailed event information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  title:
+                    type: string
+                  description:
+                    type: string
+                    nullable: true
+                  link:
+                    type: string
+                    format: uri
+                  categories:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        title:
+                          type: string
+                  sources:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        url:
+                          type: string
+                          format: uri
+                  geometries:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                          format: date-time
+                        type:
+                          type: string
+                          enum: [Point, Polygon]
+                        coordinates:
+                          oneOf:
+                            - type: array
+                              items:
+                                type: number
+                            - type: array
+                              items:
+                                type: array
+                                items:
+                                  type: number
+        '404':
+          description: Event not found
+        '500':
+          description: Internal server error or failed fetch
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /nearMiss:
+    get:
+      summary: Retrieve near-Earth objects (asteroids) that had close approaches recently
+      description: >
+        Returns a list of near-Earth objects detected within an optional date range.
+        If no dates are provided, defaults to the last 1 day.
+        Each object includes its name, average estimated diameter (meters), whether it's potentially hazardous,
+        close approach date and time, relative speed (km/h), and miss distance (km).
+      parameters:
+        - in: query
+          name: start_date
+          schema:
+            type: string
+            format: date
+          description: Start date of the range (YYYY-MM-DD). Defaults to yesterday if omitted.
+          required: false
+        - in: query
+          name: end_date
+          schema:
+            type: string
+            format: date
+          description: End date of the range (YYYY-MM-DD). Defaults to today if omitted.
+          required: false
+      responses:
+        '200':
+          description: List of near-Earth objects and their close approach data
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+                  properties:
+                    Name:
+                      type: string
+                      example: "Asteroid 2025 AB"
+                    Average Estimated Diameter (Meters):
+                      type: string
+                      example: "123.45"
+                    Hazardous:
+                      type: string
+                      enum: ["TRUE", "FALSE"]
+                      example: "TRUE"
+                    Date:
+                      type: string
+                      format: date
+                      example: "2025-06-24"
+                    Time:
+                      type: string
+                      example: "13:45"
+                    Speed (KM/H):
+                      type: string
+                      example: "12345.67"
+                    Miss Distance (Kilometers):
+                      type: string
+                      example: "789.01"
+        '500':
+          description: Server error retrieving near miss data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "There was an error returning the near miss objects."
+
+  /nearMiss/asteroid/{id}:
+    get:
+      summary: Retrieve timeline details for a specific asteroid by its ID
+      description: >
+        Returns detailed information about a single asteroid, including its name and
+        an array of its close approach data, which includes date, relative velocity,
+        miss distance, and the orbiting body it passed near.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: The unique identifier of the asteroid
+      responses:
+        '200':
+          description: Asteroid timeline data retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: "Asteroid 2025 AB"
+                  pastPath:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        Date:
+                          type: string
+                          format: date
+                          example: "2023-06-24"
+                        Orbiting Body:
+                          type: string
+                          example: "Earth"
+                        Speed:
+                          type: string
+                          example: "12345.67"
+                        Miss Distance:
+                          type: string
+                          example: "789.01"
+                  futurePath:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        Date:
+                          type: string
+                          format: date
+                          example: "2026-01-15"
+                        Orbiting Body:
+                          type: string
+                          example: "Mars"
+                        Speed:
+                          type: string
+                          example: "23456.78"
+                        Miss Distance:
+                          type: string
+                          example: "345.67"
+        '500':
+          description: Server error retrieving asteroid timeline
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Failed to fetch asteroid timeline"
+
+
+
