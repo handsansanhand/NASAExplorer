@@ -10,14 +10,7 @@ const nearMissRoutes = require("./routes/nearEarth");
 const app = express();
 
 //this line is for security purposes
-app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://nasa-explorer-39p7gk6s0-jack-wrights-projects.vercel.app",
-    "https://nasa-explorer-eta.vercel.app",
-    "https://nasa-explorer-git-main-jack-wrights-projects.vercel.app"
-  ]
-}))
+app.use(cors());
 
 app.use("/dailyImage", dailyImageRoutes);
 app.use("/events", eventsRoutes);
